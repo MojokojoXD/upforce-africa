@@ -1,4 +1,3 @@
-import type { URL } from "url"
 
 
 type Asset = {
@@ -16,7 +15,7 @@ export type ServiceProvider = {
     _type: 'provider',
     logo: Logo,
     providerName: string;
-    location: URL;
+    location: string;
 }
 
 export type ServiceProviderData = {

@@ -111,7 +111,7 @@ export default function Navbar() {
                                 : 'text-gray-200 hover:bg-gray-700 hover:text-white',
                               'px-3 py-2 rounded-md text-sm font-medium relative'
                             )}
-                            aria-current={item.current ? 'page' : undefined}
+                            aria-current={router_is_ready && router.asPath === item.href ? 'page' : undefined}
                           >
                             {item.name}
                           </Link>
@@ -220,12 +220,12 @@ export default function Navbar() {
                   as={Link}
                   href={item.href}
                   className={classNames(
-                    item.current
+                    router_is_ready && router.asPath === item.href
                       ? 'bg-gray-900 text-white'
                       : 'text-gray-300 hover:bg-gray-700 hover:text-white',
                     'block px-3 py-2 rounded-md text-sm font-medium'
                   )}
-                  aria-current={item.current ? 'page' : undefined}
+                  aria-current={router_is_ready && router.asPath === item.href ? 'page' : undefined}
                 >
                   {item.name}
                 </Disclosure.Button>
