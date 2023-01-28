@@ -25,13 +25,13 @@ const navigation = [
   },
   {
     name: 'Post a Job',
-    href: 'docs.google.com/forms/d/e/1FAIpQLSdbl8fZcPSJ-z0frjOQFK8BmL-W3sCNiq-hYcl1ZP1dF0Xedw/viewform?usp=sf_link',
+    href: 'https://docs.google.com/forms/d/e/1FAIpQLSdbl8fZcPSJ-z0frjOQFK8BmL-W3sCNiq-hYcl1ZP1dF0Xedw/viewform?usp=sf_link',
     external: true,
   },
   { name: 'Tech News', href: '/tech-news', external: false },
   {
     name: 'Africa VC/Investor List',
-    href: 'docs.google.com/spreadsheets/d/1JO54RqzTg11he8XKSDYppxfnQLlhyvMvUy5oFrKhVeU/edit#gid=0',
+    href: 'https://docs.google.com/spreadsheets/d/1JO54RqzTg11he8XKSDYppxfnQLlhyvMvUy5oFrKhVeU/edit#gid=0',
     external: true,
   },
 ];
@@ -87,7 +87,7 @@ export default function Navbar() {
                         return (
                           <a
                             key={item.name}
-                            href={`//${item.href}`}
+                            href={item.href}
                             rel='noreferrer'
                             target='_blank'
                             className={classNames(
