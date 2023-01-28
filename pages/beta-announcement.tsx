@@ -1,10 +1,12 @@
 import * as React from 'react';
+import Image from 'next/image';
+import upforce from '../public/upforce.png'
 
 export default function BetaAnnouncement() {
   return (
-    <div className='bg-white'>
-      <div className='mx-auto max-w-7xl py-24 sm:px-6 sm:py-32 lg:px-8'>
-        <div className='relative isolate overflow-hidden bg-gray-900 px-6 pt-16 shadow-2xl sm:rounded-3xl sm:px-16 md:pt-24 lg:flex lg:gap-x-20 lg:px-24 lg:pt-0'>
+    <div className='bg-gray-50'>
+      <div className='mx-auto max-w-7xl sm:px-6 sm:py-32 lg:px-8'>
+        <div className='relative isolate overflow-hidden bg-gray-900 px-6 pt-16 shadow-2xl sm:rounded-3xl sm:px-16 md:pt-24 lg:flex lg:gap-x-20 lg:px-24 lg:pt-0 pb-20'>
           <svg
             xmlns='http://www.w3.org/2000/svg'
             viewBox='0 0 1024 1024'
@@ -55,14 +57,15 @@ export default function BetaAnnouncement() {
               </a>
             </div>
           </div>
-          <div className='relative mt-16 h-80 lg:mt-8'>
-            {/* <img
+          <div className='relative mt-20 h-80 w-full max-w-sm lg:mt-8'>
+            <Image
               className="absolute top-0 left-0 w-[57rem] max-w-none rounded-md bg-white/5 ring-1 ring-white/10"
-              src="https://tailwindui.com/img/component-images/dark-project-app-screenshot.png"
+              src={upforce}
               alt="App screenshot"
-              width={1824}
-              height={1080}
-            /> */}
+              fill
+            //   width={1824}
+            //   height={1080}
+            />
           </div>
         </div>
       </div>
