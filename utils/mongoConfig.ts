@@ -23,7 +23,7 @@ export async function stashNews(articles: Article[]) {
   return;
 }
 
-export async function getStoriesDB() {
+export async function getStoriesDB(offset?:number) {
   let stories: any;
   const connectedClient = await db_client.connect();
   const upforceDb = connectedClient.db(db);
@@ -46,9 +46,9 @@ export async function getStoriesDB() {
       pubDate: 1,
       title: 1,
     })
-    .limit(30);
+    .limit(9);
 
-  stories = cursor.toArray();
+  stories = cursor.skip(!offset ? 0 : offset).toArray();
 
   return stories;
 }

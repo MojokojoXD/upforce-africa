@@ -1,56 +1,59 @@
 import * as React from 'react';
 import type { Article } from '../../utils/types/techNews';
 import { LazyLoadImage } from 'react-lazy-load-image-component';
-import { UserCircleIcon,LinkIcon } from '@heroicons/react/24/solid';
+import { UserCircleIcon, LinkIcon } from '@heroicons/react/24/solid';
+import { formatArticleDate } from '../../utils/fns';
 
 interface NewsCardProps {
   article: Article;
+  index: number;
+  toggleArticle(index:number | undefined):void;
 }
 
-export default function NewsCard({ article }: NewsCardProps) {
+export default function NewsCard({ article,index,toggleArticle }: NewsCardProps) {
   return (
-    <div className='max-w-sm py-3.5 border rounded-md bg-gradient-to-br from-gray-100 to-purple-100 h-fit'>
-      <div className='mx-2.5'>
-        <p className='text-xs mb-1 text-gray-500'>
-            {formatArticleDate(article.pubDate)}
+    <div className='max-w-sm py-4 rounded-md bg-gradient-to-br from-gray-100 to-purple-100 group hover:from-gray-800 hover:via-gray-900 hover:to-gray-700 transition-all duration-500 ease-in-out cursor-pointer h-fit' onClick={()=> toggleArticle(index)}>
+      <div className='mx-5'>
+        <p className='text-xs mb-1 text-gray-500 group-hover:text-gray-400'>
+          {formatArticleDate(article.pubDate)}
         </p>
       </div>
       <div>
         <div className='float-right ml-1 mr-2 rounded overflow-hidden'>
-            <LazyLoadImage
+          <LazyLoadImage
             src={article.imageUrl}
             height={80}
             width={80}
             effect='blur'
-            />
+          />
         </div>
-        <div className='mx-2.5'>
-            <h1 className='text-base font-semibold text-gray-800'>{article.title}</h1>
+        <div className='mx-5'>
+          <h1 className='text-base font-semibold text-gray-800 group-hover:text-gray-200'>
+            {article.title}
+          </h1>
 
-            <div className='flex text-purple-700 my-1'>
+          <div className='flex text-purple-700 group-hover:text-purple-300 my-1'>
             <div className='mr-3 flex items-center'>
-                <LinkIcon className='h-4 w-4 mr-1'/>
-                <p className='text-sm font-semibold'>{article.source.domain}</p>
+              <LinkIcon className='h-4 w-4 mr-1' />
+              <p className='text-sm font-semibold'>{article.source.domain}</p>
             </div>
             {article.authorsByline.length > 0 && (
-                <div>
+              <div>
                 <UserCircleIcon className='h-4 w-4 inline-block' />
-                <p className='inline-block text-xs ml-1'>
-                    {article.authorsByline}
+                <p className='inline-block text-xs ml-1 font-semibold'>
+                  {article.authorsByline}
                 </p>
-                </div>
+              </div>
             )}
-            </div>
-            <div className='mt-2'>
-                <p className='text-gray-600 text-sm w-[97%] mr-3 min-h-[14]'>{article.description}</p>
-            </div>
+          </div>
+          <div className='mt-2'>
+            <p className='text-gray-600 text-sm w-[97%] mr-3 min-h-[14] group-hover:text-gray-50'>
+              {article.description}
+            </p>
+          </div>
         </div>
       </div>
     </div>
   );
 }
 
-
-function formatArticleDate(date:string){
-    return new Date(date).toDateString()
-}
