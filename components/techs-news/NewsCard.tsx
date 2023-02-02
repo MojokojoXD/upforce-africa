@@ -12,9 +12,9 @@ interface NewsCardProps {
 
 export default function NewsCard({ article,index,toggleArticle }: NewsCardProps) {
   return (
-    <div className='max-w-sm py-4 rounded-md bg-gradient-to-br from-gray-100 to-purple-100 group hover:from-gray-800 hover:via-gray-900 hover:to-gray-700 transition-all duration-500 ease-in-out cursor-pointer h-fit' onClick={()=> toggleArticle(index)}>
+    <div className='max-w-sm py-4 rounded-md bg-gradient-to-br from-gray-100 to-purple-100 group hover:sm:from-gray-800 hover:sm:via-gray-900 hover:sm:to-gray-700 transition-all duration-500 ease-in-out cursor-pointer h-fit focus:ring' onClick={()=> toggleArticle(index)}>
       <div className='mx-5'>
-        <p className='text-xs mb-1 text-gray-500 group-hover:text-gray-400'>
+        <p className='text-xs mb-1 text-gray-500 group-hover:sm:text-gray-400'>
           {formatArticleDate(article.pubDate)}
         </p>
       </div>
@@ -28,11 +28,11 @@ export default function NewsCard({ article,index,toggleArticle }: NewsCardProps)
           />
         </div>
         <div className='mx-5'>
-          <h1 className='text-base font-semibold text-gray-800 group-hover:text-gray-200'>
+          <h1 className='text-base font-semibold text-gray-800 group-hover:sm:text-gray-200'>
             {article.title}
           </h1>
 
-          <div className='flex text-purple-700 group-hover:text-purple-300 my-1'>
+          <div className='flex text-purple-700 group-hover:sm:text-purple-300 my-1'>
             <div className='mr-3 flex items-center'>
               <LinkIcon className='h-4 w-4 mr-1' />
               <p className='text-sm font-semibold'>{article.source.domain}</p>
@@ -47,7 +47,7 @@ export default function NewsCard({ article,index,toggleArticle }: NewsCardProps)
             )}
           </div>
           <div className='mt-2'>
-            <p className='text-gray-600 text-sm w-[97%] mr-3 min-h-[14] group-hover:text-gray-50'>
+            <p className='text-gray-600 text-sm w-[97%] mr-3 min-h-[14] group-hover:sm:text-gray-50'>
               {article.description}
             </p>
           </div>
