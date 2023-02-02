@@ -1,13 +1,12 @@
-import type { Url } from "url"
 
 export type Article = {
-    url: Url;
+    url: string;
     articleId: string;
     authorsByline: string;
     categories: {name:string}[];
     content: string;
     description: string;
-    imageUrl: Url;
+    imageUrl: string;
     links: string[];
     source: {domain: string};
     summary: string;
