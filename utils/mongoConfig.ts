@@ -2,7 +2,7 @@ import { MongoClient } from 'mongodb';
 import type { Article } from './types/techNews';
 
 export const db_client = new MongoClient(process.env.MONGO_URI as string);
-
+//test
 const collection = 'techNews';
 const db = 'upforce';
 
