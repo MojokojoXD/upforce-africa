@@ -45,7 +45,7 @@ export default function ArticleDisplay({
           <blockquote className='max-w-prose hidden md:block italic font-light'>
             {story.summary}
           </blockquote>
-          <LazyLoadImage src={story.imageUrl} className='-ml-9 shadow md:shadow-lg' effect='blur'/>
+          <LazyLoadImage src={story.imageUrl} className='-ml-9 shadow md:shadow-lg rounded-r' effect='blur'/>
           <p className='whitespace-pre-wrap max-w-prose pt-5 text-lg font-light first-line:text-xl first-line:font-normal first-letter:text-5xl first-letter:text-purple-500 first-letter:font-bold'>
             {story.content}
           </p>
