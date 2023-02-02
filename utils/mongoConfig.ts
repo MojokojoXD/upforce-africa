@@ -1,7 +1,7 @@
 import { MongoClient } from 'mongodb';
 import type { Article } from './types/techNews';
 
-export const db_client = new MongoClient(process.env.MONGO_URI);
+export const db_client = new MongoClient(process.env.MONGO_URI as string);
 
 const collection = 'techNews';
 const db = 'upforce';
@@ -24,7 +24,7 @@ export async function stashNews(articles: Article[]) {
 }
 
 export async function getStoriesDB() {
-  let stories: Article[] = [];
+  let stories: any;
   const connectedClient = await db_client.connect();
   const upforceDb = connectedClient.db(db);
   const col = upforceDb.collection(collection);
@@ -41,7 +41,6 @@ export async function getStoriesDB() {
       authorsByline: 1,
       description: 1,
       summary: 1,
-      description: 1,
       links: 1,
       source: 1,
       pubDate: 1,

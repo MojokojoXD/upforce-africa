@@ -6,7 +6,7 @@ import { stashNews } from '../../utils/mongoConfig'
 import { getStories } from '../../utils/blog-fns'
 
 type Data = {
-  name: string
+  message: string
 }
 
 export default async function handler(

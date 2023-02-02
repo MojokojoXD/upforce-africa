@@ -10,7 +10,8 @@ const dateStringOptions = {
 function formatDateString(date:Date){
     const offset = date.getTimezoneOffset();
     const timeWithOffset = new Date(date.getTime() - (offset*60*1000))
-
+    
+    //@ts-ignore
     return timeWithOffset.toISOString(undefined,dateStringOptions).split('T')[0];
 }
 
