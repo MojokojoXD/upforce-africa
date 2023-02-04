@@ -29,7 +29,7 @@ function getDatePeriod () {
 
 export async function getStories () {
     const datePeriod = getDatePeriod()
-    const stories = await fetch(`${perigonUrl}?apiKey=${process.env.PERIGON_KEY}&from=${datePeriod.from}&to=${datePeriod.today}&source=briterbridges.com/stories&showNumResults=true&showReprints=false&excludeLabel=Non-news&excludeLabel=Opinion&excludeLabel=Paid News&excludeLabel=Roundup&excludeLabel=Press Release&sortBy=date&source=techcabal.com&source=techcrunch.com/tag/africa&source=ifc.org&source=techpoint.africa&source=disrupt-africa.com&category=Tech&category=Finance&q=tech OR africa&size=50`)
+    const stories = await fetch(`${perigonUrl}?apiKey=${process.env.PERIGON_KEY}&from=${datePeriod.from}&to=${datePeriod.today}&source=briterbridges.com/stories&showNumResults=true&showReprints=false&excludeLabel=Non-news&excludeLabel=Opinion&excludeLabel=Paid News&excludeLabel=Roundup&excludeLabel=Press Release&sortBy=date&source=techcabal.com&source=techcrunch.com/tag/africa&source=ifc.org&source=techpoint.africa&source=disrupt-africa.com&q=tech&size=50`)
 
     if (stories.ok){
         const data = await stories.json()
