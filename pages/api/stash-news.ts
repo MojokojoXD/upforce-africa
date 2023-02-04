@@ -13,7 +13,7 @@ export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse<Data>
 ) {
-    if(req.query.token !== process.env.PATH_TOKEN){
+    if(req.headers.authorization !== `Bearer ${process.env.PATH_TOKEN}`){
         return res.status(401).json({message: 'invalid token'})
     }
     if(req.method === "GET"){
