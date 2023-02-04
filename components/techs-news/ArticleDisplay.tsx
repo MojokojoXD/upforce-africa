@@ -22,7 +22,7 @@ export default function ArticleDisplay({
       <div className='h-full absolute border-l left-0 -ml-3 border-purple-400/50'></div>
       <button
         onClick={() => toggleArticle(undefined)}
-        className='fixed left-[80%] mr-5 btn btn-circle btn-ghost btn-md transform translate-y-1/2 z-0 shadow'
+        className='fixed left-[80%] mr-5 btn btn-circle btn-ghost btn-md transform translate-y-1/2 shadow z-50'
       >
         <XMarkIcon className='h-7 w-7' />
       </button>

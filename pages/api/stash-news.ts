@@ -13,6 +13,9 @@ export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse<Data>
 ) {
+    if(req.query.token !== process.env.PATH_TOKEN){
+        return res.status(401).json({message: 'invalid token'})
+    }
     if(req.method === "GET"){
 
         let stories:{status:number;numResults:number;articles: Article[]}
@@ -22,7 +25,7 @@ export default async function handler(
              stories = await getStories();
     
              if(stories.status !== 200 || stories === undefined){
-                res.status(400).json({message:"news fetching return unfavourable status"})
+                return res.status(400).json({message:"news fetching return unfavourable status"})
                 return;
              }
          }catch(error){
@@ -35,11 +38,13 @@ export default async function handler(
     
          try {
             await stashNews(stories.articles)
-            res.status(200).json({message:'articles inserted successfully'})
+            await res.revalidate('/tech-news');
+
+            return res.status(200).json({message:"path revalidated and stories stashed"})
          } catch (error) {
             console.log(error)
     
-            res.status(500).json({message: "story insertion failed"})
+            return res.status(500).json({message: "story insertion failed"})
          }
     }
 }

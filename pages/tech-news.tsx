@@ -8,6 +8,7 @@ import { ChevronLeftIcon,ChevronRightIcon } from '@heroicons/react/24/outline';
 import Spinner from '../components/misc/Spinner';
 import { Transition } from '@headlessui/react';
 import ArticleDisplay from '../components/techs-news/ArticleDisplay';
+import { useFetchStories } from '../components/customHooks/hooks';
 
 
 interface TechNewsProps {
@@ -21,7 +22,7 @@ export const getStaticProps:GetStaticProps<TechNewsProps> = async(  ) => {
     return {
         props:{
             stories: stories,
-        }
+        },
     }
 }
 
@@ -29,7 +30,7 @@ export const getStaticProps:GetStaticProps<TechNewsProps> = async(  ) => {
 export default function TechNews( {stories}:TechNewsProps ){
     const [currentNews,setCurrentNews] = useState<Article[]>(stories)
     const [newsOffset,setNewsOffset] = useState(0);
-    const [loading,setLoading] = useState(false);
+    // const [loading,setLoading] = useState(false);
     const [showArticle,setShowArticle] = useState<{
         toggle:boolean;
         index: number | undefined
@@ -37,6 +38,7 @@ export default function TechNews( {stories}:TechNewsProps ){
         toggle:false,
         index: undefined
     })
+    const [updatedStories,loading,error] = useFetchStories(newsOffset);
 
     const increment = () =>{
         if(currentNews.length < 9){
@@ -60,32 +62,14 @@ export default function TechNews( {stories}:TechNewsProps ){
 
     useEffect(()=>{
         const newsBox = document.getElementById('news-box');
-        const updateStories = async() => {
-            setLoading(true);
-            try {
-                const newsUpdate = await fetch(`/api/news/${newsOffset}`)
-
-                if(newsUpdate.ok){
-                    const data:Article[] = await newsUpdate.json();
-                    setCurrentNews(data)
-                    setLoading(false)
-                }
-                
-            } catch (error) {
-                console.log(error)
-                setLoading(false)
-            }
-
-        }
-
         if(newsOffset !== 0){
             newsBox?.scrollIntoView({behavior:'smooth'})
-            updateStories()
+            setCurrentNews(updatedStories)
         }else {
             document.body.scrollIntoView({behavior:"smooth"});
             setCurrentNews(stories)
         }
-    },[newsOffset,stories])
+    },[newsOffset,setCurrentNews,updatedStories,stories])
 
     return (
         <div className='relative bg-gradient-to-bl from-violet-500 via-purple-800 to-indigo-900 rounded'>
