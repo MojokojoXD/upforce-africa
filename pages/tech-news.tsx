@@ -64,7 +64,7 @@ export default function TechNews( {stories}:TechNewsProps ){
         const newsBox = document.getElementById('news-box');
         if(newsOffset !== 0){
             newsBox?.scrollIntoView({behavior:'smooth'})
-            setCurrentNews(updatedStories)
+            setCurrentNews(updatedStories as Article[])
         }else {
             document.body.scrollIntoView({behavior:"smooth"});
             setCurrentNews(stories)
