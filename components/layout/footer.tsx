@@ -17,10 +17,10 @@ export default function Footer() {
       <div className='mx-6 lg:mx-8 relative py-10'>
         <div className='mx-auto max-w-5xl'>
           <div >
-            <h1 className='text-xl font-semibold text-gray-300'>
+            <h1 className='text-xl font-bold'>
               Sign Up for the UpForce Africa Newsletter
             </h1>
-            <p className='text-sm mt-2 text-gray-300 font-medium max-w-prose'>
+            <p className='text-xs mt-2 font-medium max-w-prose'>
               Subscribe to UpForce to receive startup news & insights, exclusive
               job posts, tech events invitation and more directly to your inbox
             </p>
