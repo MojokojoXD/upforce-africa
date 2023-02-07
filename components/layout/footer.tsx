@@ -25,20 +25,20 @@ export default function Footer() {
               job posts, tech events invitation and more directly to your inbox
             </p>
           </div>
-          <div id='newsletter-signup' className='my-3 sm:my-1'>
-            <form>
+          <div id='newsletter-signup' className='sm:my-1'>
+            <form className='my-3'>
               <input
                 type='email'
-                className='w-full sm:max-w-lg input input-bordered input-primary bg-gray-300 text-black'
+                className='w-4/6 sm:max-w-lg input input-bordered input-primary bg-gray-300 text-black'
               />
               <button
                 type='submit'
-                className='mt-8 sm:ml-5  btn btn-primary block sm:inline'
+                className='ml-3  btn btn-primary btn-sm inline'
               >
                 sign up
               </button>
             </form>
-            <small className='text-[.7em] inline-block mt-5 max-w-lg'>
+            <small className='text-[.7em] inline-block max-w-prose'>
               By clicking signup, you are agreeing to receive communications
               from Upforce Africa and to our{' '}
               <span className='underline hover:text-gray-500 cursor-pointer'>
