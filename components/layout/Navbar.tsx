@@ -52,10 +52,10 @@ export default function Navbar() {
   }, [router.isReady]);
 
   return (
-    <Disclosure as='nav' className='bg-transparent z-[9000]'>
+    <Disclosure as='nav' className='bg-gradient-to-b from-gray-800 via-black to-black z-[9000]'>
       {({ open }) => (
         <>
-          <div className='mx-auto max-w-7xl px-2 sm:px-6 lg:px-8 py-3'>
+          <div className='mx-auto max-w-7xl px-2 sm:px-6 lg:px-8 py-5'>
             <div className='relative flex h-16 items-center justify-between'>
               <div className='absolute inset-y-0 left-0 flex items-center sm:hidden'>
                 {/* Mobile menu button*/}
@@ -75,7 +75,7 @@ export default function Navbar() {
                     <Image
                       alt='upforce logo'
                       src={logo}
-                      width={145}
+                      width={140}
                       className='-top-7 absolute'
                     />
                   </div>
@@ -174,38 +174,38 @@ export default function Navbar() {
                   </div>
                 </div>
               </div>
-              <div className='hidden sm:block absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0'>
+              <div className='hidden sm:block absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0 space-x-3'>
                 <a
                   href='https://www.linkedin.com/company/upforce-africa/'
-                  className='rounded-full hover:bg-gray-800 p-1 inline-block'
+                  className='btn btn-circle btn-sm btn-ghost'
                 >
                   <Image
                     src={linkedIn}
                     alt='linkedIn social link'
-                    width={30}
-                    height={30}
+                    width={20}
+                    height={20}
                   />
                 </a>
                 <a
                   href='https://www.facebook.com/profile.php?id=100088679361991&mibextid=LQQJ4d'
-                  className='rounded-full mx-3 hover:bg-gray-800 p-1 inline-block'
+                  className='btn btn-circle btn-sm btn-ghost'
                 >
                   <Image
                     src={facebook}
                     alt='facebook social link'
-                    width={30}
-                    height={30}
+                    width={20}
+                    height={20}
                   />
                 </a>
                 <a
                   href='https://twitter.com/UpforceAfrica'
-                  className='rounded-full hover:bg-gray-800 p-1 inline-block'
+                  className='btn btn-circle btn-sm btn-ghost'
                 >
                   <Image
                     src={twitter}
                     alt='twitter social link'
-                    width={30}
-                    height={30}
+                    width={20}
+                    height={20}
                   />
                 </a>
               </div>

@@ -58,7 +58,7 @@ export default function Home() {
                     <div className='mt-8 flex gap-x-4 sm:justify-center'>
                       <a
                         href='https://docs.google.com/forms/d/e/1FAIpQLSdbl8fZcPSJ-z0frjOQFK8BmL-W3sCNiq-hYcl1ZP1dF0Xedw/viewform?usp=sf_link'
-                        className='inline-block rounded-lg bg-indigo-600 px-4 py-1.5 text-base font-semibold leading-7 text-white shadow-sm ring-1 ring-indigo-600 hover:bg-indigo-700 hover:ring-indigo-700'
+                        className='btn bg-indigo-600 font-semibold leading-7 text-white hover:bg-indigo-700 hover:ring-indigo-700 hover:ring hover:ring indigo-600'
                         target='_blank'
                         rel='noreferrer'
                       >
@@ -69,12 +69,12 @@ export default function Home() {
                       </a>
                       <a
                         href='https://docs.google.com/forms/d/e/1FAIpQLSf4OhZF552iz-VdEJCpidTPOuH84lVcK4RhgAPVtkW_bUC9_g/viewform?usp=sf_link'
-                        className='inline-block rounded-lg bg-indigo-600 px-4 py-1.5 text-base font-semibold leading-7 text-white shadow-sm ring-1 ring-indigo-600 hover:bg-indigo-700 hover:ring-indigo-700'
+                        className='btn btn-outline border-indigo-500 text-indigo-500 font-semibold leading-7 hover:bg-white hover:ring-white hover:ring hover:text-indigo-600'
                         target='_blank'
                         rel='noreferrer'
                       >
                         Add your profile
-                        <span className='text-indigo-200' aria-hidden='true'>
+                        <span aria-hidden='true'>
                           &rarr;
                         </span>
                       </a>

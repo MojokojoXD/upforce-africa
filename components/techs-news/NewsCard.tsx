@@ -47,7 +47,7 @@ export default function NewsCard({ article,index,toggleArticle }: NewsCardProps)
             )}
           </div>
           <div className='mt-2'>
-            <p className='text-gray-600 text-sm w-[97%] mr-3 min-h-[14] group-hover:sm:text-gray-50'>
+            <p className='text-gray-600 text-sm w-[97%] mr-3 min-h-[14] group-hover:sm:text-gray-50 line-clamp-3'>
               {article.description}
             </p>
           </div>
