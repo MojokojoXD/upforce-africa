@@ -1,4 +1,4 @@
-import { useState,useEffect,Fragment } from 'react';
+import { useState,useEffect,Fragment,useCallback } from 'react';
 import type { GetStaticProps } from 'next';
 import { getStories } from '../utils/blog-fns';
 import type { Article } from '../utils/types/techNews';
@@ -30,7 +30,6 @@ export const getStaticProps:GetStaticProps<TechNewsProps> = async(  ) => {
 export default function TechNews( {stories}:TechNewsProps ){
     const [currentNews,setCurrentNews] = useState<Article[]>(stories)
     const [newsOffset,setNewsOffset] = useState(0);
-    // const [loading,setLoading] = useState(false);
     const [showArticle,setShowArticle] = useState<{
         toggle:boolean;
         index: number | undefined
@@ -47,18 +46,23 @@ export default function TechNews( {stories}:TechNewsProps ){
         setNewsOffset(prevState => prevState + 9);
     }
 
+    const inc_handler = useCallback(increment,[setNewsOffset,currentNews.length])
+
     const decrement = () => {
         if(newsOffset > 0){
+            document.body.scrollIntoView({behavior: "smooth"})
             setNewsOffset(prevState => prevState - 9);
         }
     }
 
-    const toggleArticle = (index:number) => {
+    const dec_handler = useCallback(decrement,[newsOffset])
+
+    const toggleArticle = useCallback((index:number) => {
         setShowArticle(prevState => ({
             toggle: !prevState.toggle,
             index: index
         }))
-    }
+    },[])
 
     useEffect(()=>{
         const newsBox = document.getElementById('news-box');
@@ -110,17 +114,17 @@ export default function TechNews( {stories}:TechNewsProps ){
                 >
                     <div>
                         <h2>Latest tech news in Africa</h2>
-                        <div className='mt-5 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 min-h-screen auto-rows-max'>
+                        <div className='mt-5 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-1 h-screen border sm:px-3 py-5 rounded-sm overflow-y-scroll overflow-x-hidden'>
                             {
                                 loading ? <Spinner/> : 
                                 currentNews.map((s,index) => <NewsCard key={s.articleId} article={s} index={index} toggleArticle={toggleArticle}/>)
                             }
                         </div>
                         <div className='flex justify-around mt-14'>
-                            <button onClick={decrement} className='btn btn-primary btn-circle btn-outline' disabled={newsOffset === 0}>
+                            <button onClick={dec_handler} className='btn btn-primary btn-circle btn-outline' disabled={newsOffset === 0}>
                                 <ChevronLeftIcon className='h-5 w-5'/>
                             </button>
-                            <button onClick={increment} className='btn btn-primary btn-circle btn-outline' disabled={currentNews.length < 9}>
+                            <button onClick={inc_handler} className='btn btn-primary btn-circle btn-outline' disabled={currentNews.length < 9}>
                                 <ChevronRightIcon className='h-5 w-5'/>
                             </button>
                         </div>

@@ -114,10 +114,10 @@ export default function Home() {
               <div className='flex justify-center py-10 space-y-10'>
                 <div >
                     <div className='flex justify-center'>
-                        <button className='btn my-2 mx-auto w-fit capitalize bg-transparent md:btn-lg font-light text-gray-900 hover:text-indigo-100'
+                        <button className='btn btn-primary btn-outline my-2 mx-auto w-fit capitalize md:btn-lg font-light text-gray-900 hover:text-indigo-100'
                         onClick={()=>router.push('/beta-announcement')}
                         >access candidate resume book (beta). {" "}
-                        <span className='text-indigo-500 ml-2 lowercase'> here&rarr;</span>
+                        <span className='ml-2'>&rarr;</span>
                         </button>
                     </div>
                     <div className='mt-2 mx-14 md:mx-0'>
