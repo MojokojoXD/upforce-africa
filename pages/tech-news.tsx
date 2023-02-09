@@ -114,7 +114,7 @@ export default function TechNews( {stories}:TechNewsProps ){
                 >
                     <div>
                         <h2>Latest tech news in Africa</h2>
-                        <div className='mt-5 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-1 h-fit sm:px-3 py-5 overflow-y-scroll bg-stone-50 rounded'>
+                        <div className='mt-5 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-1 h-fit sm:px-3 sm:pt-5 bg-stone-50 rounded'>
                             {
                                 loading ? <Spinner/> : 
                                 currentNews.map((s,index) => <NewsCard key={s.articleId} article={s} index={index} toggleArticle={toggleArticle}/>)
