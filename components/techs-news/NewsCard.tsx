@@ -17,7 +17,7 @@ export default function NewsCard({
 }: NewsCardProps) {
   return (
     <div
-      className='w-full max-w-sm py-4 transition-all duration-300 ease-in-out cursor-pointer focus:ring hover:sm:border-purple-400 px-2 h-fit border-b group'
+      className='w-full max-w-sm py-4 transition-all duration-300 ease-in-out cursor-pointer focus:ring hover:sm:border-purple-400 px-3.5 h-fit border-b group'
       onClick={() => toggleArticle(index)}
     >
       <div className='pt-3'>
@@ -29,7 +29,7 @@ export default function NewsCard({
             effect='blur'
           />
         </div>
-        <div className=''>
+        <div>
           <h1
             className='text-lg font-semibold tracking-tight text-gray-800 break-words text-ellipsis group-hover:text-gray-600'
           >
@@ -51,7 +51,7 @@ export default function NewsCard({
             )}
           </div>
           <div className='mt-2'>
-            <p className='text-gray-600 text-sm w-96 pr-6 min-h-[14] line-clamp-3 group-hover:text-gray-500'>
+            <p className='text-gray-600 text-sm pr-6 line-clamp-3 group-hover:text-gray-500'>
               {article.description}
             </p>
           </div>
