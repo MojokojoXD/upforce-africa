@@ -17,7 +17,7 @@ export default function NewsCard({
 }: NewsCardProps) {
   return (
     <div
-      className='w-full max-w-sm py-4 transition-all duration-300 ease-in-out cursor-pointer focus:ring hover:sm:border-purple-400 px-3.5 h-fit border-b group'
+      className='w-full max-w-sm py-4 transition-all duration-300 ease-in-out cursor-pointer focus:ring hover:sm:border-purple-400 px-3.5 h-fit border-b border-stone-200 group'
       onClick={() => toggleArticle(index)}
     >
       <div className='pt-3'>
