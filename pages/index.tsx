@@ -52,7 +52,7 @@ export default function Home() {
                   </div>
                   <div>
                     <h1 className='text-4xl font-bold tracking-tight sm:text-center sm:text-6xl'>
-                      Building Africa’s Largest Database of Tech Talent
+                      Building Africa’s Largest Database of Tech Talent and Jobs
                     </h1>
                     
                     <div className='mt-8 flex gap-x-4 sm:justify-center'>
