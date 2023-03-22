@@ -36,7 +36,6 @@ const Admin: React.FC = () => {
     }
   };
 
-  if(!session)return<Spinner/>
   if (session) {
     router.push(`/admin/${session.user?.name}`);
 
