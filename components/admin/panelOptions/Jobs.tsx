@@ -134,7 +134,7 @@ const Jobs: React.FC = () => {
           enterTo='scale-100'
           leave='transition-transform duration-300'
           leaveFrom='scale-100'
-          leaveTo='scale-50'
+          leaveTo='scale-0'
         >
           <div className='container rounded-lg shadow bg-purple-400'>
             <div className='px-5 py-3 relative'>
