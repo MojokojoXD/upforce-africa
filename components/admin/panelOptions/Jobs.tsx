@@ -129,12 +129,12 @@ const Jobs: React.FC = () => {
       <div className='sm:w-2/3 px-24 hidden sm:block'>
         <Transition
           show={jobToggleOptions.show}
-          enter='transition-transform duration-200'
-          enterFrom='scale-0'
+          enter='transition-transform duration-300'
+          enterFrom='scale-50'
           enterTo='scale-100'
-          leave='transition-transform duration-200'
+          leave='transition-transform duration-300'
           leaveFrom='scale-100'
-          leaveTo='scale-0'
+          leaveTo='scale-50'
         >
           <div className='container rounded-lg shadow bg-purple-400'>
             <div className='px-5 py-3 relative'>
