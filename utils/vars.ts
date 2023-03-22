@@ -5,5 +5,5 @@ export const content_links = [
     {name: 'marketing',href:'docs.google.com/spreadsheets/d/1w8UobmXsg0cV2xA44m4eu_569EvNrPJbYDX2cYJ6ldQ/edit#gid=0'},
     {name: 'design',href:'docs.google.com/spreadsheets/d/19gaIrG0JLL2OwflMVMDhsCbdqN2YbOmytJaCNkWstsk/edit#gid=0'},
     {name: 'data science',href:'docs.google.com/spreadsheets/d/1IeVIJjP0zA1LXUSHrPCxGsd_ElkAxossGPWx-1Ezb8g/edit#gid=0'},
-    {name: 'finance', href: ''},
+    // {name: 'finance', href: ''},
 ]

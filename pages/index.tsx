@@ -1,6 +1,6 @@
 import Head from 'next/head';
 import Image from 'next/image';
-import { useState } from 'react';
+import { useState,Fragment } from 'react';
 import { Dialog } from '@headlessui/react';
 import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline';
 import Link from 'next/link';
@@ -14,7 +14,7 @@ export default function Home() {
       <div>
         <Head>
           <title>Upforce | Home</title>
-          <meta name='description' content='Homepage for upforce africa' />
+          {/* <meta name='description' content='Homepage for upforce africa' /> */}
         </Head>
         <div className='isolate'>
           <div className='absolute inset-x-0 -z-10 transform-gpu overflow-hidden blur-xl sm:blur-2xl ring'>
@@ -123,14 +123,15 @@ export default function Home() {
                     <div className='mt-2 mx-14 md:mx-0'>
                         <ul>
                             {content_links.map((l,index) => (
-                                <>
-                                    <li key={l.name} className='inline text-sm'>
-                                        <p className='capitalize inline-block font-light text-gray-600'>{l.name}</p>
-                                    </li> 
-                                    {
-                                        index != content_links.length - 1 ? <span className='mx-3 text-gray-600'>|</span> : <></>
-                                    }
-                                </>
+                                    <Fragment key={l.name} >
+
+                                        <li className='inline text-sm'>
+                                            <p className='capitalize inline-block font-light text-gray-600'>{l.name}</p>
+                                        </li> 
+                                        {
+                                            index != content_links.length - 1 ? <span className='mx-3 text-gray-600'>|</span> : <></>
+                                        }
+                                    </Fragment>
                             ))}
                         </ul>
                     </div>

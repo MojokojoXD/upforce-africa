@@ -7,6 +7,6 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
         const stories = await getStoriesDB(parseInt(offset as string))
         res.status(200).json(stories)
     }else{  
-        res.status(401).json({message:"request unrecognizedd"})
+        res.status(401).json({message:"request unrecognized"})
     }
 }
