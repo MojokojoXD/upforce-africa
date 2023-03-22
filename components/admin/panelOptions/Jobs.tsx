@@ -28,12 +28,22 @@ const Jobs: React.FC = () => {
 
     try {
       const res = await fetch('/api/authGoogle');
-      if (res.ok) setGLoading(false);
+      if (res.ok) {
+        const {message}: {message:string} = await res.json();
+        openAuthWindow(message);
+        setGLoading(false);
+    }
     } catch (error) {
       console.log(error);
       setLoading(false);
     }
   };
+
+  const openAuthWindow = (url:string) => {
+     if(typeof window === 'undefined')return;
+
+     window.open(url)
+  }
 
   return (
     <div className='flex flex-col sm:flex-row'>

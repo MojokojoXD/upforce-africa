@@ -20,26 +20,8 @@ const authGoogle:NextApiHandler = async (req,res) => {
         access_type: 'offline',
         scope: scopes.join(' ')
     })
-
-    const cp = await opn( authUrl,{wait: false} )
-    cp.unref()
-    return res.status(200).json({message: 'ok'})
-
-    // try {
-    //     await authenticate(scopes);
-    //     return res.status(200).json({message: 'authentication successfull'})
-    // } catch (error) {
-    //     console.log(error)
-    //     return res.status(500).json({message:"something went wrong"})
-    // }
-
+    return res.status(200).json({message: authUrl})
 }
-
-// const oauth2Client = new google.auth.OAuth2(
-//     keys.web.client_id,
-//     keys.web.client_secret,
-//     keys.web.redirect_uris
-// )
 
 
 async function authenticate(scopes) {
@@ -53,17 +35,7 @@ async function authenticate(scopes) {
         .createServer(
             async (req, res) => {
           try {
-            if ((req.url as string).indexOf('/callback') > -1) {
-              const qs = new url.URL(req.url as string, 'http://localhost:4000')
-                .searchParams;
-              res.end('Authentication successful! Please return to the console.');
-              server.destroy();
-              //@ts-ignore
-              const {tokens}:{tokens: Credentials } = await oauth2Client.getToken(qs.get('code'));
-              await stashTokens(tokens);
-              oauth2Client.credentials = tokens; // eslint-disable-line require-atomic-updates
-              resolve();
-            }
+            
           } catch (e) {
             reject(e);
           }

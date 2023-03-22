@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { useSession, signIn, signOut } from 'next-auth/react';
 import { useRouter } from 'next/router';
 import type { Login } from '../../utils/types/admin';
+import Spinner from '../../components/misc/Spinner';
 
 interface AdminProps {}
 
@@ -35,8 +36,10 @@ const Admin: React.FC = () => {
     }
   };
 
+  if(!session)return<Spinner/>
   if (session) {
     router.push(`/admin/${session.user?.name}`);
+
   } 
     return (
       <div className='h-screen flex'>
