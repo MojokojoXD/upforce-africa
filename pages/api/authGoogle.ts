@@ -15,13 +15,23 @@ import type { Credentials } from 'google-auth-library';
 const scopes = ['https://www.googleapis.com/auth/forms.responses.readonly'];
 
 const authGoogle:NextApiHandler = async (req,res) => {
-    try {
-        await authenticate(scopes);
-        return res.status(200).json({message: 'authentication successfull'})
-    } catch (error) {
-        console.log(error)
-        return res.status(500).json({message:"something went wrong"})
-    }
+
+    const authUrl = oauth2Client.generateAuthUrl({
+        access_type: 'offline',
+        scope: scopes.join(' ')
+    })
+
+    const cp = await opn( authUrl,{wait: false} )
+    cp.unref()
+    return res.status(200).json({message: 'ok'})
+
+    // try {
+    //     await authenticate(scopes);
+    //     return res.status(200).json({message: 'authentication successfull'})
+    // } catch (error) {
+    //     console.log(error)
+    //     return res.status(500).json({message:"something went wrong"})
+    // }
 
 }
 
