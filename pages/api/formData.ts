@@ -9,7 +9,7 @@ const testEndpointHandler:NextApiHandler = async(req,res) => {
 
     const tokens = await getTokens()
 
-    if(tokens === undefined)return res.status(500).json('auth tokens not set')
+    if(tokens === undefined)return res.status(400).json('auth tokens not set')
 
     oauth2Client.credentials = tokens;
 

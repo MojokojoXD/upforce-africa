@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { forms_v1 } from 'googleapis';
 import { BriefcaseIcon,XMarkIcon } from '@heroicons/react/24/outline';
-import { CheckIcon } from '@heroicons/react/24/solid';
+import { CheckIcon,KeyIcon } from '@heroicons/react/24/solid';
 import JobField from './JobField';
 import { Transition } from '@headlessui/react';
 
@@ -57,7 +57,7 @@ const Jobs: React.FC = () => {
             </li>
             <li className='inline float-right space-x-3'>
               <button
-                className='btn btn-xs mt-1 btn-outline capitalize'
+                className='btn btn-xs btn-outline capitalize'
                 onClick={async () => {
                   setLoading(true);
                   setJobToggleOptions({
@@ -84,13 +84,13 @@ const Jobs: React.FC = () => {
                 get responses
               </button>
               <button
-                className={`btn btn-outline btn-success font-bold btn-circle btn-xs ${
+                className={`btn btn-circle font-bold btn-circle btn-xs ${
                   gloading && 'loading'
                 }`}
                 onClick={handleAuth}
                 disabled={gloading}
               >
-                {!gloading && 'G'}
+                {!gloading && <KeyIcon className='w-3.5'/>}
               </button>
             </li>
           </ul>
