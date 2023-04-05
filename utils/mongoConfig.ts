@@ -1,7 +1,8 @@
 import { MongoClient } from 'mongodb';
 import type { Article } from './types/techNews';
 import type { Credentials } from 'google-auth-library';
-
+import { forms_v1 } from 'googleapis';
+import { MongoServerError } from 'mongodb';
 
 export const db_client = new MongoClient(process.env.MONGO_URI as string);
 //test
@@ -63,29 +64,99 @@ export const stashTokens = async (tokens: Credentials) => {
 
     const res = await collection.insertOne(tokens);
 
-    console.log(res)
+    console.log(res);
 
     c_client.close();
   } catch (error) {
-        console.log(error)
-        c_client.close()
+    console.log(error);
+    c_client.close();
   }
 };
 
-export const getTokens = async() : Promise<Credentials> => {
-    const c_client = await db_client.connect();
-    let tokens;
+export const getTokens = async (): Promise<Credentials> => {
+  const c_client = await db_client.connect();
+  let tokens;
+  try {
+    const collection = c_client.db('upforce').collection('tokens');
+    const res = await collection.findOne({}, { projection: { _id: 0 } });
+
+    tokens = res;
+
+    c_client.close();
+  } catch (error) {
+    console.log(error);
+    c_client.close();
+  }
+
+  return tokens;
+};
+
+export class Mongo {
+  protected static client = db_client;
+  protected static db = 'upforce';
+}
+
+export class Jobs extends Mongo {
+  private static collection = 'approved_jobs';
+
+  static async sendApproved(data: any) {
     try {
-        const collection = c_client.db('upforce').collection('tokens');
-        const res = await collection.findOne({},{projection:{_id:0}})
+      Jobs.client = await Jobs.client.connect();
+      const collection = Jobs.client.db(Jobs.db).collection(Jobs.collection);
+      const result = await collection.insertOne(data);
+      console.log(result);
 
-        tokens = res;
-
-        c_client.close();
+      Jobs.client.close();
     } catch (error) {
-        console.log(error);
-        c_client.close();
+      if (error instanceof MongoServerError) {
+        return error.code
+      } else console.log(error);
+      Jobs.client.close();
     }
-    
-    return tokens;
+  }
+
+  static async deleteApproved(responseId: string) {
+    try {
+      Jobs.client = await Jobs.client.connect();
+      const collection = Jobs.client.db(Jobs.db).collection(Jobs.collection);
+      const result = await collection.deleteOne({ responseId: responseId });
+      console.log(result);
+
+      Jobs.client.close();
+    } catch (error) {
+      console.log(error);
+      Jobs.client.close();
+    }
+  }
+
+  static async getApproved(offset?: number) {
+    let data;
+    try {
+      Jobs.client = await Jobs.client.connect();
+      const collection = Jobs.client.db(Jobs.db).collection(Jobs.collection);
+    const cursor = collection.aggregate([
+            {
+                $project: {
+                    _id: 0,
+                    createTime: {$toString: "$createTime"},
+                    approvedAt: {$toString: "$approvedAt"},
+                    answers: 1,
+                    responseId: 1,
+                    lastSubmittedTime: 1,
+                }
+            }
+        ])
+
+
+      data = await cursor.toArray()
+
+      Jobs.client.close();
+
+      return data;
+    } catch (error) {
+      console.log(error);
+      Jobs.client.close();
+      return undefined;
+    }
+  }
 }

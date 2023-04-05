@@ -33,6 +33,24 @@ export function useFetchStories(offset:number){
     return [stories,loading,error]
 }
 
+// type RequestOptions={
+//     url?:string;
+//     method?: string;
+
+// }
+
+// class Fetcher {
+//     private url:string = "";
+
+//     constructor(){
+//     }
+
+//     async request(data:any,options?:RequestOptions){
+//         if(!url || !options)throw new Error('resource location has not been set');
+
+//         const result = await fetch()
+//     }
+// }
 
 
 

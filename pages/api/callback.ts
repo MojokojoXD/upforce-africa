@@ -2,6 +2,7 @@ import type { NextApiHandler } from "next";
 import { stashTokens } from "../../utils/mongoConfig";
 import { oauth2Client } from "../../utils/googleAuth";
 import url from 'url'
+import type { Credentials } from "google-auth-library";
 
 
 const callBack:NextApiHandler = async(req,res) => {
@@ -11,7 +12,7 @@ const callBack:NextApiHandler = async(req,res) => {
           .searchParams;
         res.end('Authentication successful! Please return to the console.');
         //@ts-ignore
-        const {tokens}:{tokens: Credentials } = await oauth2Client.getToken(qs.get('code'));
+        const {tokens}= await oauth2Client.getToken(qs.get('code'));
         await stashTokens(tokens);
         oauth2Client.credentials = tokens; // eslint-disable-line require-atomic-updates
       }else {

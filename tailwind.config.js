@@ -9,7 +9,17 @@ module.exports = {
           backgroundImage: {
             'link-foreground': 'url("https://images.unsplash.com/photo-1531482615713-2afd69097998?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870&q=80")',
         }
+      },
+      
     },
-  },
+    daisyui: {
+        theme: [
+            {
+                "neutral": "#1f2937",
+                "error": "#fb7185",
+                "success": "#10b981"
+            }
+        ]
+    },
   plugins: [require("daisyui"),require("@tailwindcss/line-clamp")],
 }

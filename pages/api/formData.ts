@@ -4,7 +4,7 @@ import type { NextApiHandler } from "next";
 import { getTokens } from "../../utils/mongoConfig";
 
 
-const testEndpointHandler:NextApiHandler = async(req,res) => {
+const formDataHandler:NextApiHandler = async(req,res) => {
     if(req.method !== 'GET') return res.status(400).json({message: "endpoint error"})
 
     const tokens = await getTokens()
@@ -31,4 +31,4 @@ const testEndpointHandler:NextApiHandler = async(req,res) => {
 }
 
 
-export default testEndpointHandler;
+export default formDataHandler;

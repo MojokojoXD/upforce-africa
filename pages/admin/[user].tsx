@@ -60,9 +60,11 @@ const User: FC = () => {
         <div className='flex flex-col bg-white shadow'>
           <div className='bg-gradient-to-br from-purple-500 via-slate-300 to-gray-100 opacity-90 flex py-5 rounded-t-lg'>
             <div className='w-1/2 relative'>
-              <h1 className='text-lg w-fit font-semibold text-right text-gray-700 tracking-tight absolute left-10 after:content-["africa"] after:text-[10px] after:absolute after:left-0 after:-bottom-3 after:w-full after:text-gray-500'>
-                UpForce
-              </h1>
+              <Link href={'/'}>
+                <h1 className='text-lg w-fit font-semibold text-right text-gray-700 tracking-tight absolute left-10 after:content-["africa"] after:text-[10px] after:absolute after:left-0 after:-bottom-3 after:w-full after:text-gray-500'>
+                    UpForce
+                </h1>
+              </Link>
             </div>
             <div className='w-1/2 mr-8 flex justify-end'>
               <button

@@ -1,41 +1,60 @@
-import { useState } from 'react';
+import { useState,useReducer,useEffect } from 'react';
 import { forms_v1 } from 'googleapis';
 import { BriefcaseIcon,XMarkIcon } from '@heroicons/react/24/outline';
-import { CheckIcon,KeyIcon } from '@heroicons/react/24/solid';
+import { CheckIcon,KeyIcon,BriefcaseIcon as SBriefcaseIcon } from '@heroicons/react/24/solid';
 import JobField from './JobField';
 import { Transition } from '@headlessui/react';
+import { LoadingState,loadingReducer } from '../../../utils/reducerFns/jobs';
+import uuid from 'react-uuid'
 
 interface JobsProps {}
 
-export type JobToggleOption = {
+type JobToggleOption = {
   index: number | undefined;
   show: boolean;
 };
 
+type CurrentList = {
+    section: 'approved' | 'rawResponses' | undefined;
+    selectedResponse: string | undefined;
+}
+
+
+const initialLoadingState = {
+    gAuthorization: false,
+    formResponses: false,
+    jobApproval: false,
+    getApproved:false,
+}
+
+const classNames = (...classes:string[]) => classes.filter(Boolean).join(' ');
+
+
 const Jobs: React.FC = () => {
-  const [resource, setResource] = useState<
-    forms_v1.Schema$ListFormResponsesResponse | undefined
-  >(undefined);
-  const [loading, setLoading] = useState<boolean>(false);
-  const [gloading, setGLoading] = useState<boolean>(false);
+  const [resource, setResource] = useState<forms_v1.Schema$ListFormResponsesResponse | undefined>(undefined);
+  const [loading,dispatch] = useReducer(loadingReducer,initialLoadingState)
   const [jobToggleOptions, setJobToggleOptions] = useState<JobToggleOption>({
     index: undefined,
     show: false,
   });
+  const [currentList,setCurrentList] = useState<CurrentList>({
+    section: undefined,
+    selectedResponse: undefined,
+  })
 
   const handleAuth = async () => {
-    setGLoading(true);
+    dispatch({type:'GAUTH',payload: true})
 
     try {
-      const res = await fetch('/api/authGoogle');
+      const res = await fetch('/api/admin/auth-google');
       if (res.ok) {
         const {message}: {message:string} = await res.json();
         openAuthWindow(message);
-        setGLoading(false);
+        dispatch({type:'GAUTH',payload:false})
     }
     } catch (error) {
       console.log(error);
-      setLoading(false);
+      dispatch({type:'GAUTH',payload:false})
     }
   };
 
@@ -45,21 +64,108 @@ const Jobs: React.FC = () => {
      window.open(url)
   }
 
+  const handleApprove = async() => {
+    dispatch({type: 'FORMRES',payload: true})
+    if(!resource || !resource.responses)return
+
+    const body = {...resource?.responses[jobToggleOptions.index as number]}
+    try {
+        const res = await fetch('/api/admin/jobs',{
+            method: "POST",
+            body: JSON.stringify(body),
+        });
+
+        if(res.ok){
+            alert('success! job listing approved')
+        }else alert((await res.json()).message)
+
+        dispatch({type:'FORMRES',payload: false})
+
+    } catch (error) {
+        console.log(error)
+        dispatch({type:'FORMRES',payload: false})
+
+    }
+  }
+
+  const getApproved = async() => {
+    dispatch({type: "GETAPPROVED",payload: true});
+    setCurrentList(prevState => ({selectedResponse: undefined,section: 'approved'}))
+    setJobToggleOptions({index: undefined,show: false})
+
+    try {
+        const res = await fetch('/api/admin/jobs')
+
+        if(res.ok){
+            const data = await res.json()
+            setResource(data)
+            dispatch({type:'GETAPPROVED',payload: false})
+        }else throw new Error('failed to fetch approved jobs')
+    } catch (error) {
+        console.log(error)
+        dispatch({type:'GETAPPROVED',payload: false})
+
+    }
+  }
+
+  const handleDelete = async () => {
+    dispatch({type:'GETAPPROVED',payload: true})
+    if(!resource || !resource.responses)throw new Error('job listing is undefined')
+    const _responseId = resource?.responses.at(jobToggleOptions.index as number)?.responseId as string
+    try {
+        const res = await fetch(`/api/admin/delete?id=${_responseId}`,{
+            method: 'DELETE'
+        })
+        if(res.ok){
+           setResource(prevState => {
+             const updatedListing = prevState?.responses?.filter(l => l.responseId !== _responseId)
+             return ({
+                ...prevState,
+                responses: updatedListing,
+             })
+           })
+
+           if(jobToggleOptions.index === resource?.responses?.length - 1){
+             setJobToggleOptions(prevState => ({...prevState,index: (prevState.index as number) - 1}))
+           }
+
+           alert('listing removed succesfully')
+           dispatch({type:'GETAPPROVED',payload:false})
+        }else alert('failed to delete listing. Please try again later!')
+    } catch (error) {
+        console.log(error)
+    }
+  }
+
+  useEffect(()=>{
+    if(resource?.responses?.length === 0){
+        setJobToggleOptions({
+            index: undefined,
+            show: false,
+        })
+    }
+  }, [resource?.responses?.length])
+
   return (
     <div className='flex flex-col sm:flex-row'>
       <div className='sm:w-1/3'>
         <div className='border-b pb-3'>
           <ul className='space-x-3'>
             <li className='inline'>
-              <button className='btn btn-ghost btn-sm capitalize font-semibold text-gray-700'>
-                Approved <span className='font-bold ml-1'>&#183;</span>
+              <button className={`btn btn-sm ${currentList.section === 'approved' ? 'btn-active' : 'btn-outline'}`}
+                onClick={getApproved}
+                disabled={loading.getApproved}
+              >
+                Approved 
+                {/* <span className='font-bold ml-1'>&#183;</span> */}
               </button>
             </li>
-            <li className='inline float-right space-x-3'>
+            <li className='inline space-x-3'>
               <button
-                className='btn btn-xs btn-outline capitalize'
+                className={`btn btn-sm ${currentList.section === 'rawResponses' ? 'btn-active' : 'btn-outline'}`}
                 onClick={async () => {
-                  setLoading(true);
+                  dispatch({type: 'FORMRES',payload: true});
+                  setCurrentList(prevState => ({selectedResponse: undefined,section: 'rawResponses'}))
                   setJobToggleOptions({
                     index: undefined,
                     show: false,
@@ -73,53 +179,57 @@ const Jobs: React.FC = () => {
                       return new Date(b.createTime as string)- new Date(a.createTime as string);
                     });
                     setResource(data);
-                    setLoading(false);
+                    dispatch({type: 'FORMRES',payload:false})
                   } else {
-                    alert('Possible authorization error');
-                    setLoading(false);
+                    alert(res.statusText);
+                    dispatch({type:'FORMRES',payload:false})
                   }
                 }}
-                disabled={loading}
+                disabled={loading.formResponses}
               >
-                get responses
+                Raw responses
               </button>
               <button
-                className={`btn btn-circle font-bold btn-circle btn-xs ${
-                  gloading && 'loading'
+                className={`btn btn-circle btn-circle btn-sm ${
+                  loading.gAuthorization && 'loading'
                 }`}
                 onClick={handleAuth}
-                disabled={gloading}
+                disabled={loading.gAuthorization}
               >
-                {!gloading && <KeyIcon className='w-3.5'/>}
+                {!loading.gAuthorization && <KeyIcon className='w-3.5'/>}
               </button>
             </li>
           </ul>
         </div>
         <div className='space-y-3 mt-2 text-gray-800 relative pt-3'>
-          {loading && <progress className='progress w-full mx-auto'></progress>}
-          {resource?.responses &&
-            !loading &&
+          {(loading.formResponses || loading.getApproved )&& <progress className='progress w-full mx-auto'></progress>}
+          {resource?.responses && !loading.formResponses && !loading.getApproved &&
             resource.responses.map((r, index) => {
               const timePosted = new Date(r.createTime as string).toDateString();
               if(typeof r === 'undefined')return
               if(r.answers === undefined || !r.answers)return
               return (
                 <div
-                  key={r.responseId}
-                  className='px-3.5  py-2 rounded-lg border text-gray-600 cursor-pointer hover:bg-zinc-50 hover:shadow-sm transition-all duration-300 ease-in-out hover:text-gray-800 flex justify-between'
+                  key={uuid()}
+                  className={classNames(
+                   `hover:bg-gray-200 ${index === jobToggleOptions.index ? 'bg-gray-800 hover:bg-gray-800 text-gray-200' : 'text-gray-600 hover:text-gray-800'}`, 
+                    `cursor-pointer transition-all duration-200 ease-in-out flex justify-between pl-2.5 py-1.5 rounded-lg`)}
                   onClick={() =>
-                    setJobToggleOptions({ index: index, show: true })
+                    { 
+                        setJobToggleOptions({ index: index, show: true })
+                        setCurrentList(prevState => ({...prevState, selectedResponse: r.responseId as string}))
+                }
                   }
                 >
-                  <div className='order-2 self-center'>
-                    <p className='text-sm'>{timePosted}</p>
-                  </div>
-                  <div className='order-1'>
-                    <BriefcaseIcon className='w-5 inline mr-2 text-purple-500' />
-                    <p className='max-w-prose font-normal first-letter:uppercase text-sm inline-block'>
+                  <div>
+                    {jobToggleOptions.index === index ? <SBriefcaseIcon className={`w-5 inline mr-2 ${currentList.section === 'rawResponses' ? 'text-rose-400' : 'text-emerald-500'}`}/> : <BriefcaseIcon className={`w-5 inline mr-2 ${currentList.section === 'rawResponses' ? 'text-rose-400' : 'text-emerald-500'}`} />}
+                    <p className='font-semibold first-letter:uppercase text-sm inline-block'>
                         {/* @ts-ignore */}
                       {r.answers['1cf59252'].textAnswers?.answers[0].value as string}
                     </p>
+                  </div>
+                  <div className='self-center'>
+                    <p className={classNames(jobToggleOptions.index === index ? 'text-gray-400' :'text-gray-500','text-xs inline mr-3 font-normal')}>{timePosted}</p>
                   </div>
                 </div>
               );
@@ -149,7 +259,22 @@ const Jobs: React.FC = () => {
             </div>
             <div className='px-5 py-3 bg-zinc-50 text-gray-600 text-sm space-y-5 overflow-scroll max-h-[370px] border relative'>
               <div className='fixed right-5'>
-                <button className='btn btn-xs btn-success rounded capitalize'><CheckIcon className='w-3.5 mr-1.5'/>approve</button>
+                {
+                    currentList.section === 'rawResponses' ?
+                    <button className='btn btn-xs btn-success rounded capitalize'
+                        onClick={handleApprove}
+                        disabled={loading.jobApproval}
+                    >
+                        <CheckIcon className='w-3.5 mr-1.5'/>
+                            Approve
+                    </button> : 
+                    
+                    <button className='btn btn-xs btn-error rounded capitalize'
+                        onClick={handleDelete}
+                    >
+                            Remove
+                    </button>   
+                }
               </div>
               <div className='grid space-y-3 lg:space-y-0 lg:grid-cols-2 min-w-xs'>
                 <JobField

@@ -38,7 +38,7 @@ const Admin: React.FC = () => {
 
   if (session) {
     router.push(`/admin/${session.user?.name}`);
-
+    return <></>
   } 
     return (
       <div className='h-screen flex'>
