@@ -67,12 +67,12 @@ export class JobSearch {
         switch(method){
             case 'new':
                 return temp.sort((a,b) => {
-                    return new Date(b.approvedAt) - new Date(a.approvedAt)
+                    return new Date(b.approvedAt as string).getTime() - new Date(a.approvedAt as string).getTime()
                 })
             break;
             case 'oldest':
                 return temp.sort((a,b)=> {
-                    return new Date(a.approvedAt) - new Date(b.approvedAt)
+                    return new Date(a.approvedAt as string).getTime() - new Date(b.approvedAt as string).getTime()
                 })
                 break;
             default:

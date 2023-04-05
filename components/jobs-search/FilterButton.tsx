@@ -6,7 +6,7 @@ interface FilterButtonProps {
     getSortOrder: (sortBy: 'new' | 'oldest' | undefined) => void;
 }
 
-type SortOrder = 'new' | 'oldest';
+type SortOrder = 'new' | 'oldest' | undefined;
 
 const FilterButton: React.FC<FilterButtonProps> = ({
   getSortOrder

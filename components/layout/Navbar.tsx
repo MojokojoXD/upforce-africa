@@ -77,7 +77,7 @@ export default function Navbar() {
                       src={logo}
                       width={140}
                       className='-top-7 absolute'
-                      priority = 'true'
+                      priority = {true}
                     />
                   </div>
                 </div>

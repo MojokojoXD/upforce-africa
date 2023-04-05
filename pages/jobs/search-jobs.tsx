@@ -37,7 +37,7 @@ export default function SearchJobs({ jobListings }: SearchJobsProps) {
   const transformedListing = useProcessJobs(jobListings, sortOrder)
 
   //function to fetch sort order from JobFilter component
-  const _getSortOrder = (order: 'new' | 'oldest') => {
+  const _getSortOrder = (order: 'new' | 'oldest' | undefined) => {
      setSortOrder(order)
   }
 

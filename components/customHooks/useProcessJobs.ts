@@ -4,7 +4,7 @@ import { JobSearch } from '../../utils/fns';
 
 
 const useProcessJobs = (listings:ApprovedJobs[],sortOrder: 'new' | 'oldest' | undefined) => {
-    const [temp,setTemp] = useState<ApprovedJobs>(listings);
+    const [temp,setTemp] = useState<ApprovedJobs[]>(listings);
     const transformedList = useMemo(()=> {
         return JobSearch.transformListings(temp);
     },[temp])
