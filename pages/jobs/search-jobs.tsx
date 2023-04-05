@@ -1,4 +1,4 @@
-import { useMemo } from 'react';
+import { useMemo,useState } from 'react';
 import type { GetStaticProps } from 'next';
 import type { forms_v1 } from 'googleapis';
 import { Jobs } from '../../utils/mongoConfig';
@@ -7,9 +7,16 @@ import { MagnifyingGlassIcon, FunnelIcon } from '@heroicons/react/24/outline';
 import JobListing from '../../components/jobs-search/JobListing';
 import { JobSearch } from '../../utils/fns';
 
+
 interface SearchJobsProps {
   jobListings: ApprovedJobs[];
 }
+
+type ListingConfig = {
+    toggleFilter: boolean;
+    toggleSearch: boolean;
+}
+
 
 export const getStaticProps: GetStaticProps<SearchJobsProps> = async (
   context
@@ -37,6 +44,10 @@ export default function SearchJobs({ jobListings }: SearchJobsProps) {
     () => JobSearch.transformListings(jobListings),
     [jobListings]
   );
+  const [listingConfig,setListingConfig] = useState<ListingConfig>({
+    toggleFilter:false,
+    toggleSearch:false,
+  })
 
   if(!transformedListing)return <p>something went wrong</p>
 
