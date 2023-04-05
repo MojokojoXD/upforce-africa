@@ -5,7 +5,6 @@ import { CheckIcon,KeyIcon,BriefcaseIcon as SBriefcaseIcon } from '@heroicons/re
 import JobField from './JobField';
 import { Transition } from '@headlessui/react';
 import { LoadingState,loadingReducer } from '../../../utils/reducerFns/jobs';
-import uuid from 'react-uuid'
 
 interface JobsProps {}
 
@@ -210,7 +209,7 @@ const Jobs: React.FC = () => {
               if(r.answers === undefined || !r.answers)return
               return (
                 <div
-                  key={uuid()}
+                  key={r.responseId}
                   className={classNames(
                    `hover:bg-gray-200 ${index === jobToggleOptions.index ? 'bg-gray-800 hover:bg-gray-800 text-gray-200' : 'text-gray-600 hover:text-gray-800'}`, 
                     `cursor-pointer transition-all duration-200 ease-in-out flex justify-between pl-2.5 py-1.5 rounded-lg`)}

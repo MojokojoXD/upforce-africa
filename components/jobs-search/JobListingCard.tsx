@@ -7,7 +7,7 @@ interface JobListingProps {
 }
 
   
-const JobListing: React.FC<JobListingProps> = ({listings}) => {
+const JobListingCard: React.FC<JobListingProps> = ({listings}) => {
     
     return ( 
         <div className='sm:max-w-md border border-gray-300 p-5 rounded-lg hover:shadow focus:border-purple-500 cursor-pointer text-gray-800 transition-all duration-100 ease-in space-y-2'>
@@ -31,4 +31,4 @@ const JobListing: React.FC<JobListingProps> = ({listings}) => {
      );
 }
  
-export default JobListing;
+export default JobListingCard;

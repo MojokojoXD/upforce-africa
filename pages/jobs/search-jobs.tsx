@@ -3,20 +3,14 @@ import type { GetStaticProps } from 'next';
 import type { forms_v1 } from 'googleapis';
 import { Jobs } from '../../utils/mongoConfig';
 import type { ApprovedJobs } from '../../utils/types/jobs';
-import { MagnifyingGlassIcon, FunnelIcon } from '@heroicons/react/24/outline';
-import JobListing from '../../components/jobs-search/JobListing';
-import { JobSearch } from '../../utils/fns';
-
+import { MagnifyingGlassIcon } from '@heroicons/react/24/outline';
+import JobListingCard from '../../components/jobs-search/JobListingCard';
+import FilterButton from '../../components/jobs-search/FilterButton';
+import useProcessJobs from '../../components/customHooks/useProcessJobs';
 
 interface SearchJobsProps {
   jobListings: ApprovedJobs[];
 }
-
-type ListingConfig = {
-    toggleFilter: boolean;
-    toggleSearch: boolean;
-}
-
 
 export const getStaticProps: GetStaticProps<SearchJobsProps> = async (
   context
@@ -25,7 +19,6 @@ export const getStaticProps: GetStaticProps<SearchJobsProps> = async (
     let listings: ApprovedJobs[] | undefined = await Jobs.getApproved();
 
     if (!listings) throw new Error('unable to fetch approved jobs');
-
     return {
       props: {
         jobListings: listings,
@@ -40,17 +33,13 @@ export const getStaticProps: GetStaticProps<SearchJobsProps> = async (
 };
 
 export default function SearchJobs({ jobListings }: SearchJobsProps) {
-  const transformedListing = useMemo(
-    () => JobSearch.transformListings(jobListings),
-    [jobListings]
-  );
-  const [listingConfig,setListingConfig] = useState<ListingConfig>({
-    toggleFilter:false,
-    toggleSearch:false,
-  })
+  const [sortOrder,setSortOrder] = useState<'new' | 'oldest' | undefined>(undefined)
+  const transformedListing = useProcessJobs(jobListings, sortOrder)
 
-  if(!transformedListing)return <p>something went wrong</p>
-
+  //function to fetch sort order from JobFilter component
+  const _getSortOrder = (order: 'new' | 'oldest') => {
+     setSortOrder(order)
+  }
 
   return (
     <>
@@ -69,13 +58,11 @@ export default function SearchJobs({ jobListings }: SearchJobsProps) {
               <MagnifyingGlassIcon className='w-4 inline text-gray-500' />
               Search
             </button>
-            <button>
-              filter <FunnelIcon className='w-4 inline text-gray-500' />
-            </button>
+            <FilterButton getSortOrder={_getSortOrder}/>
           </div>
           <div className='py-10 space-y-5'>
             {transformedListing.map((l) => (
-              <JobListing listings={l} key={l.id as string} />
+              <JobListingCard listings={l} key={l.id as string} />
             ))}
           </div>
         </div>

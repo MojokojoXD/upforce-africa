@@ -1,4 +1,4 @@
-import type { ApprovedJobs } from "./types/jobs";
+import { ApprovedJobs } from "./types/jobs";
 
 export function formatArticleDate(date: string) {
     return new Date(date).toDateString();
@@ -7,10 +7,10 @@ export function formatArticleDate(date: string) {
 
 export class JobSearch {
     static transformListings(listing:ApprovedJobs[]){
+        
         if(!listing)return []
         return listing.map(l => {
             const {answers} = l
-
             if(typeof answers === 'undefined' || !answers)throw new Error('answers object is undefined')
 
             return {
@@ -59,6 +59,24 @@ export class JobSearch {
                 break;
             default:
                 throw new Error(`Elapsed time invalid. Time computed: ${elapsedTime}`)
+        }
+    }
+
+    static sort(listing: ApprovedJobs[], method: 'new' | 'oldest'){
+        const temp = [...listing];
+        switch(method){
+            case 'new':
+                return temp.sort((a,b) => {
+                    return new Date(b.approvedAt) - new Date(a.approvedAt)
+                })
+            break;
+            case 'oldest':
+                return temp.sort((a,b)=> {
+                    return new Date(a.approvedAt) - new Date(b.approvedAt)
+                })
+                break;
+            default:
+                throw new Error(`sort method ${method} is not supported`)
         }
     }
 }
