@@ -15,6 +15,8 @@ interface SearchJobsProps {
 export const getStaticProps: GetStaticProps<SearchJobsProps> = async (
   context
 ) => {
+
+
   try {
     let listings: ApprovedJobs[] | undefined = await Jobs.getApproved();
 
@@ -41,6 +43,7 @@ export default function SearchJobs({ jobListings }: SearchJobsProps) {
      setSortOrder(order)
   }
 
+
   return (
     <>
       <div className='px-6 lg:px-20 bg-gradient-to-br from-black via-black to-purple-800'>
@@ -54,8 +57,8 @@ export default function SearchJobs({ jobListings }: SearchJobsProps) {
         <div className='mx-auto max-w-7xl px-2 sm:px-6 lg:px-8 py-5'>
           {/* job search options */}
           <div className='flex justify-between px-5 py-3 border-b'>
-            <button>
-              <MagnifyingGlassIcon className='w-4 inline text-gray-500' />
+            <button className='btn btn-ghost btn-sm'>
+              <MagnifyingGlassIcon className='w-4 inline text-gray-700' />
               Search
             </button>
             <FilterButton getSortOrder={_getSortOrder}/>

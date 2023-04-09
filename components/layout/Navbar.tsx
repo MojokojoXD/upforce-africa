@@ -72,13 +72,15 @@ export default function Navbar() {
                 <div className='flex flex-shrink-0 items-center overflow-hidden'>
                   {/* <h1 className='text-2xl capitalize font-bold'>UpForce</h1> */}
                   <div className='h-[70px] w-[140px]'>
-                    <Image
-                      alt='upforce logo'
-                      src={logo}
-                      width={140}
-                      className='-top-7 absolute'
-                      priority = {true}
-                    />
+                    <Link href={'/'}>
+                        <Image
+                        alt='upforce logo'
+                        src={logo}
+                        width={140}
+                        className='-top-7 absolute'
+                        priority = {true}
+                        />
+                    </Link>
                   </div>
                 </div>
                 <div className='hidden sm:ml-6 md:block'>
