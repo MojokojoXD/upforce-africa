@@ -1,4 +1,5 @@
 import { ApprovedJobs } from "./types/jobs";
+import { listingField } from "./vars";
 
 export function formatArticleDate(date: string) {
     return new Date(date).toDateString();
@@ -16,19 +17,19 @@ export class JobSearch {
             return {
                 id: l.responseId,
                 //@ts-ignore
-                company: answers['1c017378'].textAnswers?.answers[0]?.value,
+                company: answers[listingField['company'].id].textAnswers?.answers[0]?.value,
                 //@ts-ignore
-                jobTitle: answers['1cf59252'].textAnswers?.answers[0].value,
+                jobTitle: answers[listingField['title'].id].textAnswers?.answers[0].value,
                 //@ts-ignore
-                duties: answers['2d0bb8c6'].textAnswers?.answers[0].value,
+                duties: answers[listingField['duties'].id].textAnswers?.answers[0].value,
                 //@ts-ignore
-                requirements: answers['25b9bb0e'].textAnswers?.answers[0].value,
+                requirements: answers[listingField['qualifications'].id].textAnswers?.answers[0].value,
                 //@ts-ignore
-                compensation: answers['484da9c7'].textAnswers?.answers[0].value,
+                compensation: answers[listingField['jobType'].id].textAnswers?.answers[0].value,
                 //@ts-ignore
-                location: answers['24b2a3dd'].textAnswers?.answers[0].value,
+                location: answers[listingField['location'].id].textAnswers?.answers[0].value,
                 //@ts-ignore
-                appLocation: answers['1dfa0c26'].textAnswers?.answers[0].value,
+                appLocation: answers[listingField['appUrl'].id].textAnswers?.answers[0].value,
                 approvedOn: l.approvedAt as string,
             }
         })

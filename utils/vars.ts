@@ -1,4 +1,4 @@
-import type { GoogleQuestionIds } from './types/jobs';
+import type { ListingField } from './types/jobs';
 
 export const content_links = [
   {
@@ -28,33 +28,43 @@ export const content_links = [
   // {name: 'finance', href: ''},
 ];
 
-export const googleQuestionIds: GoogleQuestionIds[] = [
-  {
-    name: 'jobTitle',
-    id: '1cf59252',
-  },
-  {
-    name: 'company',
-    id: '1c017378',
-  },
-  {
-    name: 'duties',
-    id: '2d0bb8c6',
-  },
-  {
-    name: 'requirements',
-    id: '25b9bb0e',
-  },
-  {
-    name: 'compensation',
-    id: '484da9c7',
-  },
-  {
-    name: 'location',
-    id: '24b2a3dd',
-  },
-  {
-    name: 'applicationUrl',
-    id: '1dfa0c26',
-  }
-];
+export const listingField: ListingField = {
+    'applicant':  {
+        name: 'applicant',
+        id: '616acbb2'
+      },
+    'email': {
+        name: 'applicant\'s email',
+        id: '59d822a1',
+    },
+    'company': {
+        name: 'company/organization',
+        id: '1c017378',
+      },
+    'title': {
+        name: 'listing title',
+        id: '1cf59252',
+      },
+    'duties': {
+        name: 'job duties',
+        id: '2d0bb8c6',
+      },
+    'qualifications': {
+        name: 'job requirements',
+        id: '25b9bb0e',
+    },
+    'jobType': {
+        name: "compensation",
+        id: '484da9c7',
+    },
+    'location': {
+        name: 'job location',
+        id: '24b2a3dd',
+    },
+    'appUrl': {
+        name: 'application url',
+        id: '1dfa0c26',
+    }
+}
+ 
+  

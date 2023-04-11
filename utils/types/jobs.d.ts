@@ -4,7 +4,13 @@ export interface ApprovedJobs extends forms_v1.Schema$FormResponse{
     approvedAt?: string | null | undefined;
 }
 
-export type GoogleQuestionIds = {
+type GoogleQuestionIds = {
     name:string;
     id:string;
 }
+
+
+export type ListingField = {
+    [key:string]: GoogleQuestionIds;
+}
+

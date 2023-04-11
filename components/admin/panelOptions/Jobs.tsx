@@ -5,6 +5,7 @@ import { CheckIcon,KeyIcon,BriefcaseIcon as SBriefcaseIcon } from '@heroicons/re
 import JobField from './JobField';
 import { Transition } from '@headlessui/react';
 import { LoadingState,loadingReducer } from '../../../utils/reducerFns/jobs';
+import { listingField } from '../../../utils/vars';
 
 interface JobsProps {}
 
@@ -96,8 +97,8 @@ const Jobs: React.FC = () => {
         const res = await fetch('/api/admin/jobs')
 
         if(res.ok){
-            const data = await res.json()
-            setResource(data)
+            // const data = await res.json()
+            // setResource(data)
             dispatch({type:'GETAPPROVED',payload: false})
         }else throw new Error('failed to fetch approved jobs')
     } catch (error) {
@@ -171,13 +172,13 @@ const Jobs: React.FC = () => {
                   });
                   const res = await fetch('/api/formData');
                   if (res.ok) {
-                    const data: forms_v1.Schema$ListFormResponsesResponse =
-                      await res.json();
-                    data.responses?.sort(function (a, b) {
-                        //@ts-ignore
-                      return new Date(b.createTime as string)- new Date(a.createTime as string);
-                    });
-                    setResource(data);
+                    // const data: forms_v1.Schema$ListFormResponsesResponse =
+                    //   await res.json();
+                    // data.responses?.sort(function (a, b) {
+                    //     //@ts-ignore
+                    //   return new Date(b.createTime as string)- new Date(a.createTime as string);
+                    // });
+                    // setResource(data);
                     dispatch({type: 'FORMRES',payload:false})
                   } else {
                     alert(res.statusText);
@@ -224,7 +225,7 @@ const Jobs: React.FC = () => {
                     {jobToggleOptions.index === index ? <SBriefcaseIcon className={`w-5 inline mr-2 ${currentList.section === 'rawResponses' ? 'text-rose-400' : 'text-emerald-500'}`}/> : <BriefcaseIcon className={`w-5 inline mr-2 ${currentList.section === 'rawResponses' ? 'text-rose-400' : 'text-emerald-500'}`} />}
                     <p className='font-semibold first-letter:uppercase text-sm inline-block'>
                         {/* @ts-ignore */}
-                      {r.answers['1cf59252'].textAnswers?.answers[0].value as string}
+                      {r.answers[listingField['title'].id].textAnswers?.answers[0].value as string}
                     </p>
                   </div>
                   <div className='self-center'>
@@ -277,21 +278,21 @@ const Jobs: React.FC = () => {
               </div>
               <div className='grid space-y-3 lg:space-y-0 lg:grid-cols-2 min-w-xs'>
                 <JobField
-                  label='Full Name'
+                  label={listingField['applicant'].name}
                   detail={
                     //@ts-ignore
                      resource?.responses?.at(jobToggleOptions.index)?.answers[
-                      '616acbb2'
+                      listingField['applicant'].id
                     ].textAnswers?.answers[0].value as string 
                   }
                 />
                 <JobField
-                  label='Work Email'
+                  label={listingField['email'].name}
                   detail={
                     //@ts-ignore
 
                     resource?.responses?.at(jobToggleOptions.index)?.answers[
-                      '59d822a1'
+                      listingField['email'].id
                     ].textAnswers?.answers[0].value as string
                   }
                   noFormatting
@@ -299,46 +300,46 @@ const Jobs: React.FC = () => {
               </div>
               <div className='grid grid-cols-2'>
                 <JobField
-                  label='Title'
+                  label={listingField['title'].name}
                   detail={
                     //@ts-ignore
 
                     resource?.responses?.at(jobToggleOptions.index)?.answers[
-                      '1cf59252'
+                      listingField['title'].id
                     ].textAnswers?.answers[0].value as string
                   }
                 />
                 <JobField
-                  label='City,Country'
+                  label={listingField['location'].name}
                   detail={
                     //@ts-ignore
 
                     resource?.responses?.at(jobToggleOptions.index)?.answers[
-                      '24b2a3dd'
+                      listingField['location'].id
                     ].textAnswers?.answers[0].value as string
                   }
                 />
               </div>
               <div className='space-y-3'>
                 <JobField
-                  label='Description'
+                  label={listingField['duties'].name}
                   detail={
                     //@ts-ignore
 
                     resource?.responses?.at(jobToggleOptions.index)?.answers[
-                      '2d0bb8c6'
+                      listingField['duties'].id
                     ].textAnswers?.answers[0].value as string
                   }
                   noFormatting
                 />
 
                 <JobField
-                  label='Requirement(s)'
+                  label={listingField['qualifications'].name}
                   detail={
                     //@ts-ignore
 
                     resource?.responses?.at(jobToggleOptions.index)?.answers[
-                      '25b9bb0e'
+                      listingField['qualifications'].id
                     ].textAnswers?.answers[0].value as string
                   }
                 />
@@ -346,35 +347,35 @@ const Jobs: React.FC = () => {
               <div className='space-y-3'>
                 <div className='grid grid-cols-2'>
                   <JobField
-                    label='Job Link'
+                    label={listingField['appUrl'].name}
                     detail={
                     //@ts-ignore
 
                       resource?.responses?.at(jobToggleOptions.index)?.answers[
-                        '1dfa0c26'
+                        listingField['appUrl'].id
                       ].textAnswers?.answers[0].value as string
                     }
                     noFormatting
                   />
                   <JobField
-                    label='Paid'
+                    label={listingField['jobType'].name}
                     detail={
                     //@ts-ignore
 
                       resource?.responses?.at(jobToggleOptions.index)?.answers[
-                        '484da9c7'
+                        listingField['jobType'].id
                       ].textAnswers?.answers[0].value as string
                     }
                   />
                 </div>
                 <div>
                   <JobField
-                    label='Company or Organization'
+                    label={listingField['company'].name}
                     detail={
                     //@ts-ignore
 
                       resource?.responses?.at(jobToggleOptions.index)?.answers[
-                        '1c017378'
+                        listingField['company'].id
                       ].textAnswers?.answers[0].value as string
                     }
                     noFormatting
