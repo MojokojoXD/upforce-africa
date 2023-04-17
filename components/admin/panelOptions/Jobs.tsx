@@ -97,8 +97,8 @@ const Jobs: React.FC = () => {
         const res = await fetch('/api/admin/jobs')
 
         if(res.ok){
-            // const data = await res.json()
-            // setResource(data)
+            const data = await res.json()
+            setResource(data)
             dispatch({type:'GETAPPROVED',payload: false})
         }else throw new Error('failed to fetch approved jobs')
     } catch (error) {
@@ -172,13 +172,13 @@ const Jobs: React.FC = () => {
                   });
                   const res = await fetch('/api/formData');
                   if (res.ok) {
-                    // const data: forms_v1.Schema$ListFormResponsesResponse =
-                    //   await res.json();
-                    // data.responses?.sort(function (a, b) {
-                    //     //@ts-ignore
-                    //   return new Date(b.createTime as string)- new Date(a.createTime as string);
-                    // });
-                    // setResource(data);
+                    const data: forms_v1.Schema$ListFormResponsesResponse =
+                      await res.json();
+                    data.responses?.sort(function (a, b) {
+                        //@ts-ignore
+                      return new Date(b.createTime as string)- new Date(a.createTime as string);
+                    });
+                    setResource(data);
                     dispatch({type: 'FORMRES',payload:false})
                   } else {
                     alert(res.statusText);
@@ -225,7 +225,7 @@ const Jobs: React.FC = () => {
                     {jobToggleOptions.index === index ? <SBriefcaseIcon className={`w-5 inline mr-2 ${currentList.section === 'rawResponses' ? 'text-rose-400' : 'text-emerald-500'}`}/> : <BriefcaseIcon className={`w-5 inline mr-2 ${currentList.section === 'rawResponses' ? 'text-rose-400' : 'text-emerald-500'}`} />}
                     <p className='font-semibold first-letter:uppercase text-sm inline-block'>
                         {/* @ts-ignore */}
-                      {r.answers[listingField['title'].id].textAnswers?.answers[0].value as string}
+                      {r.answers[listingField['title'].id]?.textAnswers?.answers[0].value ? r.answers[listingField['title'].id]?.textAnswers?.answers[0].value : 'no data'}
                     </p>
                   </div>
                   <div className='self-center'>
@@ -283,7 +283,7 @@ const Jobs: React.FC = () => {
                     //@ts-ignore
                      resource?.responses?.at(jobToggleOptions.index)?.answers[
                       listingField['applicant'].id
-                    ].textAnswers?.answers[0].value as string 
+                    ]?.textAnswers?.answers[0].value as string || 'no data'
                   }
                 />
                 <JobField
@@ -293,7 +293,7 @@ const Jobs: React.FC = () => {
 
                     resource?.responses?.at(jobToggleOptions.index)?.answers[
                       listingField['email'].id
-                    ].textAnswers?.answers[0].value as string
+                    ]?.textAnswers?.answers[0].value as string || 'no data'
                   }
                   noFormatting
                 />
@@ -306,7 +306,7 @@ const Jobs: React.FC = () => {
 
                     resource?.responses?.at(jobToggleOptions.index)?.answers[
                       listingField['title'].id
-                    ].textAnswers?.answers[0].value as string
+                    ]?.textAnswers?.answers[0].value as string || 'no data'
                   }
                 />
                 <JobField
@@ -316,7 +316,7 @@ const Jobs: React.FC = () => {
 
                     resource?.responses?.at(jobToggleOptions.index)?.answers[
                       listingField['location'].id
-                    ].textAnswers?.answers[0].value as string
+                    ]?.textAnswers?.answers[0].value as string || 'no data'
                   }
                 />
               </div>
@@ -328,7 +328,7 @@ const Jobs: React.FC = () => {
 
                     resource?.responses?.at(jobToggleOptions.index)?.answers[
                       listingField['duties'].id
-                    ].textAnswers?.answers[0].value as string
+                    ]?.textAnswers?.answers[0].value as string || 'no data'
                   }
                   noFormatting
                 />
@@ -340,7 +340,7 @@ const Jobs: React.FC = () => {
 
                     resource?.responses?.at(jobToggleOptions.index)?.answers[
                       listingField['qualifications'].id
-                    ].textAnswers?.answers[0].value as string
+                    ]?.textAnswers?.answers[0].value as string || 'no data'
                   }
                 />
               </div>
@@ -353,7 +353,7 @@ const Jobs: React.FC = () => {
 
                       resource?.responses?.at(jobToggleOptions.index)?.answers[
                         listingField['appUrl'].id
-                      ].textAnswers?.answers[0].value as string
+                      ]?.textAnswers?.answers[0].value as string || 'no data'
                     }
                     noFormatting
                   />
@@ -364,7 +364,7 @@ const Jobs: React.FC = () => {
 
                       resource?.responses?.at(jobToggleOptions.index)?.answers[
                         listingField['jobType'].id
-                      ].textAnswers?.answers[0].value as string
+                      ]?.textAnswers?.answers[0].value as string || 'no data'
                     }
                   />
                 </div>
@@ -376,7 +376,7 @@ const Jobs: React.FC = () => {
 
                       resource?.responses?.at(jobToggleOptions.index)?.answers[
                         listingField['company'].id
-                      ].textAnswers?.answers[0].value as string
+                      ]?.textAnswers?.answers[0].value as string || "no data"
                     }
                     noFormatting
                   />

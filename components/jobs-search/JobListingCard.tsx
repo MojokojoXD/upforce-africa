@@ -16,7 +16,7 @@ const JobListingCard: React.FC<JobListingProps> = ({listings}) => {
                 <p className="font-medium text-base lowercase first-letter:uppercase">{listings?.company || ""}</p>
                 <p className="font-medium text-base">{listings?.location || ""}</p>
             </div>
-            <div className="text-[14px] text-gray-500 font-normal">
+            <div className="text-[14px] text-gray-500 font-normal whitespace-pre-wrap">
                 <p>{listings?.requirements  || ""}</p>
                 <p>{listings?.duties || ""}</p>
             </div>

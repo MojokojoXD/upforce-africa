@@ -25,7 +25,7 @@ const navigation = [
   },
   {
     name: 'Post a Job',
-    href: 'https://docs.google.com/forms/d/e/1FAIpQLSdX3HssrUU846iEQdQ5XCkQOk2uTzgFOojVZ2UVXga-z6kF6A/viewform?usp=sf_link',
+    href: 'https://docs.google.com/forms/d/e/1FAIpQLSdbl8fZcPSJ-z0frjOQFK8BmL-W3sCNiq-hYcl1ZP1dF0Xedw/viewform?usp=sf_link',
     external: true,
   },
   { name: 'Tech News', href: '/tech-news', external: false },
