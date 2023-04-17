@@ -382,7 +382,7 @@ const Jobs: React.FC = () => {
                     noFormatting
                   />
                 </div>
-                <JobField label='misc'/>
+                <JobField label='misc' detail='none'/>
               </div>
             </div>
           </div>
