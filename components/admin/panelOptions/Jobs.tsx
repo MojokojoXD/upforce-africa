@@ -335,6 +335,7 @@ const Jobs: React.FC = () => {
 
                 <JobField
                   label={listingField['qualifications'].name}
+                  noFormatting
                   detail={
                     //@ts-ignore
 
