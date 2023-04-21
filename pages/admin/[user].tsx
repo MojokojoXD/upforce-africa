@@ -8,6 +8,7 @@ import { Tab } from '@headlessui/react';
 import type { PanelOptions } from '../../utils/types/admin';
 import Jobs from '../../components/admin/panelOptions/Jobs';
 import type { GetServerSideProps } from 'next';
+import DirectPost from '../../components/admin/panelOptions/DirectPost';
 
 interface UserProps {}
 
@@ -20,6 +21,10 @@ const panelOptions: PanelOptions[] = [
     id: 1,
     name: 'Jobs',
   },
+  {
+    id: 2,
+    name: 'PostDirect'
+  }
 ];
 
 export const getServerSideProps: GetServerSideProps = async () => {
@@ -57,7 +62,7 @@ const User: FC = () => {
   return (
     <div className='min-h-screen bg-white ring'>
       <Tab.Group>
-        <div className='flex flex-col bg-white shadow'>
+        <div className='flex flex-col bg-white border-b border'>
           <div className='bg-gradient-to-br from-purple-500 via-slate-300 to-gray-100 opacity-90 flex py-5 rounded-t-lg'>
             <div className='w-1/2 relative'>
               <Link href={'/'}>
@@ -92,10 +97,10 @@ const User: FC = () => {
                   className={({ selected }) =>
                     classNames(
                       'rounded-t-lg py-1.5 px-7 text-sm font-medium leading-5 capitalize tracking-wide',
-                      'ring-white ring-opacity-60 ring-offset-2 ring-offset-blue-400 focus:outline-none',
+                      'focus:outline-none',
                       selected
-                        ? 'bg-purple-400 text-gray-700 border border-b-purple-500'
-                        : 'text-gray-700 hover:bg-white/[0.12] hover:text-white'
+                        ? 'bg-purple-400 text-gray-700 border-b-purple-400 border'
+                        : 'text-gray-700 hover:bg-white/[0.12] hover:text-gray-600 border-b-white border'
                     )
                   }
                 >
@@ -108,6 +113,9 @@ const User: FC = () => {
         <div className='text-black bottom-0 px-10 py-5'>
           <Tab.Panel>
             <Jobs />
+          </Tab.Panel>
+          <Tab.Panel>
+            <DirectPost/>
           </Tab.Panel>
         </div>
       </Tab.Group>

@@ -10,13 +10,13 @@ interface JobListingProps {
 const JobListingCard: React.FC<JobListingProps> = ({listings}) => {
     
     return ( 
-        <div className='sm:max-w-md border border-gray-300 p-5 rounded-lg hover:shadow focus:border-purple-500 cursor-pointer text-gray-800 transition-all duration-100 ease-in space-y-2'>
+        <div className='sm:max-w-md p-5 rounded-lg hover:shadow focus:border-purple-500 cursor-pointer text-[#2E343B] transition-all duration-100 ease-in space-y-2 bg-purple-200'>
             <div className="capitalize space-y-1">
                 <h1 className="text-lg font-bold">{listings?.jobTitle || ""}</h1>
                 <p className="font-medium text-base lowercase first-letter:uppercase">{listings?.company || ""}</p>
                 <p className="font-medium text-base">{listings?.location || ""}</p>
             </div>
-            <div className="text-[14px] text-gray-500 font-normal whitespace-pre-wrap">
+            <div className="text-[13px] text-gray-600 font-normal whitespace-pre-wrap leading-snug">
                 <p>{listings?.requirements  || ""}</p>
                 <p>{listings?.duties || ""}</p>
             </div>
@@ -25,7 +25,7 @@ const JobListingCard: React.FC<JobListingProps> = ({listings}) => {
             </div>
             <div className="h-8">
                 <small className="text-purple-600">Posted {JobSearch.elapsedTime(listings?.approvedOn as string)} ago</small>
-                <button className="float-right mr-5 btn btn-outline btn-xs">apply</button>
+                <button className="float-right mr-5 btn btn-xs">apply</button>
             </div>
         </div>
      );
