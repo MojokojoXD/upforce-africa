@@ -1,8 +1,9 @@
 import { PhotoIcon, UserCircleIcon } from '@heroicons/react/24/solid';
+import type { FC } from 'react';
 
 interface DirectPostProps {}
 
-const DirectPost: FunctionComponent<DirectPostProps> = () => {
+const DirectPost: FC<DirectPostProps> = () => {
   return (
     <div className='min-h-screen p-5 text-gray-800'>
       <div className='mb-5 border-b w-fit pb-1'>
