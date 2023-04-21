@@ -244,8 +244,9 @@ const DirectPost: FC<DirectPostProps> = () => {
                       <div className='flex h-6 items-center'>
                         <input
                           id='fullTime'
-                          name='fullTime'
-                          type='checkbox'
+                          name='job_type'
+                          type='radio'
+                          value={'fullTime'}
                           className='h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-600'
                         />
                       </div>
@@ -262,8 +263,9 @@ const DirectPost: FC<DirectPostProps> = () => {
                       <div className='flex h-6 items-center'>
                         <input
                           id='internship'
-                          name='internship'
-                          type='checkbox'
+                          name='job_type'
+                          type='radio'
+                          value={'Internship'}
                           className='h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-600'
                         />
                       </div>
