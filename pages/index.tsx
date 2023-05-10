@@ -1,6 +1,6 @@
 import Head from 'next/head';
 import Image from 'next/image';
-import { useState,Fragment } from 'react';
+import { useState, Fragment } from 'react';
 import { Dialog } from '@headlessui/react';
 import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline';
 import Link from 'next/link';
@@ -8,7 +8,7 @@ import { content_links } from '../utils/vars';
 import { useRouter } from 'next/router';
 
 export default function Home() {
-    const router = useRouter();
+  const router = useRouter();
   return (
     <>
       <div>
@@ -48,13 +48,12 @@ export default function Home() {
             <div className='px-6 lg:px-8 relative'>
               <div className='mx-auto max-w-4xl pt-20 pb-36 sm:pt-36 sm:pb-20'>
                 <div>
-                  <div className='inline-block mb-10 sm:mb-8 sm:flex sm:justify-center'>
-                  </div>
+                  <div className='inline-block mb-10 sm:mb-8 sm:flex sm:justify-center'></div>
                   <div>
                     <h1 className='text-4xl font-bold tracking-tight sm:text-center sm:text-6xl'>
                       Building Africa’s Largest Database of Tech Talent and Jobs
                     </h1>
-                    
+
                     <div className='mt-8 flex gap-x-4 sm:justify-center'>
                       <a
                         href='https://docs.google.com/forms/d/e/1FAIpQLSdbl8fZcPSJ-z0frjOQFK8BmL-W3sCNiq-hYcl1ZP1dF0Xedw/viewform?usp=sf_link'
@@ -74,9 +73,7 @@ export default function Home() {
                         rel='noreferrer'
                       >
                         Add your profile
-                        <span aria-hidden='true'>
-                          &rarr;
-                        </span>
+                        <span aria-hidden='true'>&rarr;</span>
                       </a>
                     </div>
                   </div>
@@ -112,32 +109,36 @@ export default function Home() {
             </div>
             <div className='absolute bg-white text-gray-900 py-5 bottom-0 right-0 left-0 rounded-t-xl md:rounded-t-full'>
               <div className='flex justify-center py-10 space-y-10'>
-                <div >
-                    <div className='flex justify-center'>
-                        <button className='btn btn-primary btn-outline my-2 mx-auto w-fit capitalize md:btn-lg font-light text-gray-900 hover:text-indigo-100'
-                        onClick={()=>router.push('/beta-announcement')}
-                        >access candidate resume book (beta). {" "}
-                        <span className='ml-2'>&rarr;</span>
-                        </button>
-                    </div>
-                    <div className='mt-2 mx-14 md:mx-0'>
-                        <ul>
-                            {content_links.map((l,index) => (
-                                    <Fragment key={l.name} >
-
-                                        <li className='inline text-sm'>
-                                            <p className='capitalize inline-block font-light text-gray-600'>{l.name}</p>
-                                        </li> 
-                                        {
-                                            index != content_links.length - 1 ? <span className='mx-3 text-gray-600'>|</span> : <></>
-                                        }
-                                    </Fragment>
-                            ))}
-                        </ul>
-                    </div>
+                <div>
+                  <div className='flex justify-center'>
+                    <button
+                      className='btn btn-primary btn-outline my-2 mx-auto w-fit capitalize md:btn-lg font-light text-gray-900 hover:text-indigo-100'
+                      onClick={() => router.push('/beta-announcement')}
+                    >
+                      access candidate resume book (beta).{' '}
+                      <span className='ml-2'>&rarr;</span>
+                    </button>
+                  </div>
+                  <div className='mt-2 mx-14 md:mx-0'>
+                    <ul>
+                      {content_links.map((l, index) => (
+                        <Fragment key={l.name}>
+                          <li className='inline text-sm'>
+                            <p className='capitalize inline-block font-light text-gray-600'>
+                              {l.name}
+                            </p>
+                          </li>
+                          {index != content_links.length - 1 ? (
+                            <span className='mx-3 text-gray-600'>|</span>
+                          ) : (
+                            <></>
+                          )}
+                        </Fragment>
+                      ))}
+                    </ul>
+                  </div>
                 </div>
               </div>
-
             </div>
           </main>
         </div>
@@ -145,8 +146,6 @@ export default function Home() {
     </>
   );
 }
-
-
 
 // {/* <div >
 //                 <div className='relative max-w-6xl mx-auto'>

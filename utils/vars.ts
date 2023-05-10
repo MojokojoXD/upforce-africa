@@ -66,5 +66,4 @@ export const listingField: ListingField = {
         id: '1dfa0c26',
     }
 }
- 
-  
+

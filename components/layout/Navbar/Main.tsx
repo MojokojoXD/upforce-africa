@@ -1,32 +1,23 @@
 import { Fragment, useState, useEffect } from 'react';
-import { Disclosure, Menu, Transition, Popover } from '@headlessui/react';
+import { Disclosure, Menu } from '@headlessui/react';
 import {
   Bars3Icon,
-  BellIcon,
-  XMarkIcon,
-  ChevronDownIcon,
-  DocumentIcon,
-  NewspaperIcon,
+  XMarkIcon
 } from '@heroicons/react/24/outline';
 import Image from 'next/image';
-import logo from '../../public/upforcev2-1.png';
+import logo from '../../../public/upforcev2-1.png';
 import { useRouter } from 'next/router';
 import Link from 'next/link';
-import linkedIn from '../../public/linked.svg';
-import facebook from '../../public/facebook.svg';
-import twitter from '../../public/twitter.svg';
+import linkedIn from '../../../public/linked.svg';
+import facebook from '../../../public/facebook.svg';
+import twitter from '../../../public/twitter.svg';
+import Resources from './Resources';
+import Jobs from './Jobs';
 
 const navigation = [
   { name: 'Home', href: '/', external: false },
   {
-    name: 'Job Search',
-    href: '/jobs/search-jobs',
-    external: false,
-  },
-  {
-    name: 'Post a Job',
-    href: 'https://docs.google.com/forms/d/e/1FAIpQLSdbl8fZcPSJ-z0frjOQFK8BmL-W3sCNiq-hYcl1ZP1dF0Xedw/viewform?usp=sf_link',
-    external: true,
+    name: 'Jobs', href: '',external: false,
   },
   { name: 'Tech News', href: '/tech-news', external: false },
   {
@@ -52,7 +43,7 @@ export default function Navbar() {
   }, [router.isReady]);
 
   return (
-    <Disclosure as='nav' className='bg-gradient-to-b from-gray-800 via-black to-black z-[9000]'>
+    <Disclosure as='nav' className='bg-transparent z-[9000]'>
       {({ open }) => (
         <>
           <div className='mx-auto max-w-7xl px-2 sm:px-6 lg:px-8 py-5'>
@@ -86,6 +77,7 @@ export default function Navbar() {
                 <div className='hidden sm:ml-6 md:block'>
                   <div className='flex space-x-4 items-center h-full'>
                     {navigation.map((item) => {
+                      if(item.name === 'Jobs')return <Jobs/>
                       if (item.external) {
                         return (
                           <a
@@ -97,7 +89,7 @@ export default function Navbar() {
                               router_is_ready && router.asPath === item.href
                                 ? 'bg-gray-900 text-white'
                                 : 'text-gray-200 hover:bg-gray-700 hover:text-white',
-                              'px-3 py-2 rounded-md text-sm font-medium relative'
+                              'px-3 py-2 rounded-md text-[.7em] font-medium relative'
                             )}
                           >
                             {item.name}
@@ -112,7 +104,7 @@ export default function Navbar() {
                               router_is_ready && router.asPath === item.href
                                 ? 'bg-gray-900 text-white'
                                 : 'text-gray-200 hover:bg-gray-700 hover:text-white',
-                              'px-3 py-2 rounded-md text-sm font-medium relative'
+                              'px-3 py-2 rounded-md text-[.7em] font-medium relative'
                             )}
                             aria-current={router_is_ready && router.asPath === item.href ? 'page' : undefined}
                           >
@@ -121,59 +113,7 @@ export default function Navbar() {
                         );
                       }
                     })}
-                    <Popover className='relative inline-block text-sm font-normal text-gray-200 z-[1000]'>
-                      {({ open, close }) => (
-                        <>
-                          <div>
-                            <Popover.Button
-                              className={`px-3 py-2 outline-0 ring-0 duration-75 ${
-                                open
-                                  ? 'bg-white text-gray-800 rounded-t-md ring-0 outline-0'
-                                  : 'hover:bg-gray-700 hover:text-white hover:rounded-md'
-                              }`}
-                            >
-                              Resources
-                              <ChevronDownIcon className='h-3 w-3 inline' />
-                            </Popover.Button>
-                          </div>
-                          <Transition
-                            as='div'
-                            enter='transition ease-out duration-100'
-                            enterFrom='transform opacity-0 scale-95'
-                            enterTo='transform opacity-100 scale-100'
-                            leave='transition ease-in duration-75'
-                            leaveFrom='transform opacity-100 scale-100'
-                            leaveTo='transform opacity-0 scale-95'
-                          >
-                            <Popover.Panel className='absolute w-56 right-0 bg-white rounded-tl-md rounded-b-md px-2 pt-2 pb-1 text-gray-600'>
-                              <div>
-                                <Link
-                                  href='/resources/blog'
-                                  className='hover:bg-indigo-500 flex py-2.5 px-3  group rounded transition-all ease-in-out duration-75'
-                                  onClick={close}
-                                >
-                                  <DocumentIcon className='w-4 h-4 mr-2.5 group-hover:text-gray-100' />
-                                  <span className='group-hover:text-gray-100'>
-                                    Blog
-                                  </span>
-                                </Link>
-                                <Link
-                                  href='/resources/service-providers'
-                                  className=' hover:bg-indigo-500 flex py-2.5 px-3 rounded group transition-all ease-in-out duration-75'
-                                  onClick={close}
-                                >
-                                  <NewspaperIcon className='group-hover:text-gray-100 w-4 h-4 mr-2.5' />
-                                  <span className='group-hover:text-gray-100'>
-                                    Service Providers
-                                  </span>
-                                </Link>
-                                <hr className='border-gray-300 mt-3' />
-                              </div>
-                            </Popover.Panel>
-                          </Transition>
-                        </>
-                      )}
-                    </Popover>
+                    <Resources/>
                   </div>
                 </div>
               </div>
