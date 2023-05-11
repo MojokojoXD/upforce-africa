@@ -1,4 +1,6 @@
-import * as React from 'react';
+import { useCallback } from 'react';
+import { SocialIcon } from 'react-social-icons';
+import Link from 'next/link';
 
 const footerLinks = [
   {
@@ -12,55 +14,177 @@ const footerLinks = [
 ];
 
 export default function Footer() {
+  const handleSubmit = useCallback((e: FormDataEvent) => {
+    e.preventDefault();
+  }, []);
   return (
-    <footer className='py-5 bg-gray-800'>
-      <div className='mx-6 lg:mx-8 relative py-10'>
-        <div className='mx-auto max-w-5xl'>
-          <div >
-            <h1 className='text-xl font-bold'>
-              Sign Up for the UpForce Africa Newsletter
-            </h1>
-            <p className='text-xs mt-2 font-medium max-w-prose'>
-              Subscribe to UpForce to receive startup news & insights, exclusive
-              job posts, tech events invitation and more directly to your inbox
-            </p>
-          </div>
-          <div id='newsletter-signup' className='sm:my-1'>
-            <form className='my-3'>
-              <input
-                type='email'
-                className='w-4/6 sm:max-w-lg input input-bordered input-primary bg-gray-300 text-black'
-              />
-              <button
-                type='submit'
-                className='ml-3  btn btn-primary btn-sm inline'
+    <footer className='pt-5 text-gray-600 border-t'>
+      <div className='mx-auto max-w-7xl px-10 sm:px-6 lg:px-8 relative'>
+        <div className='py-10'>
+          <div className='my-10'>
+            <div className='w-full sm:max-w-lg'>
+              <h2 className='text-2xl font-normal text-gray-800'>Newsletter</h2>
+              <p className='font-normal max-w-prose text-slate-500'>
+                Subscribe to UpForce to receive startup news & insights,
+                exclusive job posts, tech events invitations and more sent to
+                your inbox
+              </p>
+            </div>
+            <div id='newsletter-signup' className='sm:my-2'>
+              <form
+                className='my-3 sm:space-x-3 space-y-5'
+                onSubmit={handleSubmit}
               >
-                sign up
-              </button>
-            </form>
-            <small className='text-[.7em] inline-block max-w-prose'>
-              By clicking signup, you are agreeing to receive communications
-              from Upforce Africa and to our{' '}
-              <span className='underline hover:text-gray-500 cursor-pointer'>
-                Terms of Use
-              </span>{' '}
-              and{' '}
-              <span className='underline hover:text-gray-500 cursor-pointer'>
-                Privacy Policy
-              </span>
-              . If you have questions please reach out to
-              upforceafrica@gmail.com
-            </small>
+                <input
+                  type='email'
+                  className='w-full sm:max-w-md input input-bordered bg-white text-gray-700'
+                  placeholder='john.doe@gmail.com'
+                />
+                <button
+                  type='submit'
+                  className='btn btn-primary normal-case inline font-normal sm:btn-wide w-full'
+                >
+                  Sign Up
+                </button>
+              </form>
+              <small className='inline-block max-w-prose text-slate-500 text-[10px]'>
+                By clicking signup, you are agreeing to receive communications
+                from Upforce Africa and to our{' '}
+                <span className='underline hover:text-gray-500 cursor-pointer'>
+                  Terms of Use
+                </span>{' '}
+                and{' '}
+                <span className='underline hover:text-gray-500 cursor-pointer'>
+                  Privacy Policy
+                </span>
+                . If you have questions please reach out to
+                upforceafrica@gmail.com.
+              </small>
+            </div>
           </div>
-          <hr className='my-14' />
-          <div id='footer-links'>
-            <ul className='space-x-5'>
-              {footerLinks.map((link) => (
-                <li key={link.name} className='inline text-sm'>
-                  <a href={`${link.href}`} className='capitalize'>{link.name}</a>
-                </li>
-              ))}
-            </ul>
+          <div
+            id='footer-links'
+            className='grid grid-cols-2 sm:grid-cols-3 py-5 max-w-xl gap-5 sm:gap-0'
+          >
+            <div className='space-y-3'>
+              <div className='relative h-12'>
+                <Link href={'/'}>
+                  <h1
+                    className={`w-fit absolute after:content-["Africa."] after:absolute after:right-0 after:top-4 after:text-[12px] pb-2 after:italic text-gray-700 logo text-3xl font-normal`}
+                  >
+                    <span className='text-purple-500'>Up</span>Force
+                  </h1>
+                </Link>
+              </div>
+              <div>
+                <ul className='space-y-5 text-sm text-slate-600'>
+                  <li>
+                    <div className='group w-fit relative'>
+                      <SocialIcon
+                        url='https://www.facebook.com/profile.php?id=100088679361991&mibextid=LQQJ4d'
+                        bgColor='none'
+                        fgColor='white'
+                        style={{ height: 25, width: 25, position: 'absolute' }}
+                        className='group-hover:bg-slate-500 bg-slate-600 rounded transition-all duration-100 ease-in-out -bottom-1'
+                      />
+                      <a
+                        href='https://www.facebook.com/profile.php?id=100088679361991&mibextid=LQQJ4d'
+                        rel='noreferrer'
+                        target='_blank'
+                      >
+                        <span
+                          className={
+                            'group-hover:text-slate-500 transition-all duration-100 ease-in-out inline ml-[25px] pl-2'
+                          }
+                        >
+                          Facebook
+                        </span>
+                      </a>
+                    </div>
+                  </li>
+                  <li>
+                    <div className='group flex items-center w-fit relative'>
+                      <SocialIcon
+                        url='https://www.linkedin.com/company/upforce-africa/'
+                        bgColor='none'
+                        fgColor='white'
+                        style={{ height: 25, width: 25, position: 'absolute' }}
+                        className='group-hover:bg-slate-500 bg-slate-600 rounded transition-all duration-100 ease-in-out'
+                      />
+                      <a
+                        href='https://www.linkedin.com/company/upforce-africa/'
+                        rel='noreferrer'
+                        target='_blank'
+                      >
+                        <span
+                          className={
+                            'group-hover:text-slate-500 transition-all duration-100 ease-in-out ml-[25px] pl-2'
+                          }
+                        >
+                          LinkedIn
+                        </span>
+                      </a>
+                    </div>
+                  </li>
+                  <li>
+                    <div className='group flex items-center relative w-fit'>
+                      <SocialIcon
+                        url='https://twitter.com/UpforceAfrica'
+                        bgColor='none'
+                        fgColor='white'
+                        style={{ height: 25, width: 25, position: 'absolute' }}
+                        className='group-hover:bg-slate-500 bg-slate-600 rounded transition-all duration-100 ease-in-out'
+                      />
+                      <a
+                        href='https://twitter.com/UpforceAfrica'
+                        rel='noreferrer'
+                        target='_blank'
+                      >
+                        <span
+                          className={
+                            'group-hover:text-slate-500 transition-all duration-100 ease-in-out ml-[25px] pl-2'
+                          }
+                        >
+                          Twitter
+                        </span>
+                      </a>
+                    </div>
+                  </li>
+                </ul>
+              </div>
+            </div>
+            <div className='space-y-3'>
+              <div className='h-12 flex items-center'>
+                <h3 className='text-gray-700 font-semibold'>Company</h3>
+              </div>
+              <div>
+                <ul className='text-slate-600 space-y-5 text-sm'>
+                  <li>
+                    <Link href={'#'} className='hover:text-slate-500'>
+                      About us
+                    </Link>
+                  </li>
+                  <li>
+                    <Link href={'#'} className='hover:text-slate-500'>
+                      Contact us
+                    </Link>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div className='py-3 text-gray-500 space-y-2 sm:space-y-0'>
+          <small className='block sm:inline text-center'>
+            &copy; 2023 Upforce Africa Co. All rights reserved.
+          </small>
+          <div className='sm:float-right text-xs space-x-3 w-fit mx-auto'>
+            <Link href='#' className='hover:text-gray-400'>
+              Privacy Policy
+            </Link>
+            <Link href='#' className='hover:text-gray-400'>
+              Terms of Service
+            </Link>
           </div>
         </div>
       </div>

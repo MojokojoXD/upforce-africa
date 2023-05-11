@@ -1,9 +1,6 @@
 import { Fragment, useState, useEffect } from 'react';
 import { Disclosure, Menu } from '@headlessui/react';
-import {
-  Bars3Icon,
-  XMarkIcon
-} from '@heroicons/react/24/outline';
+import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline';
 import Image from 'next/image';
 import logo from '../../../public/upforcev2-1.png';
 import { useRouter } from 'next/router';
@@ -13,15 +10,19 @@ import facebook from '../../../public/facebook.svg';
 import twitter from '../../../public/twitter.svg';
 import Resources from './Resources';
 import Jobs from './Jobs';
+import useShowNavbar from './useShowNavbar';
+import { SocialIcon } from 'react-social-icons';
 
 const navigation = [
   { name: 'Home', href: '/', external: false },
   {
-    name: 'Jobs', href: '',external: false,
+    name: 'Jobs',
+    href: '',
+    external: false,
   },
   { name: 'Tech News', href: '/tech-news', external: false },
   {
-    name: 'Africa VC/Investor List',
+    name: 'VC',
     href: 'https://docs.google.com/spreadsheets/d/1JO54RqzTg11he8XKSDYppxfnQLlhyvMvUy5oFrKhVeU/edit#gid=0',
     external: true,
   },
@@ -35,6 +36,14 @@ export default function Navbar() {
   const router = useRouter();
   const [router_is_ready, set_router_is_ready] = useState<boolean>(false);
   const [dropDown, setDropDown] = useState(false);
+  const showNav = useShowNavbar();
+  const icon = {
+    color: showNav ? '#374151' : '#ffffff',
+    styles: {
+      height: 30,
+      width: 30,
+    },
+  };
 
   useEffect(() => {
     if (router.isReady) {
@@ -43,11 +52,16 @@ export default function Navbar() {
   }, [router.isReady]);
 
   return (
-    <Disclosure as='nav' className='bg-transparent z-[9000]'>
+    <Disclosure
+      as='nav'
+      className={`${
+        showNav ? 'bg-white shadow' : 'bg-transparent'
+      } w-full z-[9000] fixed transition-all ease-in-out duration-300`}
+    >
       {({ open }) => (
         <>
-          <div className='mx-auto max-w-7xl px-2 sm:px-6 lg:px-8 py-5'>
-            <div className='relative flex h-16 items-center justify-between'>
+          <div className='mx-auto max-w-7xl px-2 sm:px-6 lg:px-8 py-3'>
+            <div className='relative flex h-14 items-center justify-between'>
               <div className='absolute inset-y-0 left-0 flex items-center md:hidden'>
                 {/* Mobile menu button*/}
                 <Disclosure.Button className='inline-flex items-center justify-center rounded-md p-2 text-gray-400 hover:bg-gray-700 hover:text-white focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white z-[1000]'>
@@ -60,24 +74,29 @@ export default function Navbar() {
                 </Disclosure.Button>
               </div>
               <div className='flex flex-1 items-center justify-center sm:items-stretch md:justify-start relative'>
-                <div className='flex flex-shrink-0 items-center overflow-hidden'>
-                  {/* <h1 className='text-2xl capitalize font-bold'>UpForce</h1> */}
-                  <div className='h-[70px] w-[140px]'>
-                    <Link href={'/'}>
-                        <Image
-                        alt='upforce logo'
-                        src={logo}
-                        width={140}
-                        className='-top-7 absolute'
-                        priority = {true}
-                        />
-                    </Link>
-                  </div>
+                <div className='flex flex-shrink-0 items-center overflow-hidden mr-5'>
+                  <Link href={'/'}>
+                    <h1
+                      className={`relative after:content-["Africa."] after:absolute after:right-0 after:top-4 after:text-[12px] pb-2 after:italic ${
+                        showNav ? 'text-gray-700 logo' : 'after:text-purple-300'
+                      } text-3xl font-normal`}
+                    >
+                      <span className={`${showNav && 'text-purple-500'}`}>
+                        Up
+                      </span>
+                      Force
+                    </h1>
+                  </Link>
                 </div>
                 <div className='hidden sm:ml-6 md:block'>
-                  <div className='flex space-x-4 items-center h-full'>
+                  <div
+                    className={`flex space-x-8 items-center h-full text-[15px] ${
+                      showNav && 'text-gray-700'
+                    }`}
+                  >
                     {navigation.map((item) => {
-                      if(item.name === 'Jobs')return <Jobs/>
+                      if (item.name === 'Jobs')
+                        return <Jobs showNav={showNav} />;
                       if (item.external) {
                         return (
                           <a
@@ -85,12 +104,11 @@ export default function Navbar() {
                             href={item.href}
                             rel='noreferrer'
                             target='_blank'
-                            className={classNames(
-                              router_is_ready && router.asPath === item.href
-                                ? 'bg-gray-900 text-white'
-                                : 'text-gray-200 hover:bg-gray-700 hover:text-white',
-                              'px-3 py-2 rounded-md text-[.7em] font-medium relative'
-                            )}
+                            className={`transition-all duration-100 ease-in-out capitalize ${
+                              showNav
+                                ? 'hover:text-gray-500'
+                                : 'hover:text-gray-200'
+                            }`}
                           >
                             {item.name}
                           </a>
@@ -100,57 +118,48 @@ export default function Navbar() {
                           <Link
                             key={item.name}
                             href={item.href}
-                            className={classNames(
+                            aria-current={
                               router_is_ready && router.asPath === item.href
-                                ? 'bg-gray-900 text-white'
-                                : 'text-gray-200 hover:bg-gray-700 hover:text-white',
-                              'px-3 py-2 rounded-md text-[.7em] font-medium relative'
-                            )}
-                            aria-current={router_is_ready && router.asPath === item.href ? 'page' : undefined}
+                                ? 'page'
+                                : undefined
+                            }
+                            className={`transition-all duration-100 ease-in-out capitalize ${
+                              showNav
+                                ? 'hover:text-gray-500'
+                                : 'hover:text-gray-200'
+                            }`}
                           >
                             {item.name}
                           </Link>
                         );
                       }
                     })}
-                    <Resources/>
+                    <Resources showNav={showNav} />
                   </div>
                 </div>
               </div>
               <div className='hidden md:block absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0 space-x-3'>
-                <a
-                  href='https://www.linkedin.com/company/upforce-africa/'
-                  className='btn btn-circle btn-sm btn-ghost'
-                >
-                  <Image
-                    src={linkedIn}
-                    alt='linkedIn social link'
-                    width={20}
-                    height={20}
+                  <SocialIcon
+                    bgColor='none'
+                    fgColor={icon.color}
+                    style={icon.styles}
+                    url='https://www.facebook.com/profile.php?id=100088679361991&mibextid=LQQJ4d'
+                    className='btn btn-circle btn-sm btn-ghost'
                   />
-                </a>
-                <a
-                  href='https://www.facebook.com/profile.php?id=100088679361991&mibextid=LQQJ4d'
-                  className='btn btn-circle btn-sm btn-ghost'
-                >
-                  <Image
-                    src={facebook}
-                    alt='facebook social link'
-                    width={20}
-                    height={20}
+                  <SocialIcon
+                    className='btn btn-circle btn-sm btn-ghost'
+                    bgColor='none'
+                    url='https://www.linkedin.com/company/upforce-africa/'
+                    fgColor={icon.color}
+                    style={icon.styles}
                   />
-                </a>
-                <a
-                  href='https://twitter.com/UpforceAfrica'
-                  className='btn btn-circle btn-sm btn-ghost'
-                >
-                  <Image
-                    src={twitter}
-                    alt='twitter social link'
-                    width={20}
-                    height={20}
+                  <SocialIcon
+                    className='btn btn-circle btn-sm btn-ghost'
+                    bgColor='none'
+                    url='https://twitter.com/UpforceAfrica'
+                    fgColor={icon.color}
+                    style={icon.styles}
                   />
-                </a>
               </div>
             </div>
           </div>
@@ -168,7 +177,11 @@ export default function Navbar() {
                       : 'text-gray-300 hover:bg-gray-700 hover:text-white',
                     'block px-3 py-2 rounded-md text-sm font-medium'
                   )}
-                  aria-current={router_is_ready && router.asPath === item.href ? 'page' : undefined}
+                  aria-current={
+                    router_is_ready && router.asPath === item.href
+                      ? 'page'
+                      : undefined
+                  }
                 >
                   {item.name}
                 </Disclosure.Button>
