@@ -3,6 +3,7 @@ import type { GetStaticProps } from 'next';
 import { default as sanity_client } from '../../utils/sanity-client';
 import type { ServiceProviderData } from '../../utils/types/cdn';
 import ProviderSection from '../../components/providers-components/providers-section';
+import Header from '../../components/layout/Header';
 
 interface ServiceProvidersProps {
   providers: ServiceProviderData[];
@@ -42,14 +43,8 @@ export default function ServiceProviders({ providers }: ServiceProvidersProps) {
   } = providers[0];
 
   return (
-    <div className='relative mt-5 rounded'>
-      <div className='px-6 lg:px-20 bg-gradient-to-br from-black via-black to-purple-800'>
-        <div className='mx-auto max-w-7xl px-2 sm:px-6 lg:px-8 py-10'>
-          <h2 className='text-3xl font-bold leading-7 text-white sm:truncate sm:text-4xl sm:tracking-tighter'>
-            Service Providers
-          </h2>
-        </div>
-      </div>
+    <div >
+      <Header title='service providers'/>
       <div className='min-h-screen bg-white py-10 px-6 lg:px-20 text-gray-900'>
         <ProviderSection
           sectionTitle='automation'

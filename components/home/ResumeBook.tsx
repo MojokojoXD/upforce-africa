@@ -18,8 +18,8 @@ const ResumeBook: FC<ResumeBookProps> = () => {
         </div>
       </div>
       <div className='text-gray-500'>
-        <div className='max-w-3xl sm:mx-auto py-5 mx-2'>
-            <div className='grid grid-cols-3 gap-1 sm:gap-3'>
+        <div className='max-w-3xl sm:mx-auto py-5 px-5'>
+            <div className='grid grid-cols-2 sm:grid-cols-3 gap-1 sm:gap-3'>
             {content_links.map((l) => (
                 <div key={l.id}>
                 <TechField

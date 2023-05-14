@@ -14,11 +14,11 @@ const footerLinks = [
 ];
 
 export default function Footer() {
-  const handleSubmit = useCallback((e: FormDataEvent) => {
+  const handleSubmit = (e:React.SyntheticEvent )=> {
     e.preventDefault();
-  }, []);
+  };
   return (
-    <footer className='pt-5 text-gray-600 border-t'>
+    <footer className='pt-5 text-gray-600 border-t z-[1000]'>
       <div className='mx-auto max-w-7xl px-10 sm:px-6 lg:px-8 relative'>
         <div className='py-10'>
           <div className='my-10'>
@@ -70,7 +70,7 @@ export default function Footer() {
               <div className='relative h-12'>
                 <Link href={'/'}>
                   <h1
-                    className={`w-fit absolute after:content-["Africa."] after:absolute after:right-0 after:top-4 after:text-[12px] pb-2 after:italic text-gray-700 logo text-3xl font-normal`}
+                    className={`w-fit absolute display-font after:content-["Africa."] after:absolute after:right-0 after:top-4 after:text-[12px] pb-2 after:italic text-gray-700 logo text-3xl font-normal`}
                   >
                     <span className='text-purple-500'>Up</span>Force
                   </h1>

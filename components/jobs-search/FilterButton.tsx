@@ -6,17 +6,14 @@ interface FilterButtonProps {
     getSortOrder: (sortBy: 'new' | 'oldest' | undefined) => void;
 }
 
-type SortOrder = 'new' | 'oldest' | undefined;
-
 const FilterButton: React.FC<FilterButtonProps> = ({
   getSortOrder
 }) => {
-  const [sortOrder, setSortOrder] = useState<SortOrder>(undefined);
 
   return (
     <Menu as={'div'} className='relative'>
-      <Menu.Button className={'btn btn-ghost btn-sm'}>
-        sort <FunnelIcon className='w-4 ml-1 inline text-gray-700' />
+      <Menu.Button className={'btn btn-ghost normal-case font-normal text-lg'}>
+        Sort <FunnelIcon className='w-6 inline' />
       </Menu.Button>
       <Transition
         enter='transition duration-100 ease-out'

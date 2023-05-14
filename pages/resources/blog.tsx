@@ -1,5 +1,6 @@
 import * as React from 'react';
 import { Tab } from '@headlessui/react';
+import Header from '../../components/layout/Header';
 
 interface BlogProps {}
 
@@ -10,14 +11,8 @@ function classNames(...classes:string[]) {
 
 export default function Blog() {
   return (
-    <div className='relative mt-5 rounded'>
-      <div className='px-6 lg:px-20 bg-gradient-to-br from-black via-black to-purple-800'>
-        <div className='mx-auto max-w-7xl px-2 sm:px-6 lg:px-8 py-10'>
-          <h2 className='text-3xl font-bold leading-7 text-white sm:truncate sm:text-4xl sm:tracking-tighter capitalize'>
-            upforce stories
-          </h2>
-        </div>
-      </div>
+    <div className='relative'>
+      <Header title='upforce stories'/>
       <div className='min-h-screen bg-white py-10 px-6 lg:px-20 text-gray-900 px-2 sm:px-6 lg:px-8'>
         <div className='px-2 sm:px-6 lg:px-8'>
             <Tab.Group>

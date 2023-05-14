@@ -28,7 +28,7 @@ const TechField: FC<TechFieldProps> = ({
           </span>
         </div>
         <div className='flex px-2'>
-          <p className='text-xs w-fit sm:text-lg font-light capitalize '>
+          <p className='text-sm w-fit sm:text-lg font-light capitalize '>
             {fieldName}
           </p>
           <ChevronRightIcon className='w-3 sm:w-4 text-white group-hover:text-gray-600 transition-all ease-in-out duration-300' />

@@ -80,4 +80,9 @@ export class JobSearch {
                 throw new Error(`sort method ${method} is not supported`)
         }
     }
+
+    static validate(directPost){
+        
+    }
 }
+

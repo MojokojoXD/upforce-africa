@@ -1,6 +1,7 @@
 import type { NextApiHandler } from 'next';
 import { Jobs } from '../../../utils/mongoConfig';
 import type { ApprovedJobs } from '../../../utils/types/jobs';
+import fs from 'fs'
 
 const adminJobs: NextApiHandler = async (req, res) => {
   let data;

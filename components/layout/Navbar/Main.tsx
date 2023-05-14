@@ -53,6 +53,7 @@ export default function Navbar() {
 
   return (
     <Disclosure
+      id='navbar'
       as='nav'
       className={`${
         showNav ? 'bg-white shadow' : 'bg-transparent'
@@ -77,7 +78,7 @@ export default function Navbar() {
                 <div className='flex flex-shrink-0 items-center overflow-hidden mr-5'>
                   <Link href={'/'}>
                     <h1
-                      className={`relative after:content-["Africa."] after:absolute after:right-0 after:top-4 after:text-[12px] pb-2 after:italic ${
+                      className={`relative display-font after:content-["Africa."] after:absolute after:right-0 after:top-4 after:text-[12px] pb-2 after:italic ${
                         showNav ? 'text-gray-700 logo' : 'after:text-purple-300'
                       } text-3xl font-normal`}
                     >

@@ -4,7 +4,7 @@ import { useState, Fragment } from 'react';
 import Link from 'next/link';
 import { content_links } from '../utils/vars';
 import { useRouter } from 'next/router';
-import Header from '../components/home/Header';
+import Header from '../components/layout/Header';
 import ResumeBook from '../components/home/ResumeBook';
 
 export default function Home() {

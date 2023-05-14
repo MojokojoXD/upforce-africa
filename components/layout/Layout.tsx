@@ -13,7 +13,7 @@ function Layout({children}:LayoutProps){
                 <meta name="viewport" content="width=device-width,initial-scale=1.0"/>
             </Head>
             <Navbar/>
-            <div className="min-h-screen">
+            <div className="min-h-screen ">
                 {children}
             </div>
             <Footer/>

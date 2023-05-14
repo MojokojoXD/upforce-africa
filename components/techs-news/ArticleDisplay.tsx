@@ -33,7 +33,7 @@ export default function ArticleDisplay({
             <a href={story.url} rel='noreferrer' target='_blank'>
                 <h2 className='text-purple-700 hover:underline'>{story.source.domain}</h2>
             </a>
-          <h1 className='text-3xl font-bold pr-3 max-w-prose sm:text-3xl md:text-7xl -ml-5'>
+          <h1 className='text-3xl font-bold pr-3 max-w-prose sm:text-3xl md:text-7xl -ml-5 display-font'>
             {story.title}
           </h1>
           <div>

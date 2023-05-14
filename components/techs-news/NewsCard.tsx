@@ -31,7 +31,7 @@ export default function NewsCard({
         </div>
         <div>
           <h1
-            className='text-lg font-semibold tracking-tight text-gray-800 break-words text-ellipsis group-hover:text-gray-600'
+            className='text-lg font-semibold tracking-tight text-gray-800 break-words text-ellipsis group-hover:text-gray-600 display-font'
           >
             {article.title}
           </h1>

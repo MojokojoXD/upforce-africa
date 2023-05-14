@@ -23,11 +23,15 @@ a {
 }
 
 h2,h1 {
-    font-family: "Josefin sans",sans-serif;
+    font-family: "Comfortaa",sans-serif;
 }
 
 .display-font{
-    font-family: "Comfortaa",sans-serif;
+    font-family: "Josefin sans",sans-serif;
+}
+
+.sticky {
+    position: sticky;
 }
 
 /* @media (prefers-color-scheme: dark) {
