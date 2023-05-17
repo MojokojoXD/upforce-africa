@@ -210,7 +210,7 @@ export default function Navbar() {
                           <div className='px-2'>
                             <Disclosure.Button
                               className={
-                                'btn btn-ghost capitalize font-light btn-block bg-transparent no-animation text-gray-600'
+                                'btn btn-ghost capitalize font-light btn-block bg-transparent no-animation text-gray-600 focus:bg-transparent'
                               }
                             >
                               Jobs
@@ -293,7 +293,7 @@ export default function Navbar() {
                     <div className='px-2'>
                       <Disclosure.Button
                         className={
-                          'btn btn-ghost capitalize font-light btn-block bg-transparent no-animation text-gray-600'
+                          'btn btn-ghost capitalize font-light btn-block bg-transparent no-animation text-gray-600 focus:bg-transparent'
                         }
                       >
                         Resources
