@@ -35,7 +35,7 @@ function classNames(...classes) {
 
 type Dropdown = {
   open: boolean;
-  close: () => void | undefined;
+  close: (() => void )| undefined;
 };
 
 export default function Navbar() {
