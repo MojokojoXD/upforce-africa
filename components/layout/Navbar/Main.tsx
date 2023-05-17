@@ -76,7 +76,7 @@ export default function Navbar() {
       ref={navbarRef}
       className={`${
         scrolling || dropDown.open ? 'bg-white shadow' : 'bg-transparent'
-      } w-full z-[9000] fixed transition-all ease-in-out duration-300`}
+      } w-full z-[9000] fixed transition-all ease-in duration-100`}
     >
       {({ open, close }) => (
         <>
