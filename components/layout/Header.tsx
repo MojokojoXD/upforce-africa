@@ -34,13 +34,13 @@ const Header: FC<HeaderProps> = ({ title = '', children }) => {
               </h1>
               <div className='space-x-3 flex justify-center sm:justify-start'>
                 <button
-                  className='btn btn-sm btn-outline btn-primary normal-case font-normal rounded-lg'
+                  className='btn btn-outline btn-primary normal-case font-normal rounded-lg'
                   onClick={() => handleClick(POST_A_JOB)}
                 >
                   Post a Job
                 </button>
                 <button
-                  className='btn btn-sm btn-primary normal-case font-normal rounded-lg'
+                  className='btn btn-primary normal-case font-normal rounded-lg'
                   onClick={() => handleClick(ADD_YOUR_PROFILE)}
                 >
                   Add Your Profile

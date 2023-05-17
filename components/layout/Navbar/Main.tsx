@@ -226,7 +226,7 @@ export default function Navbar() {
                           >
                             <div>
                               <Link
-                                href={'/jobs/post-jobs'}
+                                href={item.href}
                                 className='btn btn-block btn-outline btn-primary border capitalize font-light text-sm'
                                 onClick={() => {
                                   close();
@@ -242,7 +242,7 @@ export default function Navbar() {
                             <div>
                               <Link
                                 href={'/jobs/search-jobs'}
-                                className='btn btn-block btn-outline border btn-primary capitalize font-light text-sm'
+                                className={`btn btn-block border btn-primary capitalize font-light text-sm ${router.isReady && router.asPath === '/jobs/search-jobs' ?  null : 'btn-outline'}`}
                                 onClick={() => {
                                   close();
                                   setDropDown((prev) => ({
@@ -310,7 +310,7 @@ export default function Navbar() {
                       <div>
                         <Link
                           href={'/resources/blog'}
-                          className='btn btn-block btn-outline btn-primary border capitalize font-light text-sm'
+                          className={`btn btn-block border btn-primary capitalize font-light text-sm ${router.isReady && router.asPath === '/resources/blog' ?  null : 'btn-outline'}`}
                           onClick={() => {
                             close();
                             setDropDown((prev) => ({ ...prev, open: false }));
@@ -322,7 +322,7 @@ export default function Navbar() {
                       <div>
                         <Link
                           href={'/resources/service-providers'}
-                          className='btn btn-block btn-outline border btn-primary capitalize font-light text-sm'
+                          className={`btn btn-block border btn-primary capitalize font-light text-sm ${router.isReady && router.asPath === '/resources/service-providers' ?  null : 'btn-outline'}`}
                           onClick={() => {
                             close();
                             setDropDown((prev) => ({ ...prev, open: false }));
