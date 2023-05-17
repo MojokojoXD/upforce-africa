@@ -206,7 +206,7 @@ export default function Navbar() {
                   return (
                     <Disclosure key={item.name}>
                       {({ open: openResources }) => (
-                        <div className='border shadow-sm rounded-lg mx-2 mx-auto'>
+                        <div className='border shadow-sm rounded-lg mx-2 mx-auto bg-white'>
                           <div>
                             <Disclosure.Button
                               className={
@@ -262,7 +262,7 @@ export default function Navbar() {
                 }
 
                 return (
-                  <div key={item.name} className={`mx-2 mx-auto rounded-lg ${(router.isReady && router.asPath !== item.href) && 'border shadow-sm'}`}>
+                  <div key={item.name} className={`mx-2 mx-auto rounded-lg bg-white ${(router.isReady && router.asPath !== item.href) && 'border shadow-sm'}`}>
                     <Link
                         href={item.href}
                         onClick={() => {
@@ -290,7 +290,7 @@ export default function Navbar() {
             <div className='pt-2 pb-3 text-sm text-gray-600'>
               <Disclosure>
                 {({ open: openResources }) => (
-                  <div className='border shadow-sm rounded-lg mx-4 mx-auto'>
+                  <div className='border shadow-sm rounded-lg mx-4 mx-auto bg-white'>
                     <div >
                       <Disclosure.Button
                         className={
