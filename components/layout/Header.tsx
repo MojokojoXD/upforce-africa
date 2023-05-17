@@ -34,13 +34,13 @@ const Header: FC<HeaderProps> = ({ title = '', children }) => {
               </h1>
               <div className='space-x-3 flex justify-center sm:justify-start'>
                 <button
-                  className='btn btn-sm btn-outline btn-primary normal-case font-normal rounded'
+                  className='btn btn-sm btn-outline btn-primary normal-case font-normal rounded-lg'
                   onClick={() => handleClick(POST_A_JOB)}
                 >
                   Post a Job
                 </button>
                 <button
-                  className='btn btn-sm btn-primary normal-case font-normal rounded'
+                  className='btn btn-sm btn-primary normal-case font-normal rounded-lg'
                   onClick={() => handleClick(ADD_YOUR_PROFILE)}
                 >
                   Add Your Profile
@@ -57,7 +57,7 @@ const Header: FC<HeaderProps> = ({ title = '', children }) => {
         <div className='pt-20 w-full'>
           <div className='mx-auto max-w-7xl px-2 sm:px-6 lg:px-8 h-full grid grid-cols-1'>
             <div className='flex justify-center items-center py-10'>
-                <h1 className="text-5xl font-medium capitalize tracking-tight text-gray-300">
+                <h1 className="text-5xl font-medium capitalize tracking-tight text-gray-300 text-center">
                     {title}
                 </h1>
             </div>
