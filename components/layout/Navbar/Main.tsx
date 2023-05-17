@@ -59,7 +59,7 @@ export default function Navbar() {
 
     const disableDropDown = () => {
       if (!dropDown.open) return;
-      if (window.innerWidth >= 640) {
+      if (window.innerWidth >= 640 && !dropDown.close) {
         dropDown.close();
         setDropDown((prevState) => ({ ...prevState, open: false }));
       }
