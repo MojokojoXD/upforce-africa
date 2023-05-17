@@ -200,14 +200,14 @@ export default function Navbar() {
           </div>
 
           <Disclosure.Panel className='md:hidden'>
-            <div className='space-y-1 px-2 pt-2'>
+            <div className='space-y-2 px-2 pt-2'>
               {navigation.map((item) => {
                 if (item.name === 'Jobs') {
                   return (
                     <Disclosure key={item.name}>
                       {({ open: openResources }) => (
-                        <>
-                          <div className='px-2'>
+                        <div className='border shadow-sm rounded-lg mx-2 mx-auto'>
+                          <div>
                             <Disclosure.Button
                               className={
                                 'btn btn-ghost capitalize font-light btn-block bg-transparent no-animation text-gray-600 focus:bg-transparent'
@@ -255,42 +255,43 @@ export default function Navbar() {
                               </Link>
                             </div>
                           </Disclosure.Panel>
-                        </>
+                        </div>
                       )}
                     </Disclosure>
                   );
                 }
 
                 return (
-                  <Link
-                    key={item.name}
-                    href={item.href}
-                    onClick={() => {
-                      close();
-                      setDropDown((prev) => ({ ...prev, open: false }));
-                    }}
-                    className={classNames(
-                      router.isReady && router.asPath === item.href
-                        ? 'btn-primary'
-                        : 'text-gray-600 hover:text-gray-800 btn-ghost',
-                      'btn btn-block capitalize font-light'
-                    )}
-                    aria-current={
-                      router.isReady && router.asPath === item.href
-                        ? 'page'
-                        : undefined
-                    }
-                  >
-                    {item.name}
-                  </Link>
+                  <div key={item.name} className={`mx-2 mx-auto rounded-lg ${(router.isReady && router.asPath !== item.href) && 'border shadow-sm'}`}>
+                    <Link
+                        href={item.href}
+                        onClick={() => {
+                        close();
+                        setDropDown((prev) => ({ ...prev, open: false }));
+                        }}
+                        className={classNames(
+                        router.isReady && router.asPath === item.href
+                            ? 'btn-primary'
+                            : 'text-gray-600 hover:text-gray-800 btn-ghost',
+                        'btn btn-block capitalize font-light '
+                        )}
+                        aria-current={
+                        router.isReady && router.asPath === item.href
+                            ? 'page'
+                            : undefined
+                        }
+                    >
+                        {item.name}
+                    </Link>
+                  </div>
                 );
               })}
             </div>
             <div className='pt-2 pb-3 text-sm text-gray-600'>
               <Disclosure>
                 {({ open: openResources }) => (
-                  <>
-                    <div className='px-2'>
+                  <div className='border shadow-sm rounded-lg mx-4 mx-auto'>
+                    <div >
                       <Disclosure.Button
                         className={
                           'btn btn-ghost capitalize font-light btn-block bg-transparent no-animation text-gray-600 focus:bg-transparent'
@@ -332,7 +333,7 @@ export default function Navbar() {
                         </Link>
                       </div>
                     </Disclosure.Panel>
-                  </>
+                  </div>
                 )}
               </Disclosure>
             </div>
