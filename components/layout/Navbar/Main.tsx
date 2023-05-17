@@ -59,7 +59,7 @@ export default function Navbar() {
 
     const disableDropDown = () => {
       if (!dropDown.open) return;
-      if (window.innerWidth >= 640 && !dropDown.close) {
+      if (window.innerWidth >= 640 && dropDown.close !== undefined) {
         dropDown.close();
         setDropDown((prevState) => ({ ...prevState, open: false }));
       }
@@ -131,7 +131,7 @@ export default function Navbar() {
                   >
                     {navigation.map((item) => {
                       if (item.name === 'Jobs')
-                        return <Jobs scrolling={scrolling} />;
+                        return <Jobs showNav={scrolling} />;
                       if (item.external) {
                         return (
                           <a
@@ -169,7 +169,7 @@ export default function Navbar() {
                         );
                       }
                     })}
-                    <Resources scrolling={scrolling} />
+                    <Resources showNav={scrolling} />
                   </div>
                 </div>
               </div>
