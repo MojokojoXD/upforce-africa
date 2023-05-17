@@ -200,13 +200,13 @@ export default function Navbar() {
           </div>
 
           <Disclosure.Panel className='md:hidden'>
-            <div className='space-y-2 px-2 pt-2'>
+            <div className='space-y-2 pt-2'>
               {navigation.map((item) => {
                 if (item.name === 'Jobs') {
                   return (
                     <Disclosure key={item.name}>
                       {({ open: openResources }) => (
-                        <div className='border shadow-sm rounded-lg mx-2 mx-auto bg-white'>
+                        <div className={`border ${openResources ? 'bg-slate-100 shadow-inner' : 'bg-white shadow-sm rounded-lg mx-4 mx-auto'}`}>
                           <div>
                             <Disclosure.Button
                               className={
@@ -222,7 +222,7 @@ export default function Navbar() {
                             </Disclosure.Button>
                           </div>
                           <Disclosure.Panel
-                            className={`mt-2 px-2 py-2 grid grid-cols-2 gap-3`}
+                            className={`mt-2 px-2 pt-2 pb-4 grid grid-cols-2 gap-3`}
                           >
                             <div>
                               <Link
@@ -262,7 +262,7 @@ export default function Navbar() {
                 }
 
                 return (
-                  <div key={item.name} className={`mx-2 mx-auto rounded-lg bg-white ${(router.isReady && router.asPath !== item.href) && 'border shadow-sm'}`}>
+                  <div key={item.name} className={`mx-4 mx-auto rounded-lg bg-white ${(router.isReady && router.asPath !== item.href) && 'border shadow-sm'}`}>
                     <Link
                         href={item.href}
                         onClick={() => {
@@ -290,7 +290,7 @@ export default function Navbar() {
             <div className='pt-2 pb-3 text-sm text-gray-600'>
               <Disclosure>
                 {({ open: openResources }) => (
-                  <div className='border shadow-sm rounded-lg mx-4 mx-auto bg-white'>
+                  <div className={`border  ${openResources ? 'bg-slate-100 shadow-inner' : 'bg-white shadow-sm rounded-lg mx-4 mx-auto'}`}>
                     <div >
                       <Disclosure.Button
                         className={
@@ -306,7 +306,7 @@ export default function Navbar() {
                       </Disclosure.Button>
                     </div>
                     <Disclosure.Panel
-                      className={`mt-2 px-2 py-2 grid grid-cols-2 gap-3`}
+                      className={`mt-2 px-2 pt-2 pb-4 grid grid-cols-2 gap-3`}
                     >
                       <div>
                         <Link
