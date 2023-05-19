@@ -13,6 +13,8 @@ import Resources from './Resources';
 import Jobs from './Jobs';
 import useShowNavbar from './useShowNavbar';
 import { SocialIcon } from 'react-social-icons';
+import logo_black from '/public/upforce-black.svg';
+import logo_white from '/public/upforce-white.svg';
 
 const navigation = [
   { name: 'Home', href: '/', external: false },
@@ -45,7 +47,6 @@ export default function Navbar() {
     close: undefined,
   });
   const scrolling = useShowNavbar();
-  const navbarRef = useRef<HTMLDivElement>(null);
   const icon = {
     color: scrolling || dropDown.open ? '#374151' : '#ffffff',
     styles: {
@@ -73,7 +74,6 @@ export default function Navbar() {
     <Disclosure
       id='navbar'
       as='nav'
-      ref={navbarRef}
       className={`${
         scrolling || dropDown.open ? 'bg-white shadow' : 'bg-transparent'
       } w-full z-[9000] fixed`}
@@ -105,7 +105,8 @@ export default function Navbar() {
               <div className='flex flex-1 items-center justify-center sm:items-stretch md:justify-start relative'>
                 <div className='flex flex-shrink-0 items-center overflow-hidden mr-5'>
                   <Link href={'/'}>
-                    <h1
+                    <Image src={scrolling || dropDown.open ? logo_black : logo_white} alt='upforce logo' height={65}/>
+                    {/* <h1
                       className={`relative display-font after:content-["Africa."] after:absolute after:right-0 after:top-4 after:text-[12px] pb-2 after:italic ${
                         scrolling || dropDown.open
                           ? 'text-gray-700 logo'
@@ -120,7 +121,7 @@ export default function Navbar() {
                         Up
                       </span>
                       Force
-                    </h1>
+                    </h1> */}
                   </Link>
                 </div>
                 <div className='hidden sm:ml-6 md:block'>
