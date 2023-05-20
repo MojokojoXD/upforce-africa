@@ -106,22 +106,6 @@ export default function Navbar() {
                 <div className='flex flex-shrink-0 items-center overflow-hidden mr-5'>
                   <Link href={'/'}>
                     <Image src={scrolling || dropDown.open ? logo_black : logo_white} alt='upforce logo' height={65}/>
-                    {/* <h1
-                      className={`relative display-font after:content-["Africa."] after:absolute after:right-0 after:top-4 after:text-[12px] pb-2 after:italic ${
-                        scrolling || dropDown.open
-                          ? 'text-gray-700 logo'
-                          : 'after:text-purple-300'
-                      } text-3xl font-normal`}
-                    >
-                      <span
-                        className={`${
-                          (scrolling || dropDown) && 'text-purple-500'
-                        }`}
-                      >
-                        Up
-                      </span>
-                      Force
-                    </h1> */}
                   </Link>
                 </div>
                 <div className='hidden sm:ml-6 md:block'>
@@ -154,11 +138,11 @@ export default function Navbar() {
                           <Link
                             key={item.name}
                             href={item.href}
-                            aria-current={
-                              router.isReady && router.asPath === item.href
-                                ? 'page'
-                                : undefined
-                            }
+                            // aria-current={
+                            //   router.isReady && router.asPath === item.href
+                            //     ? 'page'
+                            //     : undefined
+                            // }
                             className={`transition-all duration-100 ease-in-out capitalize ${
                               scrolling
                                 ? 'hover:text-gray-500'

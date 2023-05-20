@@ -1,6 +1,8 @@
 import { useCallback } from 'react';
 import { SocialIcon } from 'react-social-icons';
 import Link from 'next/link';
+import logo_black from '/public/upforce-black.svg'
+import Image from 'next/image'
 
 const footerLinks = [
   {
@@ -67,13 +69,9 @@ export default function Footer() {
             className='grid grid-cols-2 sm:grid-cols-3 py-5 max-w-xl gap-5 sm:gap-0'
           >
             <div className='space-y-3'>
-              <div className='relative h-12'>
+              <div className='relative'>
                 <Link href={'/'}>
-                  <h1
-                    className={`w-fit absolute display-font after:content-["Africa."] after:absolute after:right-0 after:top-4 after:text-[12px] pb-2 after:italic text-gray-700 logo text-3xl font-normal`}
-                  >
-                    <span className='text-purple-500'>Up</span>Force
-                  </h1>
+                  <Image src={logo_black} alt='upforce africa logo' width={100}/>
                 </Link>
               </div>
               <div>
