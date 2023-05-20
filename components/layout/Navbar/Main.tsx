@@ -116,7 +116,7 @@ export default function Navbar() {
                   >
                     {navigation.map((item) => {
                       if (item.name === 'Jobs')
-                        return <Jobs showNav={scrolling} />;
+                        return <Jobs showNav={scrolling} key={item.name}/>;
                       if (item.external) {
                         return (
                           <a

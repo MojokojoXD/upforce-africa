@@ -20,6 +20,8 @@ const Jobs: FC<JobsProps> = ({ showNav }) => {
     window.open(url, '_blank');
   };
 
+//
+
   return (
     <Dropdown name='jobs' showNav={showNav}>
       {(close) => (
