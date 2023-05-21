@@ -1,8 +1,9 @@
 import { useCallback } from 'react';
 import { SocialIcon } from 'react-social-icons';
 import Link from 'next/link';
-import logo_black from '/public/upforce-black.svg'
+import logo_black from '/public/logo-black.svg'
 import Image from 'next/image'
+import Button from '../misc/Button';
 
 const footerLinks = [
   {
@@ -23,33 +24,33 @@ export default function Footer() {
     <footer className='pt-5 text-gray-600 border-t z-[1000]'>
       <div className='mx-auto max-w-7xl px-10 sm:px-6 lg:px-8 relative'>
         <div className='py-10'>
-          <div className='my-10'>
-            <div className='w-full sm:max-w-lg'>
-              <h2 className='text-2xl font-normal text-gray-800'>Newsletter</h2>
-              <p className='font-normal max-w-prose text-slate-500'>
+          <div className='my-10 space-y-3'>
+            <div className='w-full sm:max-w-lg space-y-3'>
+              <h2 className='text-4xl font-normal text-gray-700'>Newsletter</h2>
+              <p className='font-normal max-w-prose text-slate-500 text-sm'>
                 Subscribe to UpForce to receive startup news & insights,
                 exclusive job posts, tech events invitations and more sent to
                 your inbox
               </p>
             </div>
-            <div id='newsletter-signup' className='sm:my-2'>
+            <div id='newsletter-signup' className=''>
               <form
-                className='my-3 sm:space-x-3 space-y-5'
+                className='sm:space-x-3 space-y-3 sm:space-y-0'
                 onSubmit={handleSubmit}
               >
                 <input
                   type='email'
-                  className='w-full sm:max-w-md input input-bordered bg-white text-gray-700'
+                  className='w-full sm:max-w-md input input-bordered bg-white text-gray-700 rounded'
                   placeholder='john.doe@gmail.com'
                 />
-                <button
-                  type='submit'
-                  className='btn btn-primary normal-case inline font-normal sm:btn-wide w-full'
+                <Button
+                  block
                 >
                   Sign Up
-                </button>
+                </Button>
               </form>
-              <small className='inline-block max-w-prose text-slate-500 text-[10px]'>
+            </div>
+              <small className='inline-block max-w-prose text-slate-500 text-xs'>
                 By clicking signup, you are agreeing to receive communications
                 from Upforce Africa and to our{' '}
                 <span className='underline hover:text-gray-500 cursor-pointer'>
@@ -62,7 +63,6 @@ export default function Footer() {
                 . If you have questions please reach out to
                 upforceafrica@gmail.com.
               </small>
-            </div>
           </div>
           <div
             id='footer-links'
@@ -71,7 +71,7 @@ export default function Footer() {
             <div className='space-y-3'>
               <div className='relative'>
                 <Link href={'/'}>
-                  <Image src={logo_black} alt='upforce africa logo' width={100}/>
+                  <Image src={logo_black} alt='upforce africa logo' width={160}/>
                 </Link>
               </div>
               <div>
@@ -153,7 +153,7 @@ export default function Footer() {
             </div>
             <div className='space-y-3'>
               <div className='h-12 flex items-center'>
-                <h3 className='text-gray-700 font-semibold'>Company</h3>
+                <p className='text-gray-700 font-semibold'>Company</p>
               </div>
               <div>
                 <ul className='text-slate-600 space-y-5 text-sm'>

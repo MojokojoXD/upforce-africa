@@ -5,7 +5,7 @@ import Link from 'next/link';
 import { content_links } from '../utils/vars';
 import { useRouter } from 'next/router';
 import Header from '../components/layout/Header';
-import ResumeBook from '../components/home/ResumeBook';
+import Services from '../components/home/Services';
 
 export default function Home() {
   const router = useRouter();
@@ -16,7 +16,7 @@ export default function Home() {
           {/* <meta name='description' content='Homepage for upforce africa' /> */}
         </Head>
         <Header/>
-        <ResumeBook/>
+        <Services/>
     </>
   );
 }

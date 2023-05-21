@@ -80,8 +80,87 @@ export const listingField: ListingField = {
   },
 };
 
-type Answer = {
-    value: string | undefined;
-}
 
+export const industries = [
+    {
+        category: 'business',
+        links: [
+            {
+                name: 'technology',
+                href: '#',
+            },
+            {
+                name: 'medical devices & Diagnostics',
+                href: '#',
+            },
+            {
+                name: 'pharmaceutical & Biotechnology',
+                href: '#',
+            },
+            {
+                name: 'industrials',
+                href: '#',
+            },
+            {
+                name: 'consumer goods',
+                href: '#',
+            },
+            {
+                name: 'payments & insurance',
+                href: '#',
+            }
+        ]
+    },
+    {
+        category: 'finance',
+        links: [
+            {
+                name: 'hedge funds',
+                href: '#',
+            },
+            {
+                name: 'private equity',
+                href: '#',
+            },
+            {
+                name: 'private credit',
+                href: '#',
+            },
+            {
+                name: 'investment managers & mutual funds',
+                href: '#',
+            },
+            {
+                name: 'investment banks & research',
+                href: '#',
+            },
+        ]
+    },
+    {
+        category: 'professional services',
+        links: [
+            {
+                name: 'consulting firms',
+                href: '#',
+            },
+            {
+                name: 'advertising & public relations',
+                href: '#',
+            },
+        ]
+    },
+    {
+        category: 'law firms',
+        links: [
+            {
+                name: 'expert witness',
+                href: '#',
+            },
+            {
+                name: 'law firm',
+                href: '#',
+            },
+        ]
+    }
+]
 

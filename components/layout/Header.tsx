@@ -1,50 +1,51 @@
 import { FC, ReactNode } from 'react';
 import header_cover from '../../public/header_cover.jpg';
 import { useRouter } from 'next/router';
+import Button from '../misc/Button';
 
 interface HeaderProps {
   title?: string;
   children?: ReactNode;
 }
 
-const ADD_YOUR_PROFILE =
-  'https://docs.google.com/forms/d/e/1FAIpQLSf4OhZF552iz-VdEJCpidTPOuH84lVcK4RhgAPVtkW_bUC9_g/viewform?usp=sf_link';
-const POST_A_JOB =
-  'https://docs.google.com/forms/d/e/1FAIpQLSdbl8fZcPSJ-z0frjOQFK8BmL-W3sCNiq-hYcl1ZP1dF0Xedw/viewform?usp=sf_link';
+const BECOME_A_CLIENT = '';
+const JOIN_EXPERT_NETWORK = '';
 
 const Header: FC<HeaderProps> = ({ title = '', children }) => {
   const router = useRouter();
 
   const handleClick = (url: string) => {
     if (typeof window === 'undefined') return;
-    window.open(url, '_blank');
   };
 
   if (router.asPath === '/') {
     return (
-      <div
-        className={`h-[70vh] bg-header-cover bg-cover bg-center relative bg-fixed`}
-      >
-        <div className='absolute inset-0 backdrop-blur sm:backdrop-contrast-150 sm:backdrop-blur-0'></div>
+      <div className={`h-screen bg-slate-800 relative`}>
+        <div className='absolute'></div>
         <div className='h-full flex relative'>
           <div className='absolute w-full top-20 bottom-0'>
             <div className='mx-auto max-w-7xl px-2 sm:px-6 lg:px-8 h-full flex justify-center flex-col space-y-8'>
-              <h1 className='text-center sm:text-left text-4xl font-light w-full sm:max-w-sm tracking-tight'>
-                Building Africa’s Largest Database of Tech Talent and Jobs
+              <h1 className='text-center sm:text-left text-4xl sm:text-5xl font-light w-full sm:max-w-lg tracking-tight'>
+                Building Africa’s Largest Network of Professional Experts
               </h1>
-              <div className='space-x-3 flex justify-center sm:justify-start'>
-                <button
-                  className='btn btn-outline btn-primary normal-case font-normal rounded-lg'
-                  onClick={() => handleClick(POST_A_JOB)}
+              <div>
+                <ul className='list-none list-inside font-light max-w-prose space-y-1 text-sm sm:text-base w-4/5 mx-auto sm:mx-0 w-full'>
+                    <li >Find great employees overseas.</li>
+                    <li >Connect with best in class consultants and local experts.</li>
+                    <li>Quickly field test your ideas with field research and surveys.</li>
+                </ul>
+              </div>
+              <div className='space-x-3 flex justify-center sm:justify-start w-3/4 mx-auto sm:mx-0 sm:w-full'>
+                <Button
+                  onClick={() => handleClick(JOIN_EXPERT_NETWORK)}
                 >
-                  Post a Job
-                </button>
-                <button
-                  className='btn btn-primary normal-case font-normal rounded-lg'
-                  onClick={() => handleClick(ADD_YOUR_PROFILE)}
+                    become a client
+                </Button>
+                <Button
+                  onClick={() => handleClick(BECOME_A_CLIENT)}
                 >
-                  Add Your Profile
-                </button>
+                  join our expert network
+                </Button>
               </div>
             </div>
           </div>
@@ -57,9 +58,9 @@ const Header: FC<HeaderProps> = ({ title = '', children }) => {
         <div className='pt-20 w-full'>
           <div className='mx-auto max-w-7xl px-2 sm:px-6 lg:px-8 h-full grid grid-cols-1'>
             <div className='flex justify-center items-center py-10'>
-                <h1 className="text-5xl font-medium capitalize tracking-tight text-gray-300 text-center">
-                    {title}
-                </h1>
+              <h1 className='text-5xl font-medium capitalize tracking-tight text-gray-300 text-center'>
+                {title}
+              </h1>
             </div>
             {children && <div>{children}</div>}
           </div>

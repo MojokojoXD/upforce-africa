@@ -6,49 +6,63 @@ import Image from 'next/image';
 import logo from '../../../public/upforcev2-1.png';
 import { useRouter } from 'next/router';
 import Link from 'next/link';
-import linkedIn from '../../../public/linked.svg';
-import facebook from '../../../public/facebook.svg';
-import twitter from '../../../public/twitter.svg';
-import Resources from './Resources';
-import Jobs from './Jobs';
 import useShowNavbar from './useShowNavbar';
 import { SocialIcon } from 'react-social-icons';
-import logo_black from '/public/upforce-black.svg';
-import logo_white from '/public/upforce-white.svg';
+import logo_black from '/public/logo-black.svg';
+import logo_white from '/public/logo-white.svg';
+import NavDropDown from './NavDropdown';
+import MobileDropDown from './MobileDropDown';
 
-const navigation = [
-  { name: 'Home', href: '/', external: false },
+type NavOptions = {
+    href: string;
+    external: boolean;
+} | undefined;
+
+interface Navlinks {
+  name: string;
+  options: NavOptions;
+  dropdown: boolean;
+};
+
+const navigation: Navlinks[] = [
   {
-    name: 'Jobs',
-    href: '',
-    external: false,
+    name: 'services',
+    options: {
+        href: '#services',
+        external: false,
+    },
+    dropdown: false
   },
-  { name: 'Tech News', href: '/tech-news', external: false },
   {
-    name: 'VC',
-    href: 'https://docs.google.com/spreadsheets/d/1JO54RqzTg11he8XKSDYppxfnQLlhyvMvUy5oFrKhVeU/edit#gid=0',
-    external: true,
+    name: 'industries',
+    options: undefined,
+    dropdown: true,
   },
+  {
+    name: 'about us',
+    options: undefined,
+    dropdown: true,
+  }
 ];
 
 function classNames(...classes) {
   return classes.filter(Boolean).join(' ');
 }
 
-type Dropdown = {
+type DisclosureStatus = {
   open: boolean;
-  close: (() => void )| undefined;
+  close: (() => void) | undefined;
 };
 
 export default function Navbar() {
   const router = useRouter();
-  const [dropDown, setDropDown] = useState<Dropdown>({
+  const [disclosureStatus, setDisclosureStatus] = useState<DisclosureStatus>({
     open: false,
     close: undefined,
   });
   const scrolling = useShowNavbar();
   const icon = {
-    color: scrolling || dropDown.open ? '#374151' : '#ffffff',
+    color: scrolling || disclosureStatus.open ? '#374151' : '#ffffff',
     styles: {
       height: 30,
       width: 30,
@@ -59,10 +73,10 @@ export default function Navbar() {
     if (typeof window === 'undefined') return;
 
     const disableDropDown = () => {
-      if (!dropDown.open) return;
-      if (window.innerWidth >= 640 && dropDown.close !== undefined) {
-        dropDown.close();
-        setDropDown((prevState) => ({ ...prevState, open: false }));
+      if (!disclosureStatus.open) return;
+      if (window.innerWidth >= 640 && disclosureStatus.close !== undefined) {
+        disclosureStatus.close();
+        setDisclosureStatus((prevState) => ({ ...prevState, open: false }));
       }
     };
 
@@ -75,7 +89,7 @@ export default function Navbar() {
       id='navbar'
       as='nav'
       className={`${
-        scrolling || dropDown.open ? 'bg-white shadow' : 'bg-transparent'
+        scrolling || disclosureStatus.open ? 'bg-white shadow' : 'bg-transparent'
       } w-full z-[9000] fixed`}
     >
       {({ open, close }) => (
@@ -86,7 +100,7 @@ export default function Navbar() {
                 {/* Mobile menu button*/}
                 <Disclosure.Button
                   className='inline-flex items-center justify-center rounded-md text-gray-400 z-[1000]'
-                  onClick={() => setDropDown({ open: !open, close })}
+                  onClick={() => setDisclosureStatus({ open: !open, close })}
                 >
                   <span className='sr-only'>Open main menu</span>
                   {open ? (
@@ -102,225 +116,62 @@ export default function Navbar() {
                   )}
                 </Disclosure.Button>
               </div>
-              <div className='flex flex-1 items-center justify-center sm:items-stretch md:justify-start relative'>
+              <div className='flex flex-1 items-center justify-center sm:items-stretch md:justify-between'>
                 <div className='flex flex-shrink-0 items-center overflow-hidden mr-5'>
                   <Link href={'/'}>
-                    <Image src={scrolling || dropDown.open ? logo_black : logo_white} alt='upforce logo' height={65}/>
+                    <Image
+                      src={scrolling || disclosureStatus.open ? logo_black : logo_white}
+                      alt='upforce logo'
+                      height={65}
+                    />
                   </Link>
                 </div>
                 <div className='hidden sm:ml-6 md:block'>
                   <div
-                    className={`flex space-x-8 items-center h-full text-[15px] ${
-                      scrolling && 'text-gray-700'
+                    className={`flex space-x-8 items-center h-full ${
+                      scrolling ? 'text-gray-700' : 'text-[#eee]'
                     }`}
                   >
                     {navigation.map((item) => {
-                      if (item.name === 'Jobs')
-                        return <Jobs showNav={scrolling} key={item.name}/>;
-                      if (item.external) {
+                      if (item.dropdown)return <NavDropDown label={item.name}/>
                         return (
                           <a
                             key={item.name}
-                            href={item.href}
-                            rel='noreferrer'
-                            target='_blank'
-                            className={`transition-all duration-100 ease-in-out capitalize ${
-                              scrolling
-                                ? 'hover:text-gray-500'
-                                : 'hover:text-gray-200'
-                            }`}
+                            href={item.options?.href || ''}
+                            className={`btn btn-ghost btn-sm text-xs tracking-wider font-semibold antialiased hover:text-gray-500 border-0 border-b-2 hover:bg-transparent px-0`}
                           >
                             {item.name}
                           </a>
                         );
-                      } else {
-                        return (
-                          <Link
-                            key={item.name}
-                            href={item.href}
-                            // aria-current={
-                            //   router.isReady && router.asPath === item.href
-                            //     ? 'page'
-                            //     : undefined
-                            // }
-                            className={`transition-all duration-100 ease-in-out capitalize ${
-                              scrolling
-                                ? 'hover:text-gray-500'
-                                : 'hover:text-gray-200'
-                            }`}
-                          >
-                            {item.name}
-                          </Link>
-                        );
-                      }
                     })}
-                    <Resources showNav={scrolling} />
                   </div>
                 </div>
-              </div>
-              <div className='hidden md:block absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0 space-x-3'>
-                <SocialIcon
-                  bgColor='none'
-                  fgColor={icon.color}
-                  style={icon.styles}
-                  url='https://www.facebook.com/profile.php?id=100088679361991&mibextid=LQQJ4d'
-                  className='btn btn-circle btn-sm btn-ghost'
-                />
-                <SocialIcon
-                  className='btn btn-circle btn-sm btn-ghost'
-                  bgColor='none'
-                  url='https://www.linkedin.com/company/upforce-africa/'
-                  fgColor={icon.color}
-                  style={icon.styles}
-                />
-                <SocialIcon
-                  className='btn btn-circle btn-sm btn-ghost'
-                  bgColor='none'
-                  url='https://twitter.com/UpforceAfrica'
-                  fgColor={icon.color}
-                  style={icon.styles}
-                />
               </div>
             </div>
           </div>
 
           <Disclosure.Panel className='md:hidden'>
-            <div className='space-y-2 pt-2'>
+            <div className='pt-2 text-gray-700'>
               {navigation.map((item) => {
-                if (item.name === 'Jobs') {
-                  return (
-                    <Disclosure key={item.name}>
-                      {({ open: openResources }) => (
-                        <div className={`border ${openResources ? 'bg-slate-100 shadow-inner' : 'bg-white shadow-sm rounded-lg mx-4 mx-auto'}`}>
-                          <div>
-                            <Disclosure.Button
-                              className={
-                                'btn btn-ghost capitalize font-light btn-block bg-transparent no-animation text-gray-600 focus:bg-transparent'
-                              }
-                            >
-                              Jobs
-                              {openResources ? (
-                                <ChevronUpIcon className='w-3.5 ml-1' />
-                              ) : (
-                                <ChevronDownIcon className='w-3.5 ml-1' />
-                              )}
-                            </Disclosure.Button>
-                          </div>
-                          <Disclosure.Panel
-                            className={`mt-2 px-2 pt-2 pb-4 grid grid-cols-2 gap-3`}
-                          >
-                            <div>
-                              <Link
-                                href={item.href}
-                                className='btn btn-block btn-outline btn-primary border capitalize font-light text-sm'
-                                onClick={() => {
-                                  close();
-                                  setDropDown((prev) => ({
-                                    ...prev,
-                                    open: false,
-                                  }));
-                                }}
-                              >
-                                post a job
-                              </Link>
-                            </div>
-                            <div>
-                              <Link
-                                href={'/jobs/search-jobs'}
-                                className={`btn btn-block border btn-primary capitalize font-light text-sm ${router.isReady && router.asPath === '/jobs/search-jobs' ?  null : 'btn-outline'}`}
-                                onClick={() => {
-                                  close();
-                                  setDropDown((prev) => ({
-                                    ...prev,
-                                    open: false,
-                                  }));
-                                }}
-                              >
-                                job search
-                              </Link>
-                            </div>
-                          </Disclosure.Panel>
-                        </div>
-                      )}
-                    </Disclosure>
-                  );
-                }
-
+                if(item.dropdown)return <MobileDropDown label={item.name}/>
                 return (
-                  <div key={item.name} className={`mx-4 mx-auto rounded-lg bg-white ${(router.isReady && router.asPath !== item.href) && 'border shadow-sm'}`}>
+                  <div
+                    key={item.name}
+                    className={`mx-4 py-3 mx-auto flex justify-center`}
+                  >
                     <Link
-                        href={item.href}
-                        onClick={() => {
+                      href={item.options?.href || ''}
+                      onClick={() => {
                         close();
-                        setDropDown((prev) => ({ ...prev, open: false }));
-                        }}
-                        className={classNames(
-                        router.isReady && router.asPath === item.href
-                            ? 'btn-primary'
-                            : 'text-gray-600 hover:text-gray-800 btn-ghost',
-                        'btn btn-block capitalize font-light '
-                        )}
-                        aria-current={
-                        router.isReady && router.asPath === item.href
-                            ? 'page'
-                            : undefined
-                        }
+                        setDisclosureStatus((prev) => ({ ...prev, open: false }));
+                      }}
+                      className={'btn btn-ghost btn-sm text-xs tracking-wider font-semibold antialiased hover:text-gray-500 hover:bg-transparent px-0 flex'}
                     >
-                        {item.name}
+                      {item.name}
                     </Link>
                   </div>
                 );
               })}
-            </div>
-            <div className='pt-2 pb-3 text-sm text-gray-600'>
-              <Disclosure>
-                {({ open: openResources }) => (
-                  <div className={`border  ${openResources ? 'bg-slate-100 shadow-inner' : 'bg-white shadow-sm rounded-lg mx-4 mx-auto'}`}>
-                    <div >
-                      <Disclosure.Button
-                        className={
-                          'btn btn-ghost capitalize font-light btn-block bg-transparent no-animation text-gray-600 focus:bg-transparent'
-                        }
-                      >
-                        Resources
-                        {openResources ? (
-                          <ChevronUpIcon className='w-3.5 ml-1' />
-                        ) : (
-                          <ChevronDownIcon className='w-3.5 ml-1' />
-                        )}
-                      </Disclosure.Button>
-                    </div>
-                    <Disclosure.Panel
-                      className={`mt-2 px-2 pt-2 pb-4 grid grid-cols-2 gap-3`}
-                    >
-                      <div>
-                        <Link
-                          href={'/resources/blog'}
-                          className={`btn btn-block border btn-primary capitalize font-light text-sm ${router.isReady && router.asPath === '/resources/blog' ?  null : 'btn-outline'}`}
-                          onClick={() => {
-                            close();
-                            setDropDown((prev) => ({ ...prev, open: false }));
-                          }}
-                        >
-                          blog
-                        </Link>
-                      </div>
-                      <div>
-                        <Link
-                          href={'/resources/service-providers'}
-                          className={`btn btn-block border btn-primary capitalize font-light text-sm ${router.isReady && router.asPath === '/resources/service-providers' ?  null : 'btn-outline'}`}
-                          onClick={() => {
-                            close();
-                            setDropDown((prev) => ({ ...prev, open: false }));
-                          }}
-                        >
-                          service providers
-                        </Link>
-                      </div>
-                    </Disclosure.Panel>
-                  </div>
-                )}
-              </Disclosure>
             </div>
             <div className='py-5 px-5 space-x-5 flex justify-center'>
               <button className='btn btn-circle btn-ghost'>
