@@ -14,11 +14,15 @@ const JOIN_EXPERT_NETWORK = '';
 const Header: FC<HeaderProps> = ({ title = '', children }) => {
   const router = useRouter();
 
+
   const handleClick = (url: string) => {
     if (typeof window === 'undefined') return;
   };
 
-  if (router.asPath === '/') {
+
+  
+
+  if ( router.pathname === '/' ) {
     return (
       <div className={`h-screen bg-slate-800 relative`}>
         <div className='absolute'></div>
