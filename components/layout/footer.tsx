@@ -27,7 +27,7 @@ export default function Footer() {
           <div className='my-10 space-y-3'>
             <div className='w-full sm:max-w-lg space-y-3'>
               <h2 className='text-4xl font-normal text-gray-700'>Newsletter</h2>
-              <p className='font-normal max-w-prose text-slate-500 text-sm'>
+              <p className='font-light max-w-prose text-slate-500 text-sm'>
                 Subscribe to UpForce to receive startup news & insights,
                 exclusive job posts, tech events invitations and more sent to
                 your inbox
