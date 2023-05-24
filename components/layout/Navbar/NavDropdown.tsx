@@ -18,7 +18,7 @@ const dropdownData = {
 
 const DropDownPanel: FC<DropDownPanelProps> = ({ close, label }) => {
   return (
-    <div className='md:w-[40rem] lg:w-[44rem]'>
+    <div className='md:w-[40rem] lg:w-[42rem]'>
       <div className='px-5 min-w-max capitalize'>
         <div className={'grid grid-cols-4 gap-y-5'}>
           {dropdownData[label].map((a) => (
@@ -27,12 +27,12 @@ const DropDownPanel: FC<DropDownPanelProps> = ({ close, label }) => {
               className='flex flex-col items-center w-[9rem]'
             >
               {/* dropdown header */}
-              <div className='min-h-16 w-full bg-gradient-to-b from-purple-100 to-transparent rounded-sm px-3 flex items-center'>
-                <span className='text-gray-700 uppercase text-xs'>{a.category}</span>
+              <div className='min-h-8 w-full px-3 flex items-center'>
+                <span className='text-gray-700 uppercase text-xs antialiased font-medium'>{a.category}</span>
               </div>
               {/* dropdown links */}
               <div className='w-full p-3'>
-                <ul className='space-y-2 pr-5'>
+                <ul className='space-y-2 pr-3'>
                   {a.links.map((l) => (
                     <Link
                       key={l.name}
@@ -63,7 +63,7 @@ const NavDropDown: FC<NavDropDownProps> = ({ label }) => {
       {({ open, close }) => (
         <>
           <Popover.Button
-            className={`btn btn-ghost hover:bg-transparent px-0 text-xs tracking-wider border-0 border-b-2 hover:text-gray-500 btn-sm font-semibold antialiased rounded-none focus:outline-0 relative ${
+            className={`btn btn-ghost hover:bg-transparent px-0 text-xs tracking-wider border-0 border-b-2 btn-sm font-semibold antialiased rounded-none focus:outline-0 relative ${
               open && 'border-b-2 border-b-purple-300  border-0'
             }`}
           >
@@ -80,8 +80,7 @@ const NavDropDown: FC<NavDropDownProps> = ({ label }) => {
             leaveTo='transform opacity-0 scale-95'
           >
             <Popover.Panel
-              className='absolute  -right-20 lg:right-0  mt-3 bg-white rounded-sm px-5 pt-5 pb-10 shadow-sm border'
-              static
+              className='absolute  -right-20 lg:right-0  mt-3 bg-white rounded-sm px-5 pt-5 pb-10 shadow border'
             >
               <DropDownPanel label={label} close={close} />
             </Popover.Panel>

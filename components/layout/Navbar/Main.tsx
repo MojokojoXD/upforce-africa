@@ -24,9 +24,7 @@ interface Navlinks {
   dropdown: boolean;
 };
 
-interface Navbar {
-    enableOverlay( status: DisclosureStatus ): React.ReactNode;
-}
+
 
 const navigation: Navlinks[] = [
   {
@@ -58,7 +56,7 @@ export type DisclosureStatus = {
   close: (() => void) | undefined;
 };
 
-export default function Navbar({enableOverlay}:Navbar) {
+export default function Navbar() {
   const router = useRouter();
   const [disclosureStatus, setDisclosureStatus] = useState<DisclosureStatus>({
     open: false,
@@ -100,14 +98,11 @@ export default function Navbar({enableOverlay}:Navbar) {
   },[disclosureStatus.open])
   return (
     <>
-        {
-            enableOverlay(disclosureStatus)
-        }
         <Disclosure
         id='navbar'
         as='nav'
         className={`${
-            scrolling || disclosureStatus.open ? 'bg-white shadow-sm' : 'bg-transparent'
+            scrolling || disclosureStatus.open ? 'bg-white shadow' : 'bg-transparent'
         } w-full z-[1000] fixed`}
         >
         {({ open, close }) => (
@@ -146,8 +141,8 @@ export default function Navbar({enableOverlay}:Navbar) {
                     </div>
                     <div className='hidden sm:ml-6 md:block'>
                     <div
-                        className={`flex space-x-8 items-center h-full ${
-                        scrolling ? 'text-gray-700' : 'text-[#eee] mr-10'
+                        className={`flex space-x-8 items-center h-full mr-10 ${
+                        scrolling ? 'text-gray-700' : 'text-[#eee] '
                         }`}
                     >
                         {navigation.map((item) => {
@@ -171,7 +166,7 @@ export default function Navbar({enableOverlay}:Navbar) {
             <Disclosure.Panel className='md:hidden z-[1000]'>
                 <div className='pt-2 text-gray-700'>
                 {navigation.map((item) => {
-                    if(item.dropdown)return <MobileDropDown label={item.name} key={item.name}/>
+                    if(item.dropdown)return <MobileDropDown label={item.name} key={item.name} close = {close}/>
                     return (
                     <div
                         key={item.name}
