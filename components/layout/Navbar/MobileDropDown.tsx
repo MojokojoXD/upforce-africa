@@ -51,7 +51,7 @@ const MobileDropDown: FC<PanelProps> = ({ label, close,resetDisclosure }) => {
           <div className='flex justify-center flex-col mx-4 py-3'>
             <Disclosure.Button
               className={
-                'btn btn-ghost btn-sm text-xs tracking-wider font-semibold antialiased hover:text-gray-500 hover:bg-transparent px-0 flex'
+                'btn btn-ghost btn-sm text-xs tracking-wider font-semibold antialiased hover:text-gray-500 hover:bg-transparent px-0 flex no-animation'
               }
             >
               {label}
@@ -59,7 +59,7 @@ const MobileDropDown: FC<PanelProps> = ({ label, close,resetDisclosure }) => {
             </Disclosure.Button>
           </div>
           <div className='bg-white shadow-inner'>
-            <Disclosure.Panel>
+            <Disclosure.Panel className={'relative'}>
               <div className='grid grid-cols-2 p-4 gap-x-1 gap-y-5'>
                 <Panel label={label} close={close} resetDisclosure={resetDisclosure}/>
               </div>
