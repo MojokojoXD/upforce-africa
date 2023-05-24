@@ -164,3 +164,28 @@ export const industries = [
     }
 ]
 
+export const aboutUs = [
+    {
+        category: 'about us',
+        links : [
+            {
+                name: 'who we are',
+                href: '#',
+            },
+            {
+                name: 'contact us',
+                href: '#',
+            }
+        ]
+    },
+    {
+        category: 'resources',
+        links: [
+            {
+                name: 'tech news',
+                href: '/tech-news'
+            }
+        ]
+    }
+]
+

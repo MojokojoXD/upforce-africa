@@ -25,7 +25,7 @@ interface Navlinks {
 };
 
 interface Navbar {
-    enableOverlay( status:boolean ): React.ReactNode;
+    enableOverlay( status: DisclosureStatus ): React.ReactNode;
 }
 
 const navigation: Navlinks[] = [
@@ -53,7 +53,7 @@ function classNames(...classes) {
   return classes.filter(Boolean).join(' ');
 }
 
-type DisclosureStatus = {
+export type DisclosureStatus = {
   open: boolean;
   close: (() => void) | undefined;
 };
@@ -101,13 +101,13 @@ export default function Navbar({enableOverlay}:Navbar) {
   return (
     <>
         {
-            enableOverlay(disclosureStatus.open)
+            enableOverlay(disclosureStatus)
         }
         <Disclosure
         id='navbar'
         as='nav'
         className={`${
-            scrolling || disclosureStatus.open ? 'bg-white shadow' : 'bg-transparent'
+            scrolling || disclosureStatus.open ? 'bg-white shadow-sm' : 'bg-transparent'
         } w-full z-[1000] fixed`}
         >
         {({ open, close }) => (
@@ -147,7 +147,7 @@ export default function Navbar({enableOverlay}:Navbar) {
                     <div className='hidden sm:ml-6 md:block'>
                     <div
                         className={`flex space-x-8 items-center h-full ${
-                        scrolling ? 'text-gray-700' : 'text-[#eee]'
+                        scrolling ? 'text-gray-700' : 'text-[#eee] mr-10'
                         }`}
                     >
                         {navigation.map((item) => {

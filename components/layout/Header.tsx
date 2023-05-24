@@ -11,7 +11,7 @@ interface HeaderProps {
 const BECOME_A_CLIENT = '';
 const JOIN_EXPERT_NETWORK = '';
 
-const Header: FC<HeaderProps> = ({ title = '', children }) => {
+const Header: FC<HeaderProps> = ({ title , children }) => {
   const router = useRouter();
 
 
@@ -73,5 +73,10 @@ const Header: FC<HeaderProps> = ({ title = '', children }) => {
     );
   }
 };
+
+
+Header.defaultProps = {
+    title: ''
+}
 
 export default Header;

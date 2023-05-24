@@ -1,54 +1,56 @@
-import { FC } from 'react';
+'use client';
+
+import { FC, cloneElement } from 'react';
 import { ChevronDownIcon } from '@heroicons/react/24/solid';
-import { industries } from '../../../utils/vars';
+import { industries, aboutUs } from '../../../utils/vars';
 import { Popover, Transition } from '@headlessui/react';
+import Link from 'next/link';
 
-const Industries: FC<{}> = () => {
-  return (
-    <>
-      <div className='grid grid-cols-4 gap-1 md:w-[36rem] lg:w-[44rem] capitalize lg:px-10 pt-5'>
-        {industries.map((i) => (
-          <span
-            className='block text-gray-700 pb-2 mb-2 uppercase px-5'
-            key={i.category}
-          >
-            {i.category}
-          </span>
-        ))}
-      </div>
-      <div className='grid grid-cols-4 gap-1 md:w-[36rem] lg:w-[44rem] capitalize lg:px-10'>
-        {industries.map((i) => (
-          <div key={i.category} className='px-5'>
-            <ul className='space-y-3 text-sm text-slate-500 font-light'>
-              {i.links.map((l) => (
-                <li key={l.name}>
-                  {l.name}
-                </li>
-              ))}
-            </ul>
-          </div>
-        ))}
-      </div>
-    </>
-  );
-};
-
-const AboutUs: FC<{}> = () => {
-  return (
-    <>
-      <div className='px-5 min-w-max capitalize'>
-        <ul className='space-y-3 text-slate-500 font-normal'>
-            <li>who we are</li>
-            <li>contact us</li>
-        </ul>
-      </div>
-    </>
-  );
+type DropDownPanelProps = {
+  close: () => void;
+  label: string;
 };
 
 const dropdownData = {
-  industries: <Industries />,
-  'about us': <AboutUs />,
+  industries,
+  'about us': aboutUs,
+};
+
+const DropDownPanel: FC<DropDownPanelProps> = ({ close, label }) => {
+  return (
+    <div className='md:w-[40rem] lg:w-[44rem]'>
+      <div className='px-5 min-w-max capitalize'>
+        <div className={'grid grid-cols-4 gap-y-5'}>
+          {dropdownData[label].map((a) => (
+            <div
+              key={a.category}
+              className='flex flex-col items-center w-[9rem]'
+            >
+              {/* dropdown header */}
+              <div className='min-h-16 w-full bg-gradient-to-b from-purple-100 to-transparent rounded-sm px-3 flex items-center'>
+                <span className='text-gray-700 uppercase text-xs'>{a.category}</span>
+              </div>
+              {/* dropdown links */}
+              <div className='w-full p-3'>
+                <ul className='space-y-2 pr-5'>
+                  {a.links.map((l) => (
+                    <Link
+                      key={l.name}
+                      href={l.href}
+                      className='text-slate-500 font-normal block text-xs font-light hover:underline'
+                      onClick={close}
+                    >
+                      {l.name}
+                    </Link>
+                  ))}
+                </ul>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  );
 };
 
 interface NavDropDownProps {
@@ -78,10 +80,10 @@ const NavDropDown: FC<NavDropDownProps> = ({ label }) => {
             leaveTo='transform opacity-0 scale-95'
           >
             <Popover.Panel
-              className='absolute right-0 mt-3 bg-white rounded-sm px-5 pt-5 pb-10 shadow-sm border'
+              className='absolute  -right-20 lg:right-0  mt-3 bg-white rounded-sm px-5 pt-5 pb-10 shadow-sm border'
               static
             >
-              {dropdownData[label]}
+              <DropDownPanel label={label} close={close} />
             </Popover.Panel>
           </Transition>
         </>

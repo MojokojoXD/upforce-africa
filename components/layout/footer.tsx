@@ -44,7 +44,7 @@ export default function Footer() {
                   placeholder='john.doe@gmail.com'
                 />
                 <Button
-                  block
+                  enableBlock
                 >
                   Sign Up
                 </Button>
