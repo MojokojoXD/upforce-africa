@@ -87,15 +87,7 @@ export default function Navbar() {
     return () => window.removeEventListener('resize', disableDropDown);
   });
 
-  useEffect(() => {
-
-    if(disclosureStatus.open){
-        document.body.style.overflow = 'hidden';
-    }else{
-        document.body.style.overflow = 'auto';
-    }
-
-  },[disclosureStatus.open])
+  
   return (
     <>
         <Disclosure
