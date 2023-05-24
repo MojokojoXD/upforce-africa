@@ -1,10 +1,9 @@
-import { Fragment, useState, useEffect, useRef } from 'react';
+import { Fragment, useState, useEffect, useCallback } from 'react';
 import { Disclosure, Menu } from '@headlessui/react';
 import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline';
 import { ChevronUpIcon, ChevronDownIcon } from '@heroicons/react/24/solid';
 import Image from 'next/image';
 import logo from '../../../public/upforcev2-1.png';
-import { useRouter } from 'next/router';
 import Link from 'next/link';
 import useShowNavbar from './useShowNavbar';
 import { SocialIcon } from 'react-social-icons';
@@ -57,19 +56,22 @@ export type DisclosureStatus = {
 };
 
 export default function Navbar() {
-  const router = useRouter();
   const [disclosureStatus, setDisclosureStatus] = useState<DisclosureStatus>({
     open: false,
     close: undefined,
   });
   const scrolling = useShowNavbar();
   const icon = {
-    color: scrolling || disclosureStatus.open ? '#374151' : '#ffffff',
+    color: '#1f2937',
     styles: {
       height: 30,
       width: 30,
     },
   };
+
+  const resetDisclosureStatus = useCallback(()=>{
+    setDisclosureStatus({open:false,close:undefined})
+  },[])
 
   useEffect(() => {
     if (typeof window === 'undefined') return;
@@ -87,6 +89,17 @@ export default function Navbar() {
     return () => window.removeEventListener('resize', disableDropDown);
   });
 
+  useEffect(()=> {
+    if(disclosureStatus.open){
+        document.body.style.overflow = 'hidden';
+        document.body.style.height = '100%';
+    } 
+
+    if(!disclosureStatus.open) {
+        document.body.style.overflow = 'scroll';
+        document.body.style.height = '100vh';
+    }
+  },[disclosureStatus.open])
   
   return (
     <>
@@ -143,7 +156,7 @@ export default function Navbar() {
                             <a
                                 key={item.name}
                                 href={item.options?.href || ''}
-                                className={`btn btn-ghost btn-sm text-xs tracking-wider font-semibold antialiased hover:text-gray-500 border-0 border-b-2 hover:bg-transparent px-0`}
+                                className={`btn btn-ghost btn-sm text-xs tracking-wider font-semibold antialiased border-0 border-b-2 hover:border-b-yellow-500 hover:bg-transparent px-0`}
                             >
                                 {item.name}
                             </a>
@@ -155,54 +168,56 @@ export default function Navbar() {
                 </div>
             </div>
 
-            <Disclosure.Panel className='md:hidden z-[1000]'>
-                <div className='pt-2 text-gray-700'>
-                {navigation.map((item) => {
-                    if(item.dropdown)return <MobileDropDown label={item.name} key={item.name} close = {close}/>
-                    return (
-                    <div
-                        key={item.name}
-                        className={`mx-4 py-3 mx-auto flex justify-center`}
-                    >
-                        <Link
-                        href={item.options?.href || ''}
-                        onClick={() => {
-                            close();
-                            setDisclosureStatus((prev) => ({ ...prev, open: false }));
-                        }}
-                        className={'btn btn-ghost btn-sm text-xs tracking-wider font-semibold antialiased hover:text-gray-500 hover:bg-transparent px-0 flex'}
+            <Disclosure.Panel as='div' className='md:hidden z-[1000] h-[calc(100vh-5rem)] bg-yellow-500'>
+                <div className='h-[200vh]'>
+                    <div className='pt-2 text-gray-800'>
+                    {navigation.map((item) => {
+                        if(item.dropdown)return <MobileDropDown label={item.name} key={item.name} close = {close} resetDisclosure={resetDisclosureStatus}/>
+                        return (
+                        <div
+                            key={item.name}
+                            className={`mx-4 py-3 mx-auto flex justify-center`}
                         >
-                        {item.name}
-                        </Link>
+                            <Link
+                            href={item.options?.href || ''}
+                            onClick={() => {
+                                close();
+                                setDisclosureStatus((prev) => ({ ...prev, open: false }));
+                            }}
+                            className={'btn btn-ghost btn-sm text-xs tracking-wider font-semibold antialiased hover:text-gray-500 hover:bg-transparent px-0 flex'}
+                            >
+                            {item.name}
+                            </Link>
+                        </div>
+                        );
+                    })}
                     </div>
-                    );
-                })}
-                </div>
-                <div className='py-5 px-5 space-x-5 flex justify-center'>
-                <button className='btn btn-circle btn-ghost'>
-                    <SocialIcon
-                    style={icon.styles}
-                    fgColor={'#6b7280'}
-                    bgColor='none'
-                    url='https://www.facebook.com/profile.php?id=100088679361991&mibextid=LQQJ4d'
-                    />
-                </button>
-                <button className='btn btn-circle btn-ghost'>
-                    <SocialIcon
-                    style={icon.styles}
-                    fgColor={'#6b7280'}
-                    bgColor='none'
-                    url='https://twitter.com/UpforceAfrica'
-                    />
-                </button>
-                <button className='btn btn-circle btn-ghost'>
-                    <SocialIcon
-                    style={icon.styles}
-                    fgColor={'#6b7280'}
-                    bgColor='none'
-                    url='https://www.linkedin.com/company/upforce-africa/'
-                    />
-                </button>
+                    <div className='py-5 px-5 space-x-5 flex justify-center'>
+                    <button className='btn btn-circle btn-ghost'>
+                        <SocialIcon
+                        style={icon.styles}
+                        fgColor={icon.color}
+                        bgColor='none'
+                        url='https://www.facebook.com/profile.php?id=100088679361991&mibextid=LQQJ4d'
+                        />
+                    </button>
+                    <button className='btn btn-circle btn-ghost'>
+                        <SocialIcon
+                        style={icon.styles}
+                        fgColor={icon.color}
+                        bgColor='none'
+                        url='https://twitter.com/UpforceAfrica'
+                        />
+                    </button>
+                    <button className='btn btn-circle btn-ghost'>
+                        <SocialIcon
+                        style={icon.styles}
+                        fgColor={icon.color}
+                        bgColor='none'
+                        url='https://www.linkedin.com/company/upforce-africa/'
+                        />
+                    </button>
+                    </div>
                 </div>
             </Disclosure.Panel>
             </>

@@ -63,12 +63,12 @@ const NavDropDown: FC<NavDropDownProps> = ({ label }) => {
       {({ open, close }) => (
         <>
           <Popover.Button
-            className={`btn btn-ghost hover:bg-transparent px-0 text-xs tracking-wider border-0 border-b-2 btn-sm font-semibold antialiased rounded-none focus:outline-0 relative ${
-              open && 'border-b-2 border-b-purple-300  border-0'
+            className={`btn btn-ghost hover:bg-transparent px-0 text-xs tracking-wider border-0 border-b-2 btn-sm font-semibold antialiased rounded-none hover:border-b-yellow-500 focus:outline-0 relative ${
+              open && 'border-b-2 border-b-yellow-500'
             }`}
           >
             {label}
-            <ChevronDownIcon className={`w-3 absolute -right-4`} />
+            <ChevronDownIcon className={`w-3 absolute -right-4 ${open && 'text-yellow-500'}`} />
           </Popover.Button>
           <Transition
             as='div'
@@ -80,7 +80,7 @@ const NavDropDown: FC<NavDropDownProps> = ({ label }) => {
             leaveTo='transform opacity-0 scale-95'
           >
             <Popover.Panel
-              className='absolute  -right-20 lg:right-0  mt-3 bg-white rounded-sm px-5 pt-5 pb-10 shadow border'
+              className='absolute  -right-20 lg:right-0  mt-3 bg-white rounded-lg px-5 pt-5 pb-10 shadow'
             >
               <DropDownPanel label={label} close={close} />
             </Popover.Panel>

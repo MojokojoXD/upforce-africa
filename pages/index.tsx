@@ -10,14 +10,14 @@ import Services from '../components/home/Services';
 export default function Home() {
   const router = useRouter();
   return (
-    <>
+    <div id='home'>
         <Head>
           <title>Upforce | Home</title>
           {/* <meta name='description' content='Homepage for upforce africa' /> */}
         </Head>
         <Header/>
         <Services/>
-    </>
+    </div>
   );
 }
 

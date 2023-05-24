@@ -12,9 +12,10 @@ const dropdownData = {
 type PanelProps = {
   label: string;
   close: () => void;
+  resetDisclosure: () => void;
 };
 
-const Panel: FC<PanelProps> = ({ label, close }) => {
+const Panel: FC<PanelProps> = ({ label, close,resetDisclosure }) => {
   return (
     <>
       {dropdownData[label].map((i) => (
@@ -26,7 +27,10 @@ const Panel: FC<PanelProps> = ({ label, close }) => {
             <ul className='text-slate-500 text-xs capitalize w-3/4 space-y-2 font-light'>
               {i.links.map((l) => (
                 <li key={l.name}>
-                  <Link href={l.href} onClick={close}>
+                  <Link href={l.href} onClick={()=>{
+                    resetDisclosure();
+                    close();
+                  }}>
                     {l.name}
                   </Link>
                 </li>
@@ -39,7 +43,7 @@ const Panel: FC<PanelProps> = ({ label, close }) => {
   );
 };
 
-const MobileDropDown: FC<PanelProps> = ({ label, close }) => {
+const MobileDropDown: FC<PanelProps> = ({ label, close,resetDisclosure }) => {
   return (
     <Disclosure as={'div'}>
       {({ open }) => (
@@ -54,10 +58,10 @@ const MobileDropDown: FC<PanelProps> = ({ label, close }) => {
               <ChevronDownIcon className='w-3 ml-1' />
             </Disclosure.Button>
           </div>
-          <div className='bg-gray-50 rounded-lg shadow-inner'>
+          <div className='bg-white shadow-inner'>
             <Disclosure.Panel>
               <div className='grid grid-cols-2 p-4 gap-x-1 gap-y-5'>
-                <Panel label={label} close={close} />
+                <Panel label={label} close={close} resetDisclosure={resetDisclosure}/>
               </div>
             </Disclosure.Panel>
           </div>

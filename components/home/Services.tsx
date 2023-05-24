@@ -73,7 +73,7 @@ const Card: FC<CardProps> = ({ title, features }) => {
             </ul>
           </div>
           <div className='card-actions'>
-            <button className='btn btn-lg rounded-none border-x-0 border-b-0 btn-block btn-primary uppercase font-light no-animation'>Get a Quote</button>
+            <button className='btn btn-lg rounded-none border-x-0 border-b-0 btn-block btn-primary uppercase font-light no-animation text-gray-700'>Get a Quote</button>
           </div>
         </div>
       </div>

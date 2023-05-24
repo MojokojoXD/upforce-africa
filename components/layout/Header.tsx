@@ -29,7 +29,7 @@ const Header: FC<HeaderProps> = ({ title, children }) => {
                 Building Africa’s Largest Network of Professional Experts
               </h1>
               <div>
-                <ul className='list-none list-inside font-light max-w-prose space-y-1 text-sm sm:text-base mx-auto sm:mx-0 w-full'>
+                <ul className='list-none list-inside font-light max-w-prose space-y-1 mx-auto sm:mx-0 w-full'>
                   <li>Find great employees overseas.</li>
                   <li>
                     Connect with best in class consultants and local experts.
@@ -53,7 +53,7 @@ const Header: FC<HeaderProps> = ({ title, children }) => {
                   become a client
                 </Button>
                 <Button onClick={() => handleClick(BECOME_A_CLIENT)}>
-                  join our expert network
+                  join our network
                 </Button>
               </div>
             </div>

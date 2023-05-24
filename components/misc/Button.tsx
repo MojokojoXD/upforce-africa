@@ -9,7 +9,7 @@ interface ButtonProps extends React.HTMLAttributes<HTMLButtonElement> {
 const Button: FC<ButtonProps> = (props) => {
   const { children,enableBlock,mobile, ...rest } = props;
   let buttonClasses: string | string[] = [
-    'btn btn-primary tracking-wide font-light rounded text-[11px] sm:text-sm sm:text-base',
+    'btn btn-primary tracking-wide font-light rounded text-xs sm:text-base text-gray-700',
   ];
   if (enableBlock) buttonClasses.push('enableBlock w-full sm:btn-wide sm:inline');
   if (mobile) buttonClasses.push('mr-1')
