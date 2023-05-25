@@ -21,7 +21,7 @@ export default function Footer() {
     e.preventDefault();
   };
   return (
-    <footer className='pt-5 text-gray-600 border-t z-[1000]'>
+    <footer className='relative pt-5 text-gray-600 border-t z-[10] bg-slate-200'>
       <div className='mx-auto max-w-7xl px-10 sm:px-6 lg:px-8 relative'>
         <div className='py-10'>
           <div className='my-10 space-y-3'>
@@ -152,14 +152,14 @@ export default function Footer() {
               </div>
             </div>
             <div className='space-y-3'>
-              <div className='h-12 flex items-center'>
-                <p className='text-gray-700 font-semibold'>Company</p>
+              <div className='h-12 flex items-end h-16'>
+                <p className='text-gray-800 font-semibold uppercase text-sm'>Company</p>
               </div>
               <div>
                 <ul className='text-slate-600 space-y-5 text-sm'>
                   <li>
                     <Link href={'#'} className='hover:text-slate-500'>
-                      About us
+                      Who we are
                     </Link>
                   </li>
                   <li>

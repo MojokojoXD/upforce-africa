@@ -1,6 +1,6 @@
 import Head from 'next/head';
 import Image from 'next/image';
-import { useState, Fragment } from 'react';
+import { useState, Fragment,useEffect } from 'react';
 import Link from 'next/link';
 import { content_links } from '../utils/vars';
 import { useRouter } from 'next/router';
@@ -9,6 +9,12 @@ import Services from '../components/home/Services';
 
 export default function Home() {
   const router = useRouter();
+
+  useEffect(()=> {
+    if(typeof window === 'undefined')return;
+    window.history.scrollRestoration = 'manual'
+  },[])
+  
   return (
     <div id='home'>
         <Head>
