@@ -64,7 +64,7 @@ interface CardProps {
 const Card: FC<CardProps> = ({ title, features }) => {
   return (
     <div className='w-full flex justify-center'>
-      <Reveal delay={1000}>
+      <Reveal delay={1300}>
         <div className='card max-w-xs flex overflow-hidden border border-slate-600'>
             <div className='card-body p-0'>
             <div className='px-10 pt-10 space-y-4 h-80'>

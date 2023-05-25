@@ -31,7 +31,6 @@ const Reveal: FC<RevealProps> = ({ children, direction,delay }) => {
   }
 
   const finalClass = baseClass + ' ' + (inView ? final : initial);
-  
   return (
     <div ref={ref} className={finalClass}>
       {children}
@@ -41,7 +40,7 @@ const Reveal: FC<RevealProps> = ({ children, direction,delay }) => {
 
 Reveal.defaultProps = {
   direction: 'up',
-  delay: 300,
+  delay: 1000,
 };
 
 export default Reveal;
