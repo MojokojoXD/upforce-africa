@@ -136,7 +136,7 @@ export default function Navbar() {
                 </div>
                 <div className='flex flex-1 items-center justify-center sm:items-stretch md:justify-between'>
                     <div className='flex flex-shrink-0 items-center overflow-hidden mr-5'>
-                    <Link href={'/'}>
+                    <Link href={'/'} replace>
                         <Image
                         src={scrolling || disclosureStatus.open ? logo_black : logo_white}
                         alt='upforce logo'
