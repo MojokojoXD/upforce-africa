@@ -10,8 +10,9 @@ interface RevealProps {
 const Reveal: FC<RevealProps> = ({ children, direction,delay }) => {
   const [ref, inView] = useInView({
     triggerOnce: true,
+    threshold: 0.3,
   });
-  let baseClass = `transition-all delay-${delay?.toString()} duration-500`;
+  let baseClass = `transition-all delay-${delay?.toString()} duration-300`;
   let initial = '';
   let final = '';
   switch (direction) {

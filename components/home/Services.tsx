@@ -40,7 +40,7 @@ const Services: FC<ServicesProps> = () => {
     <div className='min-h-[calc(100vh-5rem)] bg-white py-14' id='services'>
       <div className='mx-auto max-w-7xl px-2 sm:px-6 lg:px-8 h-full text-gray-800 flex justify-center flex-col space-y-16'>
         <div className='w-full flex justify-center'>
-          <Reveal direction='left'>
+          <Reveal direction='left' delay={500}>
             <h2 className='text-5xl text-center inline-block'>Services</h2>
           </Reveal>
         </div>
@@ -64,7 +64,7 @@ interface CardProps {
 const Card: FC<CardProps> = ({ title, features }) => {
   return (
     <div className='w-full flex justify-center'>
-      <Reveal delay={1300}>
+      <Reveal delay={1000}>
         <div className='card max-w-xs flex overflow-hidden border border-slate-600'>
             <div className='card-body p-0'>
             <div className='px-10 pt-10 space-y-4 h-80'>
