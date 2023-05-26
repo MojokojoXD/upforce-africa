@@ -40,13 +40,13 @@ const Services: FC<ServicesProps> = () => {
     <div className='min-h-[calc(100vh-5rem)] bg-white py-14' id='services'>
       <div className='mx-auto max-w-7xl px-2 sm:px-6 lg:px-8 h-full text-gray-800 flex justify-center flex-col space-y-16'>
         <div className='w-full flex justify-center'>
-          <Reveal direction='left' delay={500}>
+          <Reveal direction='left'>
             <h2 className='text-5xl text-center inline-block'>Services</h2>
           </Reveal>
         </div>
-        <div className='grid sm:grid-cols-2 md:grid-cols-3 gap-2 space-y-5 sm:space-y-0 relative overflow-hidden h-84'>
-          {servicesData.map((s) => (
-            <Card key={s.id} title={s.title} features={s.features} />
+        <div className='grid sm:grid-cols-2 md:grid-cols-3 gap-y-5 gap-x-2 space-y-5 sm:space-y-0 relative overflow-hidden h-84 justify-items-center'>
+          {servicesData.map((s,index) => (
+            <Card key={s.id} title={s.title} features={s.features} index={index}/>
           ))}
         </div>
       </div>
@@ -59,19 +59,22 @@ export default Services;
 interface CardProps {
   title: string;
   features: string[];
+  index: number;
 }
 
-const Card: FC<CardProps> = ({ title, features }) => {
+const Card: FC<CardProps> = ({ title, features,index }) => {
   return (
-    <div className='w-full flex justify-center'>
-      <Reveal delay={1000}>
+    <div className={`${index === 2 && 'sm:col-span-2 md:col-span-1'}`}>
+      <Reveal>
         <div className='card max-w-xs flex overflow-hidden border border-slate-600'>
             <div className='card-body p-0'>
             <div className='px-10 pt-10 space-y-4 h-80'>
-                <h3 className='card-title capitalize font-normal text-3xl text-gray-700'>
-                {title}
-                </h3>
-                <ul className='list-disc list-inside space-y-2 font-light mr-5 text-slate-600'>
+                <div className='min-h-16'>
+                    <h3 className='card-title capitalize font-normal text-3xl text-gray-700'>
+                    {title}
+                    </h3>
+                </div>
+                <ul className='list-disc list-inside space-y-2 font-light text-slate-600'>
                 {features.map((f) => (
                     <li key={f}>{f}.</li>
                 ))}

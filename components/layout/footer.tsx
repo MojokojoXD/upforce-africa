@@ -35,7 +35,7 @@ export default function Footer() {
             </div>
             <div id='newsletter-signup' className=''>
               <form
-                className='sm:space-x-3 space-y-3 sm:space-y-0'
+                className='md:space-x-3 space-y-3 md:space-y-0'
                 onSubmit={handleSubmit}
               >
                 <input

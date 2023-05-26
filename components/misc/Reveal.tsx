@@ -4,15 +4,14 @@ import { useInView } from 'react-intersection-observer';
 interface RevealProps {
   children: ReactNode;
   direction?: 'left' | 'up';
-  delay?: number;
 }
 
-const Reveal: FC<RevealProps> = ({ children, direction,delay }) => {
+const Reveal: FC<RevealProps> = ({ children, direction }) => {
   const [ref, inView] = useInView({
     triggerOnce: true,
     threshold: 0.3,
   });
-  let baseClass = `transition-all delay-${delay?.toString()} duration-300`;
+  let baseClass = `transition-all delay-500 duration-500`;
   let initial = '';
   let final = '';
   switch (direction) {
@@ -41,7 +40,6 @@ const Reveal: FC<RevealProps> = ({ children, direction,delay }) => {
 
 Reveal.defaultProps = {
   direction: 'up',
-  delay: 1000,
 };
 
 export default Reveal;
