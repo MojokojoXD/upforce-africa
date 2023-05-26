@@ -11,7 +11,7 @@ const Reveal: FC<RevealProps> = ({ children, direction }) => {
     triggerOnce: true,
     threshold: 0.3,
   });
-  let baseClass = `transition-all delay-500 duration-500`;
+  let baseClass = `transition-all delay-500 duration-300`;
   let initial = '';
   let final = '';
   switch (direction) {
