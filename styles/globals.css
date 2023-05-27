@@ -8,8 +8,9 @@ body {
   margin: 0;
   font-family: "Poppins",-apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
     Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
-  background-color: #f8fafc;
-  color: white;
+  /* background-color: #f8fafc; */
+  background-color: #fff;
+  color:#fff;
   min-height: 100vh;
   scroll-behavior: smooth;
 }
@@ -23,7 +24,7 @@ a {
   box-sizing: border-box;
 }
 
-h2,h1,h3 {
+h2,h1 {
     font-family: "DM serif display",serif;
 }
 

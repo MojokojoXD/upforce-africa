@@ -22,14 +22,14 @@ const Header: FC<HeaderProps> = ({ title, children }) => {
 
   if (router.pathname === '/') {
     return (
-      <div className={`h-screen bg-slate-800 relative`}>
+      <div className={`h-screen relative bg-[#edf4ea]`}>
         <div className='absolute'></div>
         <div className='h-full flex relative'>
-          <div className='absolute w-full top-20 bottom-0'>
-            <div className='mx-auto max-w-xs sm:max-w-7xl px-2 sm:px-6 lg:px-8 h-full flex justify-center flex-col overflow-hidden relative'>
+          <div className='absolute w-full top-[6.5rem] bottom-0'>
+            <div className='mx-auto max-w-xs sm:max-w-7xl px-2 sm:px-6 lg:px-8 h-full flex justify-center flex-col overflow-hidden relative rounded text-gray-700'>
                 <Reveal>
                     <div className={`space-y-8`}>
-                        <h1 className='text-left text-4xl sm:text-5xl font-light w-full sm:max-w-lg tracking-tight'>
+                        <h1 className='text-left text-4xl sm:text-6xl font-light w-full sm:max-w-xl tracking-tight'>
                         Building Africa’s Largest Network of Professional Experts
                         </h1>
                         <div>
@@ -44,8 +44,8 @@ const Header: FC<HeaderProps> = ({ title, children }) => {
                             </li>
                         </ul>
                         </div>
-                        <div className='sm:space-x-3 hidden sm:block'>
-                        <Button onClick={() => handleClick(JOIN_EXPERT_NETWORK)}>
+                        <div className='sm:space-x-3 hidden sm:block text-gray-800'>
+                        <Button outline onClick={() => handleClick(JOIN_EXPERT_NETWORK)}>
                             become a client
                         </Button>
                         <Button onClick={() => handleClick(BECOME_A_CLIENT)}>

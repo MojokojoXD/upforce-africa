@@ -12,27 +12,27 @@ import logo_white from '/public/logo-white.svg';
 import NavDropDown from './NavDropdown';
 import MobileDropDown from './MobileDropDown';
 
-type NavOptions = {
-    href: string;
-    external: boolean;
-} | undefined;
+type NavOptions =
+  | {
+      href: string;
+      external: boolean;
+    }
+  | undefined;
 
 interface Navlinks {
   name: string;
   options: NavOptions;
   dropdown: boolean;
-};
-
-
+}
 
 const navigation: Navlinks[] = [
   {
     name: 'services',
     options: {
-        href: '#services',
-        external: false,
+      href: '#services',
+      external: false,
     },
-    dropdown: false
+    dropdown: false,
   },
   {
     name: 'industries',
@@ -43,7 +43,7 @@ const navigation: Navlinks[] = [
     name: 'about us',
     options: undefined,
     dropdown: true,
-  }
+  },
 ];
 
 function classNames(...classes) {
@@ -69,9 +69,9 @@ export default function Navbar() {
     },
   };
 
-  const resetDisclosureStatus = useCallback(()=>{
-    setDisclosureStatus({open:false,close:undefined})
-  },[])
+  const resetDisclosureStatus = useCallback(() => {
+    setDisclosureStatus({ open: false, close: undefined });
+  }, []);
 
   useEffect(() => {
     if (typeof window === 'undefined') return;
@@ -89,140 +89,161 @@ export default function Navbar() {
     return () => window.removeEventListener('resize', disableDropDown);
   });
 
-  useEffect(()=> {
-    if(disclosureStatus.open){
-        document.body.style.overflow = 'hidden';
-        document.body.style.height = '100%';
-    } 
-
-    if(!disclosureStatus.open) {
-        document.body.style.overflow = 'scroll';
-        document.body.style.height = '100vh';
+  useEffect(() => {
+    if (disclosureStatus.open) {
+      document.body.style.overflow = 'hidden';
+      document.body.style.height = '100%';
     }
-  },[disclosureStatus.open])
-  
+
+    if (!disclosureStatus.open) {
+      document.body.style.overflow = 'scroll';
+      document.body.style.height = '100vh';
+    }
+  }, [disclosureStatus.open]);
+
   return (
     <>
-        <Disclosure
+      <Disclosure
         id='navbar'
         as='nav'
-        className={`${
-            scrolling || disclosureStatus.open ? 'bg-white shadow' : 'bg-transparent'
-        } w-full z-[1000] fixed`}
-        >
+        className={`border-0 border-b-4 border-b-[#c4a0c7] ${
+          scrolling || disclosureStatus.open
+            ? 'bg-[#7e4c86] shadow-lg'
+            : 'bg-[#7e4c86]'
+        } w-full z-[1000] fixed top-0`}
+      >
         {({ open, close }) => (
-            <>
-            <div className={`mx-auto max-w-7xl px-2 sm:px-6 lg:px-8 py-3`}>
-                <div className='relative flex h-14 items-center justify-between'>
+          <>
+            <div className={`mx-auto max-w-7xl px-2 sm:px-6 lg:px-8 py-5`}>
+              <div className='relative flex h-16 items-center justify-between'>
                 <div className='absolute inset-y-0 left-0 flex items-center md:hidden'>
-                    {/* Mobile menu button*/}
-                    <Disclosure.Button
+                  {/* Mobile menu button*/}
+                  <Disclosure.Button
                     className='inline-flex items-center justify-center rounded-md text-gray-400 z-[1000]'
                     onClick={() => setDisclosureStatus({ open: !open, close })}
-                    >
+                  >
                     <span className='sr-only'>Open main menu</span>
                     {open ? (
-                        <XMarkIcon
-                        className='block btn btn-ghost btn-square p-2 hover:text-gray-600'
+                      <XMarkIcon
+                        className='block btn btn-ghost btn-square p-2 text-white'
                         aria-hidden='true'
-                        />
+                      />
                     ) : (
-                        <Bars3Icon
-                        className='block btn btn-ghost btn-square p-2 hover:text-white'
+                      <Bars3Icon
+                        className='block btn btn-ghost btn-square p-2 text-white'
                         aria-hidden='true'
-                        />
+                      />
                     )}
-                    </Disclosure.Button>
+                  </Disclosure.Button>
                 </div>
                 <div className='flex flex-1 items-center justify-center sm:items-stretch md:justify-between'>
-                    <div className='flex flex-shrink-0 items-center overflow-hidden mr-5'>
+                  <div className='flex flex-shrink-0 items-center overflow-hidden mr-5'>
                     <Link href={'/'} replace>
-                        <Image
-                        src={scrolling || disclosureStatus.open ? logo_black : logo_white}
+                      <Image
+                        src={
+                           logo_white
+                        }
                         alt='upforce logo'
-                        height={65}
-                        />
+                        height={60}
+                      />
                     </Link>
-                    </div>
-                    <div className='hidden sm:ml-6 md:block'>
+                  </div>
+                  <div className='hidden sm:ml-6 md:block'>
                     <div
-                        className={`flex space-x-8 items-center h-full mr-10 ${
-                        scrolling ? 'text-gray-700' : 'text-[#eee] '
-                        }`}
+                      className={`flex space-x-8 items-center h-full mr-10 text-white`}
                     >
-                        {navigation.map((item) => {
-                        if (item.dropdown)return <NavDropDown label={item.name} key={item.name}/>
-                            return (
-                            <a
-                                key={item.name}
-                                href={item.options?.href || ''}
-                                className={`btn btn-ghost btn-sm text-xs tracking-wider font-semibold antialiased border-0 border-b-2 hover:border-b-yellow-500 hover:bg-transparent px-0`}
-                            >
-                                {item.name}
-                            </a>
-                            );
-                        })}
+                      {navigation.map((item) => {
+                        if (item.dropdown)
+                          return (
+                            <NavDropDown label={item.name} key={item.name} />
+                          );
+                        return (
+                          <a
+                            key={item.name}
+                            href={item.options?.href || ''}
+                            className={`btn btn-ghost btn-sm text-xs tracking-wider font-semibold antialiased border-0 border-b-2 hover:border-b-[#cbcfdf] hover:bg-transparent px-0 rounded-none transition-none`}
+                          >
+                            {item.name}
+                          </a>
+                        );
+                      })}
                     </div>
-                    </div>
+                  </div>
                 </div>
-                </div>
+              </div>
             </div>
 
-            <Disclosure.Panel as='div' className='md:hidden z-[1000] h-[calc(100vh-5rem)] bg-yellow-500'>
-                <div className='h-[200vh]'>
-                    <div className='pt-2 text-gray-800'>
-                    {navigation.map((item) => {
-                        if(item.dropdown)return <MobileDropDown label={item.name} key={item.name} close = {close} resetDisclosure={resetDisclosureStatus}/>
-                        return (
-                        <div
-                            key={item.name}
-                            className={`mx-4 py-3 mx-auto flex justify-center`}
+            <Disclosure.Panel
+              as='div'
+              className='md:hidden z-[1000] h-[calc(100vh-5rem)] bg-[#dbc5dd]'
+            >
+              <div className='h-[200vh]'>
+                <div className='pt-2 text-gray-800'>
+                  {navigation.map((item) => {
+                    if (item.dropdown)
+                      return (
+                        <MobileDropDown
+                          label={item.name}
+                          key={item.name}
+                          close={close}
+                          resetDisclosure={resetDisclosureStatus}
+                        />
+                      );
+                    return (
+                      <div
+                        key={item.name}
+                        className={`mx-4 py-3 mx-auto flex justify-center`}
+                      >
+                        <Link
+                          href={item.options?.href || ''}
+                          onClick={() => {
+                            close();
+                            setDisclosureStatus((prev) => ({
+                              ...prev,
+                              open: false,
+                            }));
+                          }}
+                          className={
+                            'btn btn-ghost btn-sm text-xs tracking-wider font-semibold antialiased hover:text-gray-500 hover:bg-transparent px-0 flex'
+                          }
                         >
-                            <Link
-                            href={item.options?.href || ''}
-                            onClick={() => {
-                                close();
-                                setDisclosureStatus((prev) => ({ ...prev, open: false }));
-                            }}
-                            className={'btn btn-ghost btn-sm text-xs tracking-wider font-semibold antialiased hover:text-gray-500 hover:bg-transparent px-0 flex'}
-                            >
-                            {item.name}
-                            </Link>
-                        </div>
-                        );
-                    })}
-                    </div>
-                    <div className='py-5 px-5 space-x-5 flex justify-center'>
-                    <button className='btn btn-circle btn-ghost'>
-                        <SocialIcon
-                        style={icon.styles}
-                        fgColor={icon.color}
-                        bgColor='none'
-                        url='https://www.facebook.com/profile.php?id=100088679361991&mibextid=LQQJ4d'
-                        />
-                    </button>
-                    <button className='btn btn-circle btn-ghost'>
-                        <SocialIcon
-                        style={icon.styles}
-                        fgColor={icon.color}
-                        bgColor='none'
-                        url='https://twitter.com/UpforceAfrica'
-                        />
-                    </button>
-                    <button className='btn btn-circle btn-ghost'>
-                        <SocialIcon
-                        style={icon.styles}
-                        fgColor={icon.color}
-                        bgColor='none'
-                        url='https://www.linkedin.com/company/upforce-africa/'
-                        />
-                    </button>
-                    </div>
+                          {item.name}
+                        </Link>
+                      </div>
+                    );
+                  })}
                 </div>
+                <div className='py-5 px-5 space-x-5 flex justify-center'>
+                  <button className='btn btn-circle btn-ghost'>
+                    <SocialIcon
+                      style={icon.styles}
+                      fgColor={icon.color}
+                      bgColor='none'
+                      url='https://www.facebook.com/profile.php?id=100088679361991&mibextid=LQQJ4d'
+                    />
+                  </button>
+                  <button className='btn btn-circle btn-ghost'>
+                    <SocialIcon
+                      style={icon.styles}
+                      fgColor={icon.color}
+                      bgColor='none'
+                      url='https://twitter.com/UpforceAfrica'
+                    />
+                  </button>
+                  <button className='btn btn-circle btn-ghost'>
+                    <SocialIcon
+                      style={icon.styles}
+                      fgColor={icon.color}
+                      bgColor='none'
+                      url='https://www.linkedin.com/company/upforce-africa/'
+                    />
+                  </button>
+                </div>
+              </div>
             </Disclosure.Panel>
-            </>
+          </>
         )}
-        </Disclosure>
+      </Disclosure>
     </>
   );
 }

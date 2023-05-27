@@ -28,7 +28,7 @@ const DropDownPanel: FC<DropDownPanelProps> = ({ close, label }) => {
             >
               {/* dropdown header */}
               <div className='min-h-8 w-full px-3 flex items-center'>
-                <span className='text-gray-700 uppercase text-xs antialiased font-medium'>{a.category}</span>
+                <span className='text-gray-800 uppercase text-xs antialiased font-medium'>{a.category}</span>
               </div>
               {/* dropdown links */}
               <div className='w-full p-3'>
@@ -37,7 +37,7 @@ const DropDownPanel: FC<DropDownPanelProps> = ({ close, label }) => {
                     <Link
                       key={l.name}
                       href={l.href}
-                      className='text-slate-500 font-normal block text-xs font-light hover:underline'
+                      className='text-gray-800 font-normal block text-xs font-light hover:underline'
                       onClick={close}
                     >
                       {l.name}
@@ -63,12 +63,12 @@ const NavDropDown: FC<NavDropDownProps> = ({ label }) => {
       {({ open, close }) => (
         <>
           <Popover.Button
-            className={`btn btn-ghost hover:bg-transparent px-0 text-xs tracking-wider border-0 border-b-2 btn-sm font-semibold antialiased rounded-none hover:border-b-yellow-500 focus:outline-0 relative ${
-              open && 'border-b-2 border-b-yellow-500'
+            className={`btn btn-ghost hover:bg-transparent px-0 text-xs tracking-wider border-0 border-b-2 btn-sm font-semibold antialiased rounded-none hover:border-b-[#cbcfdf]  focus:outline-0 relative transition-none ${
+              open && 'border-b-2 border-b-[#cbcfdf]'
             }`}
           >
             {label}
-            <ChevronDownIcon className={`w-3 absolute -right-4 ${open && 'text-yellow-500'}`} />
+            <ChevronDownIcon className={`w-3 absolute -right-4 ${open && 'text-[#cbcfdf]'}`} />
           </Popover.Button>
           <Transition
             as='div'
@@ -80,7 +80,7 @@ const NavDropDown: FC<NavDropDownProps> = ({ label }) => {
             leaveTo='transform opacity-0 scale-95'
           >
             <Popover.Panel
-              className='absolute  -right-20 lg:right-0  mt-3 bg-white rounded-lg px-5 pt-5 pb-10 shadow'
+              className='absolute -right-20 lg:right-0  mt-3 bg-white shadow rounded-lg px-5 pt-5 pb-10'
             >
               <DropDownPanel label={label} close={close} />
             </Popover.Panel>

@@ -7,8 +7,8 @@ module.exports = {
   theme: {
       extend: {
           backgroundImage: {
-              'link-foreground': 'url("https://images.unsplash.com/photo-1531482615713-2afd69097998?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870&q=80")',
               'header-cover': 'url("https://images.unsplash.com/photo-1496065187959-7f07b8353c55?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870&q=80")',
+              'services': 'url("/pattern.svg")'
           }
       },
       
@@ -18,11 +18,14 @@ module.exports = {
             {
                 light: {
                     ...require("daisyui/src/colors/themes")["[data-theme=light]"],
-                    primary: "#facc15",
-                    "primary-focus": "#6366f1",
+                    primary: "#8a528d",
+                    "primary-focus": "#c4a0c7",
+                    secondary: "#536a86",
+                    "secondary-focus": "#617997"
                   },
             }
         ]
     },
   plugins: [require("daisyui"),require("@tailwindcss/line-clamp")],
 }
+

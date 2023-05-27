@@ -21,7 +21,7 @@ export default function Footer() {
     e.preventDefault();
   };
   return (
-    <footer className='relative pt-5 text-gray-600 border-t z-[10] bg-slate-200'>
+    <footer className='relative pt-5 text-gray-600 border-t z-[10] bg-white'>
       <div className='mx-auto max-w-7xl px-10 sm:px-6 lg:px-8 relative'>
         <div className='py-10'>
           <div className='my-10 space-y-3'>
