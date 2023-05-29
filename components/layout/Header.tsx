@@ -22,7 +22,7 @@ const Header: FC<HeaderProps> = ({ title, children }) => {
 
   if (router.pathname === '/') {
     return (
-      <div className={`h-screen landscape:min-h-max relative bg-body bg-cover sm:bg-none`}>
+      <div className={`h-[70vh] landscape:min-h-max relative bg-body bg-cover sm:bg-none`}>
         <div className='absolute'></div>
         <div className='h-full flex relative'>
           <div className='absolute w-full top-[6.5rem] bottom-0'>
