@@ -8,7 +8,7 @@ module.exports = {
       extend: {
           backgroundImage: {
               'header-cover': 'url("https://images.unsplash.com/photo-1496065187959-7f07b8353c55?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870&q=80")',
-              'services': 'url("/pattern.svg")'
+              'services': 'url("/liquid-cheese.svg")'
           }
       },
       

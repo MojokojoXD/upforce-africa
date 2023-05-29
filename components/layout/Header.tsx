@@ -22,13 +22,13 @@ const Header: FC<HeaderProps> = ({ title, children }) => {
 
   if (router.pathname === '/') {
     return (
-      <div className={`h-screen relative bg-[#edf4ea]`}>
+      <div className={`h-screen relative bg-services bg-cover sm:bg-none` }>
         <div className='absolute'></div>
         <div className='h-full flex relative'>
           <div className='absolute w-full top-[6.5rem] bottom-0'>
-            <div className='mx-auto max-w-xs sm:max-w-7xl px-2 sm:px-6 lg:px-8 h-full flex justify-center flex-col overflow-hidden relative rounded text-gray-700'>
+            <div className='mx-auto max-w-xs sm:max-w-7xl px-2 sm:px-6 lg:px-8 h-full flex justify-center flex-col overflow-hidden relative rounded text-gray-100'>
                 <Reveal>
-                    <div className={`space-y-8`}>
+                    <div className={`space-y-8 backdrop-blur-sm`}>
                         <h1 className='text-left text-4xl sm:text-6xl font-light w-full sm:max-w-xl tracking-tight'>
                         Building Africa’s Largest Network of Professional Experts
                         </h1>

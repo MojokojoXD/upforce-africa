@@ -37,15 +37,14 @@ const servicesData = [
 
 const Services: FC<ServicesProps> = () => {
   return (
-    <div className='min-h-[calc(100vh-5rem)] py-14 bg-services bg-contain relative' id='services'>
-      <div className='absolute inset-0 bg-black/[.05]'></div>
-      <div className='mx-auto max-w-7xl px-2 sm:px-6 lg:px-8 h-full text-gray-700 flex justify-center flex-col space-y-16'>
-        <div className='w-full'>
+    <div className='min-h-[calc(100vh-5rem)] bg-[#493459] sm:bg-transparent sm:py-14 relative' id='services'>
+      <div className='mx-auto sm:max-w-3xl md:max-w-7xl h-full text-gray-100 flex justify-center flex-col space-y-16 backdrop-blur-lg shadow-inner bg-slate-500/20 lg:rounded-xl pb-10 overflow-hidden'>
+        <div className='w-full bg-[#634277] sm:bg-transparent shadow-b shadow sm:shadow-none py-10 sm:py-0 sm:pt-10'>
           <Reveal direction='left'>
-            <h2 className='text-5xl text-center block sm:inline-block'>Services</h2>
+            <h2 className='text-5xl font-medium text-center block sm:inline-block w-full'>Services</h2>
           </Reveal>
         </div>
-        <div className='grid sm:grid-cols-2 md:grid-cols-3 gap-y-5 space-y-5 sm:space-y-0 relative overflow-hidden h-84 justify-center sm:justify-start'>
+        <div className='grid sm:grid-cols-2 sm:gap-x-3 sm:px-3 md:grid-cols-2 lg:grid-cols-3 gap-y-5 space-y-5 sm:space-y-0 relative overflow-hidden h-84 justify-items-center'>
           {servicesData.map((s,index) => (
             <Card key={s.id} title={s.title} features={s.features} index={index}/>
           ))}
@@ -65,18 +64,17 @@ interface CardProps {
 
 const Card: FC<CardProps> = ({ title, features,index }) => {
   return (
-    <div className={`${index === 2 && 'sm:col-span-2 md:col-span-1'}`}>
+    <div className={`${index === 2 && 'sm:col-span-2 lg:col-span-1'}`}>
       <Reveal>
-        <div className='card max-w-xs flex overflow-hidden bg-[#edf4eacc] relative rounded-2xl border border-gray-300 shadow'>
-            <div className='absolute inset-0 blur-xl isolate -z-10'></div>
+        <div className='card max-w-xs flex overflow-hidden bg-slate-800 backdrop-blur-sm relative rounded-2xl shadow'>
             <div className='card-body p-0 isolate'>
             <div className='px-10 pt-10 space-y-4 h-80'>
                 <div className='min-h-8'>
-                    <h3 className='card-title uppercase font-semibold text-lg text-gray-700 text-end w-full'>
+                    <h3 className='capitalize font-semibold text-xl text-gray-300 text-center w-full borde'>
                     {title}
                     </h3>
                 </div>
-                <ul className='list-disc list-inside space-y-2 font-normal text-gray-600'>
+                <ul className='list-disc space-y-2 font-light w-2/3 mx-auto text-gray-300'>
                 {features.map((f) => (
                     <li key={f}>{f}.</li>
                 ))}

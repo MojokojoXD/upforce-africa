@@ -106,16 +106,16 @@ export default function Navbar() {
       <Disclosure
         id='navbar'
         as='nav'
-        className={`border-0 border-b-4 border-b-[#c4a0c7] ${
+        className={`bg-slate-800/80 backdrop-blur-sm ${
           scrolling || disclosureStatus.open
-            ? 'bg-[#7e4c86] shadow-lg'
-            : 'bg-[#7e4c86]'
+            ? 'shadow-lg'
+            : ''
         } w-full z-[1000] fixed top-0`}
       >
         {({ open, close }) => (
           <>
-            <div className={`mx-auto max-w-7xl px-2 sm:px-6 lg:px-8 py-5`}>
-              <div className='relative flex h-16 items-center justify-between'>
+            <div className={`mx-auto max-w-7xl px-2 sm:px-6 lg:px-8 py-3`}>
+              <div className='relative flex h-12 items-center justify-between'>
                 <div className='absolute inset-y-0 left-0 flex items-center md:hidden'>
                   {/* Mobile menu button*/}
                   <Disclosure.Button
@@ -144,7 +144,7 @@ export default function Navbar() {
                            logo_white
                         }
                         alt='upforce logo'
-                        height={60}
+                        height={50}
                       />
                     </Link>
                   </div>
