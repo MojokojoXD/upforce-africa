@@ -23,45 +23,43 @@ export default function Footer() {
   return (
     <footer className='relative pt-5 text-gray-600 border-t z-[10] bg-white'>
       <div className='mx-auto max-w-7xl px-10 sm:px-6 lg:px-8 relative'>
-        <div className='py-10'>
-          <div className='my-10 space-y-3'>
-            <div className='w-full sm:max-w-lg space-y-3'>
-              <h1 className='text-3xl font-semibold text-gray-700 text-center sm:text-start'>
-                Newsletter
-              </h1>
-              <p className='font-normal max-w-prose text-slate-500'>
-                Subscribe to UpForce to receive startup news & insights,
-                exclusive job posts, tech events invitations and more sent to
-                your inbox
-              </p>
-            </div>
-            <div id='newsletter-signup' className=''>
-              <form className='space-y-3 sm:max-w-md' onSubmit={handleSubmit}>
-                <input
-                  type='email'
-                  className='w-full input input-bordered bg-white text-gray-700 rounded block'
-                  placeholder='john.doe@gmail.com'
-                />
-                <Button enableBlock>Sign Up</Button>
-              </form>
-            </div>
-            <small className='inline-block max-w-prose text-slate-500 text-xs'>
-              By clicking signup, you are agreeing to receive communications
-              from Upforce Africa and to our{' '}
-              <span className='underline hover:text-gray-500 cursor-pointer'>
-                Terms of Use
-              </span>{' '}
-              and{' '}
-              <span className='underline hover:text-gray-500 cursor-pointer'>
-                Privacy Policy
-              </span>
-              . If you have questions please reach out to
-              upforceafrica@gmail.com.
-            </small>
+        <div className='flex space-x-3 md:divide-x flex-col md:flex-row'>
+          <div className='my-10 space-y-3 lg:w-1/3'>
+              <div className='w-full sm:max-w-xs space-y-3'>
+                <h1 className='text-3xl font-semibold text-gray-700 text-center sm:text-start'>
+                  Newsletter
+                </h1>
+                <p className='font-normal text-slate-500 text-sm'>
+                  Subscribe to UpForce to receive startup news & insights,
+                  exclusive job posts, tech events invitations and more sent to
+                  your inbox
+                </p>
+                <form className='space-y-3' onSubmit={handleSubmit}>
+                    <input
+                    type='email'
+                    className='w-full input input-bordered bg-white text-gray-700 rounded block'
+                    placeholder='john.doe@gmail.com'
+                    />
+                    <Button enableBlock>Sign Up</Button>
+                </form>
+                <small className='inline-block max-w-xs text-slate-500 text-[10px]'>
+                    By clicking signup, you are agreeing to receive communications
+                    from Upforce Africa and to our{' '}
+                    <span className='underline hover:text-gray-500 cursor-pointer'>
+                    Terms of Use
+                    </span>{' '}
+                    and{' '}
+                    <span className='underline hover:text-gray-500 cursor-pointer'>
+                    Privacy Policy
+                    </span>
+                    . If you have questions please reach out to
+                    upforceafrica@gmail.com.
+                </small>
+              </div>
           </div>
           <div
             id='footer-links'
-            className='grid grid-cols-2 sm:grid-cols-3 py-5 max-w-xl gap-5 sm:gap-0'
+            className='grid grid-cols-2 sm:grid-cols-3 max-w-xl gap-10 md:px-10 pb-10 md:pb-0'
           >
             <div className='space-y-3'>
               <div className='h-12 flex items-end h-16'>

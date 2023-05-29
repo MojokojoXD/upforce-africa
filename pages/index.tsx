@@ -22,8 +22,15 @@ export default function Home() {
           {/* <meta name='description' content='Homepage for upforce africa' /> */}
         </Head>
         <Header/>
+        <div className='relative h-[20vh] bg-transparent flex shadow-inner max-w-7xl mx-auto lg:rounded-xl overflow-hidden relative'>
+            <div className="absolute inset-0 bg-black/40"></div>
+            <div className='bg-entepreneur bg-cover bg-center grow'></div>
+            <div className='grow bg-office bg-cover bg-center'></div>
+            <div className='grow bg-pyramid bg-cover bg-center'></div>
+        </div>
         <Services/>
     </div>
   );
 }
+
 

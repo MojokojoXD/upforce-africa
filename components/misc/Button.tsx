@@ -12,7 +12,7 @@ const Button: FC<ButtonProps> = (props) => {
   let buttonClasses: string | string[] = [
     'btn btn-primary tracking-wide font-normal rounded text-sm sm:text-base hover:text-gray-800',
   ];
-  if (enableBlock) buttonClasses.push('btn-wide w-full');
+  if (enableBlock) buttonClasses.push('w-full');
   if (mobile) buttonClasses.push('mr-1');
   if (outline)buttonClasses.push('btn-outline focus:hover:text-gray-800')
 

@@ -37,7 +37,7 @@ const DropDownPanel: FC<DropDownPanelProps> = ({ close, label }) => {
                     <Link
                       key={l.name}
                       href={l.href}
-                      className='text-gray-800 font-normal block text-xs font-light hover:underline'
+                      className='text-slate-500 font-normal block text-xs font-light hover:underline'
                       onClick={close}
                     >
                       {l.name}

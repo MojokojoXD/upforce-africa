@@ -3,6 +3,7 @@ import header_cover from '../../public/header_cover.jpg';
 import { useRouter } from 'next/router';
 import Button from '../misc/Button';
 import Reveal from '../misc/Reveal';
+import CheckCircleIcon from '@heroicons/react/24/outline/CheckCircleIcon';
 
 interface HeaderProps {
   title?: string;
@@ -22,7 +23,7 @@ const Header: FC<HeaderProps> = ({ title, children }) => {
 
   if (router.pathname === '/') {
     return (
-      <div className={`h-screen relative bg-services bg-cover sm:bg-none` }>
+      <div className={`h-screen relative bg-body bg-cover sm:bg-none` }>
         <div className='absolute'></div>
         <div className='h-full flex relative'>
           <div className='absolute w-full top-[6.5rem] bottom-0'>
@@ -33,14 +34,31 @@ const Header: FC<HeaderProps> = ({ title, children }) => {
                         Building Africa’s Largest Network of Professional Experts.
                         </h1>
                         <div>
-                        <ul className='list-none list-inside font-light max-w-prose space-y-1 mx-auto sm:mx-0 w-full text-lg'>
-                            <li>Find great employees overseas</li>
-                            <li>
-                            Connect with best in class consultants and local experts
+                        <ul className='list-none font-light max-w-prose space-y-3 mx-auto sm:mx-0 w-full sm:text-lg'>
+                            <li className='flex items-center space-x-1'>
+                                <div>
+                                    <CheckCircleIcon className='w-10'/>
+                                </div>
+                                <p>
+                                Find great employees overseas
+                                </p> 
                             </li>
-                            <li>
-                            Quickly field test your ideas with field research and
-                            surveys
+                            <li className='flex items-center space-x-1'>
+                                <div>
+                                    <CheckCircleIcon className='w-10'/>
+                                </div>
+                                <p>
+                                Connect with best in class consultants and local experts
+                                </p> 
+                            </li>
+                            <li className='flex items-center space-x-1'>
+                                <div>
+                                    <CheckCircleIcon className='w-10'/>
+                                </div>
+                                <p>
+                                    Quickly field test your ideas with field research and
+                                    surveys
+                                </p> 
                             </li>
                         </ul>
                         </div>
@@ -72,11 +90,11 @@ const Header: FC<HeaderProps> = ({ title, children }) => {
     );
   } else {
     return (
-      <div className='min-h-[40vh] bg-gradient-to-br from-black to-slate-700 pb-5'>
+      <div className='min-h-[40vh] bg-slate-800 pb-5'>
         <div className='pt-20 w-full'>
           <div className='mx-auto max-w-7xl px-2 sm:px-6 lg:px-8 h-full grid grid-cols-1'>
             <div className='flex justify-center items-center py-10'>
-              <h1 className='text-5xl font-medium capitalize tracking-tight text-gray-300 text-center'>
+              <h1 className='text-5xl md:text-6xl font-semibold capitalize tracking-tight text-gray-300 text-center'>
                 {title}
               </h1>
             </div>

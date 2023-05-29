@@ -14,7 +14,7 @@ function Layout({children}:LayoutProps){
                 <meta name="viewport" content="width=device-width,initial-scale=1.0"/>
             </Head>
             <Navbar/>
-            <main className="min-h-screen sm:bg-services sm:bg-cover bg-none">
+            <main className="min-h-screen sm:bg-body sm:bg-cover bg-none">
                 {children}
             </main>
             <Footer/>

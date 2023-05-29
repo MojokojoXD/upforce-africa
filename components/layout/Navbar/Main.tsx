@@ -106,9 +106,9 @@ export default function Navbar() {
       <Disclosure
         id='navbar'
         as='nav'
-        className={`bg-slate-800/80 backdrop-blur-sm ${
+        className={`bg-slate-800/90 backdrop-blur-sm ${
           scrolling || disclosureStatus.open
-            ? 'shadow'
+            ? 'shadow-sm'
             : null
         } w-full z-[1000] fixed top-0`}
       >
@@ -144,7 +144,7 @@ export default function Navbar() {
                            logo_white
                         }
                         alt='upforce logo'
-                        height={50}
+                        height={55}
                       />
                     </Link>
                   </div>
