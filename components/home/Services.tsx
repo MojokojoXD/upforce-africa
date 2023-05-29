@@ -38,8 +38,8 @@ const servicesData = [
 const Services: FC<ServicesProps> = () => {
   return (
     <div className='min-h-[calc(100vh-5rem)] bg-[#493459] sm:bg-transparent sm:py-14 relative' id='services'>
-      <div className='mx-auto sm:max-w-3xl md:max-w-7xl h-full text-gray-100 flex justify-center flex-col space-y-16 backdrop-blur-lg shadow-inner bg-slate-500/20 lg:rounded-xl pb-10 overflow-hidden'>
-        <div className='w-full bg-[#634277] sm:bg-transparent shadow-b shadow sm:shadow-none py-10 sm:py-0 sm:pt-10'>
+      <div className='mx-auto sm:max-w-3xl md:max-w-7xl h-full text-gray-100 flex justify-center flex-col space-y-16 backdrop-blur-lg bg-slate-500/20 lg:rounded-xl pb-10 overflow-hidden'>
+        <div className='w-full bg-[#634277] sm:bg-transparent py-10 sm:py-0 sm:pt-10'>
           <Reveal direction='left'>
             <h2 className='text-4xl font-semibold text-center block sm:inline-block w-full'>Services</h2>
           </Reveal>
@@ -66,7 +66,7 @@ const Card: FC<CardProps> = ({ title, features,index }) => {
   return (
     <div className={`${index === 2 && 'sm:col-span-2 lg:col-span-1'}`}>
       <Reveal>
-        <div className='card max-w-xs flex overflow-hidden bg-slate-800 backdrop-blur-sm relative rounded-2xl shadow'>
+        <div className='card max-w-xs flex overflow-hidden bg-slate-800 backdrop-blur-sm relative rounded-2xl'>
             <div className='card-body p-0 isolate'>
             <div className='px-10 pt-10 space-y-4 h-80'>
                 <div className='min-h-8'>

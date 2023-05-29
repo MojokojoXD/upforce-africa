@@ -1,8 +1,8 @@
 import { useCallback } from 'react';
 import { SocialIcon } from 'react-social-icons';
 import Link from 'next/link';
-import logo_black from '/public/logo-black.svg'
-import Image from 'next/image'
+import logo_black from '/public/logo-black.svg';
+import Image from 'next/image';
 import Button from '../misc/Button';
 
 const footerLinks = [
@@ -17,7 +17,7 @@ const footerLinks = [
 ];
 
 export default function Footer() {
-  const handleSubmit = (e:React.SyntheticEvent )=> {
+  const handleSubmit = (e: React.SyntheticEvent) => {
     e.preventDefault();
   };
   return (
@@ -26,7 +26,9 @@ export default function Footer() {
         <div className='py-10'>
           <div className='my-10 space-y-3'>
             <div className='w-full sm:max-w-lg space-y-3'>
-              <h1 className='text-5xl font-semibold text-gray-700'>Newsletter</h1>
+              <h1 className='text-3xl font-semibold text-gray-700 text-center sm:text-start'>
+                Newsletter
+              </h1>
               <p className='font-normal max-w-prose text-slate-500'>
                 Subscribe to UpForce to receive startup news & insights,
                 exclusive job posts, tech events invitations and more sent to
@@ -34,43 +36,38 @@ export default function Footer() {
               </p>
             </div>
             <div id='newsletter-signup' className=''>
-              <form
-                className='space-y-3'
-                onSubmit={handleSubmit}
-              >
+              <form className='space-y-3 sm:max-w-md' onSubmit={handleSubmit}>
                 <input
                   type='email'
-                  className='w-full sm:max-w-md input input-bordered bg-white text-gray-700 rounded block'
+                  className='w-full input input-bordered bg-white text-gray-700 rounded block'
                   placeholder='john.doe@gmail.com'
                 />
-                <Button>
-                  Sign Up
-                </Button>
+                <Button enableBlock>Sign Up</Button>
               </form>
             </div>
-              <small className='inline-block max-w-prose text-slate-500 text-xs'>
-                By clicking signup, you are agreeing to receive communications
-                from Upforce Africa and to our{' '}
-                <span className='underline hover:text-gray-500 cursor-pointer'>
-                  Terms of Use
-                </span>{' '}
-                and{' '}
-                <span className='underline hover:text-gray-500 cursor-pointer'>
-                  Privacy Policy
-                </span>
-                . If you have questions please reach out to
-                upforceafrica@gmail.com.
-              </small>
+            <small className='inline-block max-w-prose text-slate-500 text-xs'>
+              By clicking signup, you are agreeing to receive communications
+              from Upforce Africa and to our{' '}
+              <span className='underline hover:text-gray-500 cursor-pointer'>
+                Terms of Use
+              </span>{' '}
+              and{' '}
+              <span className='underline hover:text-gray-500 cursor-pointer'>
+                Privacy Policy
+              </span>
+              . If you have questions please reach out to
+              upforceafrica@gmail.com.
+            </small>
           </div>
           <div
             id='footer-links'
             className='grid grid-cols-2 sm:grid-cols-3 py-5 max-w-xl gap-5 sm:gap-0'
           >
             <div className='space-y-3'>
-              <div className='relative'>
-                <Link href={'/'}>
-                  <Image src={logo_black} alt='upforce africa logo' width={160}/>
-                </Link>
+              <div className='h-12 flex items-end h-16'>
+                <p className='text-gray-700 font-semibold uppercase text-sm'>
+                  Socials
+                </p>
               </div>
               <div>
                 <ul className='space-y-5 text-sm text-slate-600'>
@@ -151,7 +148,9 @@ export default function Footer() {
             </div>
             <div className='space-y-3'>
               <div className='h-12 flex items-end h-16'>
-                <p className='text-gray-800 font-semibold uppercase text-sm'>Company</p>
+                <p className='text-gray-700 font-semibold uppercase text-sm'>
+                  Company
+                </p>
               </div>
               <div>
                 <ul className='text-slate-600 space-y-5 text-sm'>

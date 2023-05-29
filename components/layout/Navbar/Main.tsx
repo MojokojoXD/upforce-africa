@@ -108,8 +108,8 @@ export default function Navbar() {
         as='nav'
         className={`bg-slate-800/80 backdrop-blur-sm ${
           scrolling || disclosureStatus.open
-            ? 'shadow-lg'
-            : ''
+            ? 'shadow'
+            : null
         } w-full z-[1000] fixed top-0`}
       >
         {({ open, close }) => (
