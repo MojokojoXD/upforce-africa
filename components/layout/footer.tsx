@@ -26,8 +26,8 @@ export default function Footer() {
         <div className='py-10'>
           <div className='my-10 space-y-3'>
             <div className='w-full sm:max-w-lg space-y-3'>
-              <h1 className='text-4xl font-normal text-gray-700'>Newsletter</h1>
-              <p className='font-light max-w-prose text-slate-500'>
+              <h1 className='text-5xl font-semibold text-gray-700'>Newsletter</h1>
+              <p className='font-normal max-w-prose text-slate-500'>
                 Subscribe to UpForce to receive startup news & insights,
                 exclusive job posts, tech events invitations and more sent to
                 your inbox
@@ -35,17 +35,15 @@ export default function Footer() {
             </div>
             <div id='newsletter-signup' className=''>
               <form
-                className='md:space-x-3 space-y-3 md:space-y-0'
+                className='space-y-3'
                 onSubmit={handleSubmit}
               >
                 <input
                   type='email'
-                  className='w-full sm:max-w-md input input-bordered bg-white text-gray-700 rounded'
+                  className='w-full sm:max-w-md input input-bordered bg-white text-gray-700 rounded block'
                   placeholder='john.doe@gmail.com'
                 />
-                <Button
-                  enableBlock
-                >
+                <Button>
                   Sign Up
                 </Button>
               </form>

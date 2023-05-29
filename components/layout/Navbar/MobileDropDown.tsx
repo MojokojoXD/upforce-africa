@@ -20,7 +20,7 @@ const Panel: FC<PanelProps> = ({ label, close,resetDisclosure }) => {
     <>
       {dropdownData[label].map((i) => (
         <div key={i.category}>
-          <div className='h-10 flex justify-end'>
+          <div className='h-10 flex justify-end text-gray-800'>
             <span className='text-xs block uppercase w-3/4'>{i.category}</span>
           </div>
           <div className='flex justify-end'>
@@ -51,7 +51,7 @@ const MobileDropDown: FC<PanelProps> = ({ label, close,resetDisclosure }) => {
           <div className='flex justify-center flex-col mx-4 py-3'>
             <Disclosure.Button
               className={
-                'btn btn-ghost btn-sm text-xs tracking-wider font-semibold antialiased hover:text-gray-500 hover:bg-transparent px-0 flex no-animation'
+                'btn btn-ghost btn-sm text-xs tracking-wider font-semibold antialiased px-0 flex no-animation'
               }
             >
               {label}

@@ -41,7 +41,7 @@ const Services: FC<ServicesProps> = () => {
       <div className='mx-auto sm:max-w-3xl md:max-w-7xl h-full text-gray-100 flex justify-center flex-col space-y-16 backdrop-blur-lg shadow-inner bg-slate-500/20 lg:rounded-xl pb-10 overflow-hidden'>
         <div className='w-full bg-[#634277] sm:bg-transparent shadow-b shadow sm:shadow-none py-10 sm:py-0 sm:pt-10'>
           <Reveal direction='left'>
-            <h2 className='text-5xl font-medium text-center block sm:inline-block w-full'>Services</h2>
+            <h2 className='text-4xl font-semibold text-center block sm:inline-block w-full'>Services</h2>
           </Reveal>
         </div>
         <div className='grid sm:grid-cols-2 sm:gap-x-3 sm:px-3 md:grid-cols-2 lg:grid-cols-3 gap-y-5 space-y-5 sm:space-y-0 relative overflow-hidden h-84 justify-items-center'>

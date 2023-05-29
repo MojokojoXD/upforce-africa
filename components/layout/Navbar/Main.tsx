@@ -62,7 +62,7 @@ export default function Navbar() {
   });
   const scrolling = useShowNavbar();
   const icon = {
-    color: '#1f2937',
+    color: '#f3f4f6',
     styles: {
       height: 30,
       width: 30,
@@ -150,7 +150,7 @@ export default function Navbar() {
                   </div>
                   <div className='hidden sm:ml-6 md:block'>
                     <div
-                      className={`flex space-x-8 items-center h-full mr-10 text-white`}
+                      className={`flex space-x-8 items-center h-full mr-10 text-gray-200`}
                     >
                       {navigation.map((item) => {
                         if (item.dropdown)
@@ -175,10 +175,10 @@ export default function Navbar() {
 
             <Disclosure.Panel
               as='div'
-              className='md:hidden z-[1000] h-[calc(100vh-5rem)] bg-[#dbc5dd]'
+              className='md:hidden z-[1000] h-[calc(100vh-5rem)] bg-[#8a528d]'
             >
               <div className='h-[200vh]'>
-                <div className='pt-2 text-gray-800'>
+                <div className='pt-2 text-gray-100'>
                   {navigation.map((item) => {
                     if (item.dropdown)
                       return (
@@ -192,7 +192,7 @@ export default function Navbar() {
                     return (
                       <div
                         key={item.name}
-                        className={`mx-4 py-3 mx-auto flex justify-center`}
+                        className={`px-4 py-3 mx-auto flex justify-center`}
                       >
                         <Link
                           href={item.options?.href || ''}
@@ -204,7 +204,7 @@ export default function Navbar() {
                             }));
                           }}
                           className={
-                            'btn btn-ghost btn-sm text-xs tracking-wider font-semibold antialiased hover:text-gray-500 hover:bg-transparent px-0 flex'
+                            'btn btn-ghost btn-sm text-xs tracking-wider font-semibold antialiased w-full flex block'
                           }
                         >
                           {item.name}

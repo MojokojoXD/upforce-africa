@@ -26,21 +26,21 @@ const Header: FC<HeaderProps> = ({ title, children }) => {
         <div className='absolute'></div>
         <div className='h-full flex relative'>
           <div className='absolute w-full top-[6.5rem] bottom-0'>
-            <div className='mx-auto max-w-xs sm:max-w-7xl px-2 sm:px-6 lg:px-8 h-full flex justify-center flex-col overflow-hidden relative rounded text-gray-100'>
+            <div className='h-full flex justify-center flex-col overflow-hidden relative rounded text-gray-200'>
                 <Reveal>
-                    <div className={`space-y-8 backdrop-blur-sm`}>
-                        <h1 className='text-left text-4xl sm:text-6xl font-light w-full sm:max-w-xl tracking-tight'>
-                        Building Africa’s Largest Network of Professional Experts
+                    <div className={`space-y-8 backdrop-blur-sm mx-auto max-w-xs sm:max-w-7xl sm:px-6 lg:px-8`}>
+                        <h1 className='text-left text-4xl sm:text-6xl font-bold sm:max-w-lg'>
+                        Building Africa’s Largest Network of Professional Experts.
                         </h1>
                         <div>
-                        <ul className='list-none list-inside font-light max-w-prose space-y-1 mx-auto sm:mx-0 w-full'>
-                            <li>Find great employees overseas.</li>
+                        <ul className='list-none list-inside font-light max-w-prose space-y-1 mx-auto sm:mx-0 w-full text-lg'>
+                            <li>Find great employees overseas</li>
                             <li>
-                            Connect with best in class consultants and local experts.
+                            Connect with best in class consultants and local experts
                             </li>
                             <li>
                             Quickly field test your ideas with field research and
-                            surveys.
+                            surveys
                             </li>
                         </ul>
                         </div>
