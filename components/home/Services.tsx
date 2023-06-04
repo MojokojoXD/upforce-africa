@@ -5,8 +5,12 @@ import Reveal from '../misc/Reveal';
 import GlobeEuropeAfricaIcon from '@heroicons/react/24/solid/GlobeEuropeAfricaIcon'
 import ChatBubbleLeftRightIcon from '@heroicons/react/24/solid/ChatBubbleLeftRightIcon';
 import BriefcaseIcon from '@heroicons/react/24/solid/BriefcaseIcon';
+import PhoneIcon from '@heroicons/react/24/solid/PhoneIcon'
+import { navigateClientForm } from '../../utils/vars';
 
 interface ServicesProps {}
+
+
 
 const servicesData = [
   {
@@ -27,7 +31,7 @@ const servicesData = [
       'Competitive business insights',
       'Startup technology landscaping',
     ],
-    icon: <ChatBubbleLeftRightIcon/>
+    icon: <PhoneIcon/>
   },
   {
     id: 2,
@@ -51,7 +55,7 @@ const Services: FC<ServicesProps> = () => {
           </Reveal>
         </div>
         <Reveal direction='up'>
-            <div className='grid sm:grid-cols-2 sm:gap-x-3 sm:px-3 md:grid-cols-2 lg:grid-cols-3 gap-y-5 space-y-5 sm:space-y-0 relative overflow-hidden h-84 justify-items-center'>
+            <div className='grid grid-cols-1 sm:gap-x-3 sm:px-3 lg:grid-cols-3 gap-y-5 space-y-5 sm:space-y-0 relative overflow-hidden h-84 justify-items-center'>
             {servicesData.map((s,index) => (
                 <Card key={s.id} title={s.title} features={s.features} index={index} icon={s.icon}/>
             ))}
@@ -73,8 +77,8 @@ interface CardProps {
 
 const Card: FC<CardProps> = ({ title, features,index,icon }) => {
   return (
-    <div className={`${index === 2 && 'sm:col-span-2 lg:col-span-1'}`}>
-        <div className='card max-w-xs flex overflow-hidden bg-slate-800 backdrop-blur-sm relative rounded-2xl'>
+    <div className={``}>
+        <div className='card max-w-max flex overflow-hidden bg-slate-800 backdrop-blur-sm relative rounded-2xl cursor-pointer' onClick={navigateClientForm}>
             <div className='card-body p-0 isolate'>
             <div className='px-10 pt-10 space-y-4 h-[22rem] text-gray-400 '>
                 <div className='min-h-8'>
@@ -83,17 +87,17 @@ const Card: FC<CardProps> = ({ title, features,index,icon }) => {
                     {title}
                     </h3>
                 </div>
-                <ul className='list-disc space-y-2 font-light w-5/6 mx-auto'>
+                <ul className='list-disc space-y-2 font-light'>
                 {features.map((f) => (
                     <li key={f}>{f}.</li>
                 ))}
                 </ul>
             </div>
-            <div className='card-actions bg-[#7e4c86]'>
+            {/* <div className='card-actions bg-[#7e4c86]'>
                 <button className='btn btn-lg rounded-none border-x-0 border-b-0 btn-block btn-primary uppercase font-light no-animation text-white glass'>
                 Get a Quote
                 </button>
-            </div>
+            </div> */}
             </div>
         </div>
     </div>

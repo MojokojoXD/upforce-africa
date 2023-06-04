@@ -4,14 +4,13 @@ import { useRouter } from 'next/router';
 import Button from '../misc/Button';
 import Reveal from '../misc/Reveal';
 import CheckCircleIcon from '@heroicons/react/24/outline/CheckCircleIcon';
+import { navigateClientForm,navigateExpertNetwork } from '../../utils/vars';
 
 interface HeaderProps {
   title?: string;
   children?: ReactNode;
 }
 
-const BECOME_A_CLIENT = '';
-const JOIN_EXPERT_NETWORK = '';
 
 const Header: FC<HeaderProps> = ({ title, children }) => {
   const router = useRouter();
@@ -22,43 +21,20 @@ const Header: FC<HeaderProps> = ({ title, children }) => {
 
   if (router.pathname === '/') {
     return (
-      <div className={`h-[70vh] landscape:min-h-max relative bg-body bg-cover sm:bg-none`}>
-        <div className='absolute'></div>
+      <div className={`relative bg-body bg-cover sm:bg-none py-10`}>
         <div className='h-full flex relative'>
-          <div className='absolute w-full top-[6.5rem] bottom-0'>
+          <div className='w-full'>
             <div className='h-full flex justify-center flex-col overflow-hidden relative rounded text-gray-200'>
               <Reveal>
                 <div
                   className={`space-y-8 backdrop-blur-sm mx-auto max-w-xs sm:max-w-7xl sm:px-6 lg:px-8`}
                 >
-                  <div className='flex lg:justify-around flex-col space-y-8 md:space-y-0 md:flex-row'>
+                  <div className='space-y-8'>
                     <div className='space-y-8'>
-                      <h1 className='text-left text-4xl sm:text-5xl font-bold sm:max-w-md'>
+                      <h1 className='text-left text-4xl sm:text-6xl font-bold max-w-lg'>
                         Building Africa’s Largest Network of Professional
                         Experts.
                       </h1>
-                      <div className='space-y-3 lg:space-x-3 hidden sm:block text-gray-800'>
-                        <Button
-                          outline
-                          onClick={() => handleClick(JOIN_EXPERT_NETWORK)}
-                        >
-                          become a client
-                        </Button>
-                        <Button onClick={() => handleClick(BECOME_A_CLIENT)}>
-                          join our expert network
-                        </Button>
-                      </div>
-                      <div className='btn-group sm:hidden'>
-                        <Button
-                          mobile
-                          onClick={() => handleClick(JOIN_EXPERT_NETWORK)}
-                        >
-                          become a client
-                        </Button>
-                        <Button onClick={() => handleClick(BECOME_A_CLIENT)}>
-                          join our network
-                        </Button>
-                      </div>
                     </div>
                     <div>
                       <ul className='list-none font-light max-w-prose space-y-1 mx-auto sm:mx-0 w-full sm:text-base'>
@@ -88,6 +64,28 @@ const Header: FC<HeaderProps> = ({ title, children }) => {
                         </li>
                       </ul>
                     </div>
+                    <div className='space-x-3 hidden sm:block text-gray-800'>
+                        <Button
+                          outline
+                          onClick={navigateClientForm}
+                        >
+                          become a client
+                        </Button>
+                        <Button onClick={navigateExpertNetwork}>
+                          join our expert network
+                        </Button>
+                      </div>
+                      <div className='btn-group sm:hidden'>
+                        <Button
+                          mobile
+                          onClick={navigateClientForm}
+                        >
+                          become a client
+                        </Button>
+                        <Button onClick={navigateExpertNetwork}>
+                          join our network
+                        </Button>
+                      </div>
                   </div>
                 </div>
               </Reveal>
@@ -98,8 +96,8 @@ const Header: FC<HeaderProps> = ({ title, children }) => {
     );
   } else {
     return (
-      <div className='min-h-[40vh] bg-slate-800 pb-5'>
-        <div className='pt-20 w-full'>
+      <div className='bg-slate-800 pb-5'>
+        <div className='w-full'>
           <div className='mx-auto max-w-7xl px-2 sm:px-6 lg:px-8 h-full grid grid-cols-1'>
             <div className='flex justify-center items-center py-10'>
               <h1 className='text-5xl md:text-6xl font-semibold capitalize tracking-tight text-gray-300 text-center'>

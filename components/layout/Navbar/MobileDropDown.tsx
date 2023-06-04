@@ -1,12 +1,12 @@
 import { FC } from 'react';
 import { Disclosure } from '@headlessui/react';
 import { ChevronDownIcon } from '@heroicons/react/24/solid';
-import { industries, aboutUs } from '../../../utils/vars';
+import { industries, contactUs } from '../../../utils/vars';
 import Link from 'next/link';
 
 const dropdownData = {
   industries,
-  'about us': aboutUs,
+  'contact us': contactUs,
 };
 
 type PanelProps = {

@@ -86,15 +86,23 @@ export const industries = [
         category: 'business',
         links: [
             {
-                name: 'technology',
+                name: 'healthcare',
                 href: '#',
             },
             {
-                name: 'medical devices & Diagnostics',
+                name: 'agriculture',
                 href: '#',
             },
             {
-                name: 'pharmaceutical & Biotechnology',
+                name: 'education',
+                href: '#',
+            },
+            {
+                name: 'life sciences',
+                href: '#',
+            },
+            {
+                name: 'insurance',
                 href: '#',
             },
             {
@@ -102,22 +110,51 @@ export const industries = [
                 href: '#',
             },
             {
-                name: 'consumer goods',
+                name: 'government',
                 href: '#',
             },
             {
-                name: 'payments & insurance',
+                name: 'engineering & construction',
                 href: '#',
-            }
+            },
+        ]
+    },
+    {
+        category: '',
+        links: [
+            {
+                name: 'technology & startups',
+                href: '#',
+            },
+            {
+                name: 'non-profit',
+                href: '#',
+            },
+            {
+                name: 'media & communications',
+                href: '#',
+            },
+            {
+                name: 'metals & mining',
+                href: '#',
+            },
+            {
+                name: 'retail',
+                href: '#',
+            },
+            {
+                name: 'oil & gas',
+                href: '#',
+            },
+            {
+                name: 'travel & logistics',
+                href: '#',
+            },
         ]
     },
     {
         category: 'finance',
         links: [
-            {
-                name: 'hedge funds',
-                href: '#',
-            },
             {
                 name: 'private equity',
                 href: '#',
@@ -127,11 +164,11 @@ export const industries = [
                 href: '#',
             },
             {
-                name: 'investment managers & mutual funds',
+                name: 'venture capital',
                 href: '#',
             },
             {
-                name: 'investment banks & research',
+                name: 'investment banking',
                 href: '#',
             },
         ]
@@ -144,34 +181,29 @@ export const industries = [
                 href: '#',
             },
             {
-                name: 'advertising & public relations',
+                name: 'law firms',
                 href: '#',
             },
-        ]
-    },
-    {
-        category: 'law firms',
-        links: [
             {
                 name: 'expert witness',
                 href: '#',
             },
             {
-                name: 'law firm',
+                name: 'advertising & public relations',
+                href: '#',
+            },
+            {
+                name: 'real estate',
                 href: '#',
             },
         ]
     }
 ]
 
-export const aboutUs = [
+export const contactUs = [
     {
-        category: 'about us',
+        category: 'company',
         links : [
-            {
-                name: 'who we are',
-                href: '#',
-            },
             {
                 name: 'contact us',
                 href: '#',
@@ -188,4 +220,18 @@ export const aboutUs = [
         ]
     }
 ]
+
+const CLIENT_INQUIRY = 'https://docs.google.com/forms/d/e/1FAIpQLSc4LyWeitLK_s8s1YjmFh1EzTQ5XejqGkdqXVGGcdX7hFVgeg/viewform'
+const EXPERT_NETWORK = 'https://docs.google.com/forms/d/e/1FAIpQLSfsHRva9dGkqSpxI7VQGu0xQuRwZJHzDZ2CB0lRo-RbnipCLg/viewform'
+
+export const navigateClientForm = () => {
+    if(typeof window === 'undefined')return;
+
+    window.open(CLIENT_INQUIRY,'_blank')
+}
+export const navigateExpertNetwork = () => {
+    if(typeof window === 'undefined')return;
+
+    window.open(EXPERT_NETWORK,'_blank')
+}
 

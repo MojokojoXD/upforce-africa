@@ -27,6 +27,14 @@ interface Navlinks {
 
 const navigation: Navlinks[] = [
   {
+    name: 'about us',
+    options: {
+        href: '/about-us',
+        external: false,
+    },
+    dropdown: false,
+  },
+  {
     name: 'services',
     options: {
       href: '#services',
@@ -40,7 +48,7 @@ const navigation: Navlinks[] = [
     dropdown: true,
   },
   {
-    name: 'about us',
+    name: 'contact us',
     options: undefined,
     dropdown: true,
   },
@@ -106,11 +114,7 @@ export default function Navbar() {
       <Disclosure
         id='navbar'
         as='nav'
-        className={`bg-slate-800/90 backdrop-blur-sm ${
-          scrolling || disclosureStatus.open
-            ? 'shadow-sm'
-            : null
-        } w-full z-[1000] fixed top-0`}
+        className={`w-full bg-white`}
       >
         {({ open, close }) => (
           <>
@@ -119,18 +123,18 @@ export default function Navbar() {
                 <div className='absolute inset-y-0 left-0 flex items-center md:hidden'>
                   {/* Mobile menu button*/}
                   <Disclosure.Button
-                    className='inline-flex items-center justify-center rounded-md text-gray-400 z-[1000]'
+                    className='inline-flex items-center justify-center rounded-md text-gray-500 z-[1000]'
                     onClick={() => setDisclosureStatus({ open: !open, close })}
                   >
                     <span className='sr-only'>Open main menu</span>
                     {open ? (
                       <XMarkIcon
-                        className='block btn btn-ghost btn-square p-2 text-white'
+                        className='block btn btn-ghost btn-square p-2'
                         aria-hidden='true'
                       />
                     ) : (
                       <Bars3Icon
-                        className='block btn btn-ghost btn-square p-2 text-white'
+                        className='block btn btn-ghost btn-square p-2'
                         aria-hidden='true'
                       />
                     )}
@@ -141,7 +145,7 @@ export default function Navbar() {
                     <Link href={'/'} replace>
                       <Image
                         src={
-                           logo_white
+                           logo_black
                         }
                         alt='upforce logo'
                         height={55}
@@ -150,7 +154,7 @@ export default function Navbar() {
                   </div>
                   <div className='hidden sm:ml-6 md:block'>
                     <div
-                      className={`flex space-x-8 items-center h-full mr-10 text-gray-200`}
+                      className={`flex space-x-8 items-center h-full mr-10 text-gray-800`}
                     >
                       {navigation.map((item) => {
                         if (item.dropdown)
@@ -161,7 +165,7 @@ export default function Navbar() {
                           <a
                             key={item.name}
                             href={item.options?.href || ''}
-                            className={`btn btn-ghost btn-sm text-xs tracking-wider font-semibold antialiased border-0 border-b-2 hover:border-b-[#cbcfdf] hover:bg-transparent px-0 rounded-none transition-none`}
+                            className={`btn btn-ghost tracking-wider font-semibold antialiased border-0 border-b-2 hover:border-b-[#cbcfdf] hover:bg-transparent px-0 rounded-none transition-none`}
                           >
                             {item.name}
                           </a>

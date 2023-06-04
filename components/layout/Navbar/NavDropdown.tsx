@@ -2,9 +2,10 @@
 
 import { FC, cloneElement } from 'react';
 import { ChevronDownIcon } from '@heroicons/react/24/solid';
-import { industries, aboutUs } from '../../../utils/vars';
+import { industries, contactUs } from '../../../utils/vars';
 import { Popover, Transition } from '@headlessui/react';
 import Link from 'next/link';
+import sortBy from 'lodash.sortby';
 
 type DropDownPanelProps = {
   close: () => void;
@@ -13,7 +14,7 @@ type DropDownPanelProps = {
 
 const dropdownData = {
   industries,
-  'about us': aboutUs,
+  'contact us': contactUs,
 };
 
 const DropDownPanel: FC<DropDownPanelProps> = ({ close, label }) => {
@@ -33,7 +34,7 @@ const DropDownPanel: FC<DropDownPanelProps> = ({ close, label }) => {
               {/* dropdown links */}
               <div className='w-full p-3'>
                 <ul className='space-y-2 pr-3'>
-                  {a.links.map((l) => (
+                  {sortBy(a.links,['name']).map((l) => (
                     <Link
                       key={l.name}
                       href={l.href}
@@ -63,7 +64,7 @@ const NavDropDown: FC<NavDropDownProps> = ({ label }) => {
       {({ open, close }) => (
         <>
           <Popover.Button
-            className={`btn btn-ghost hover:bg-transparent px-0 text-xs tracking-wider border-0 border-b-2 btn-sm font-semibold antialiased rounded-none hover:border-b-[#cbcfdf]  focus:outline-0 relative transition-none ${
+            className={`btn btn-ghost hover:bg-transparent px-0 tracking-wider border-0 border-b-2 font-semibold antialiased rounded-none hover:border-b-[#cbcfdf]  focus:outline-0 relative transition-none ${
               open && 'border-b-2 border-b-[#cbcfdf]'
             }`}
           >
